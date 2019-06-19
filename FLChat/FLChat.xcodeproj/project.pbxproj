@@ -1,0 +1,634 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A46619F22B9E5A300F64393 /* AppDelegate.swift */; };
+		2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661A122B9E5A300F64393 /* LogInVC.swift */; };
+		2A4661A522B9E5A300F64393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661A322B9E5A300F64393 /* Main.storyboard */; };
+		2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661A622B9E5A300F64393 /* FLChat.xcdatamodeld */; };
+		2A4661AA22B9E5A400F64393 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661A922B9E5A400F64393 /* Assets.xcassets */; };
+		2A4661AD22B9E5A400F64393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661AB22B9E5A400F64393 /* LaunchScreen.storyboard */; };
+		2A4661B822B9E5A400F64393 /* FLChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661B722B9E5A400F64393 /* FLChatTests.swift */; };
+		2A4661C322B9E5A400F64393 /* FLChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661C222B9E5A400F64393 /* FLChatUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2A4661B422B9E5A400F64393 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A46619422B9E5A200F64393 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A46619B22B9E5A200F64393;
+			remoteInfo = FLChat;
+		};
+		2A4661BF22B9E5A400F64393 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A46619422B9E5A200F64393 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A46619B22B9E5A200F64393;
+			remoteInfo = FLChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2A46619C22B9E5A200F64393 /* FLChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A46619F22B9E5A300F64393 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2A4661A122B9E5A300F64393 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
+		2A4661A422B9E5A300F64393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2A4661A722B9E5A300F64393 /* FLChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FLChat.xcdatamodel; sourceTree = "<group>"; };
+		2A4661A922B9E5A400F64393 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2A4661AC22B9E5A400F64393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2A4661AE22B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A4661B322B9E5A400F64393 /* FLChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A4661B722B9E5A400F64393 /* FLChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLChatTests.swift; sourceTree = "<group>"; };
+		2A4661B922B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A4661BE22B9E5A400F64393 /* FLChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A4661C222B9E5A400F64393 /* FLChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLChatUITests.swift; sourceTree = "<group>"; };
+		2A4661C422B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A46619922B9E5A200F64393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A4661B022B9E5A400F64393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A4661BB22B9E5A400F64393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A46619322B9E5A200F64393 = {
+			isa = PBXGroup;
+			children = (
+				2A46619E22B9E5A300F64393 /* FLChat */,
+				2A4661B622B9E5A400F64393 /* FLChatTests */,
+				2A4661C122B9E5A400F64393 /* FLChatUITests */,
+				2A46619D22B9E5A200F64393 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2A46619D22B9E5A200F64393 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A46619C22B9E5A200F64393 /* FLChat.app */,
+				2A4661B322B9E5A400F64393 /* FLChatTests.xctest */,
+				2A4661BE22B9E5A400F64393 /* FLChatUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A46619E22B9E5A300F64393 /* FLChat */ = {
+			isa = PBXGroup;
+			children = (
+				2A4661D322B9E69000F64393 /* Models */,
+				2A4661D222B9E64200F64393 /* CoreData */,
+				2A4661D122B9E63100F64393 /* Views */,
+				2A4661D022B9E5D200F64393 /* Controllers */,
+				2A46619F22B9E5A300F64393 /* AppDelegate.swift */,
+				2A4661A322B9E5A300F64393 /* Main.storyboard */,
+				2A4661A922B9E5A400F64393 /* Assets.xcassets */,
+				2A4661AB22B9E5A400F64393 /* LaunchScreen.storyboard */,
+				2A4661AE22B9E5A400F64393 /* Info.plist */,
+			);
+			path = FLChat;
+			sourceTree = "<group>";
+		};
+		2A4661B622B9E5A400F64393 /* FLChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				2A4661B722B9E5A400F64393 /* FLChatTests.swift */,
+				2A4661B922B9E5A400F64393 /* Info.plist */,
+			);
+			path = FLChatTests;
+			sourceTree = "<group>";
+		};
+		2A4661C122B9E5A400F64393 /* FLChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2A4661C222B9E5A400F64393 /* FLChatUITests.swift */,
+				2A4661C422B9E5A400F64393 /* Info.plist */,
+			);
+			path = FLChatUITests;
+			sourceTree = "<group>";
+		};
+		2A4661D022B9E5D200F64393 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A4661A122B9E5A300F64393 /* LogInVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2A4661D122B9E63100F64393 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2A4661D222B9E64200F64393 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2A4661A622B9E5A300F64393 /* FLChat.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2A4661D322B9E69000F64393 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A46619B22B9E5A200F64393 /* FLChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A4661C722B9E5A400F64393 /* Build configuration list for PBXNativeTarget "FLChat" */;
+			buildPhases = (
+				2A46619822B9E5A200F64393 /* Sources */,
+				2A46619922B9E5A200F64393 /* Frameworks */,
+				2A46619A22B9E5A200F64393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FLChat;
+			productName = FLChat;
+			productReference = 2A46619C22B9E5A200F64393 /* FLChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2A4661B222B9E5A400F64393 /* FLChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A4661CA22B9E5A400F64393 /* Build configuration list for PBXNativeTarget "FLChatTests" */;
+			buildPhases = (
+				2A4661AF22B9E5A400F64393 /* Sources */,
+				2A4661B022B9E5A400F64393 /* Frameworks */,
+				2A4661B122B9E5A400F64393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A4661B522B9E5A400F64393 /* PBXTargetDependency */,
+			);
+			name = FLChatTests;
+			productName = FLChatTests;
+			productReference = 2A4661B322B9E5A400F64393 /* FLChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2A4661BD22B9E5A400F64393 /* FLChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A4661CD22B9E5A400F64393 /* Build configuration list for PBXNativeTarget "FLChatUITests" */;
+			buildPhases = (
+				2A4661BA22B9E5A400F64393 /* Sources */,
+				2A4661BB22B9E5A400F64393 /* Frameworks */,
+				2A4661BC22B9E5A400F64393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A4661C022B9E5A400F64393 /* PBXTargetDependency */,
+			);
+			name = FLChatUITests;
+			productName = FLChatUITests;
+			productReference = 2A4661BE22B9E5A400F64393 /* FLChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A46619422B9E5A200F64393 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "losev.feder2711@gmail.com";
+				TargetAttributes = {
+					2A46619B22B9E5A200F64393 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					2A4661B222B9E5A400F64393 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = 2A46619B22B9E5A200F64393;
+					};
+					2A4661BD22B9E5A400F64393 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = 2A46619B22B9E5A200F64393;
+					};
+				};
+			};
+			buildConfigurationList = 2A46619722B9E5A200F64393 /* Build configuration list for PBXProject "FLChat" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2A46619322B9E5A200F64393;
+			productRefGroup = 2A46619D22B9E5A200F64393 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2A46619B22B9E5A200F64393 /* FLChat */,
+				2A4661B222B9E5A400F64393 /* FLChatTests */,
+				2A4661BD22B9E5A400F64393 /* FLChatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2A46619A22B9E5A200F64393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A4661AD22B9E5A400F64393 /* LaunchScreen.storyboard in Resources */,
+				2A4661AA22B9E5A400F64393 /* Assets.xcassets in Resources */,
+				2A4661A522B9E5A300F64393 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A4661B122B9E5A400F64393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A4661BC22B9E5A400F64393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A46619822B9E5A200F64393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
+				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
+				2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A4661AF22B9E5A400F64393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A4661B822B9E5A400F64393 /* FLChatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A4661BA22B9E5A400F64393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A4661C322B9E5A400F64393 /* FLChatUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2A4661B522B9E5A400F64393 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A46619B22B9E5A200F64393 /* FLChat */;
+			targetProxy = 2A4661B422B9E5A400F64393 /* PBXContainerItemProxy */;
+		};
+		2A4661C022B9E5A400F64393 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A46619B22B9E5A200F64393 /* FLChat */;
+			targetProxy = 2A4661BF22B9E5A400F64393 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2A4661A322B9E5A300F64393 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A4661A422B9E5A300F64393 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2A4661AB22B9E5A400F64393 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A4661AC22B9E5A400F64393 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2A4661C522B9E5A400F64393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2A4661C622B9E5A400F64393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A4661C822B9E5A400F64393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FLChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "losev.feder2711-gmail.com.FLChat";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2A4661C922B9E5A400F64393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FLChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "losev.feder2711-gmail.com.FLChat";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2A4661CB22B9E5A400F64393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FLChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "losev.feder2711-gmail.com.FLChatTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FLChat.app/FLChat";
+			};
+			name = Debug;
+		};
+		2A4661CC22B9E5A400F64393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FLChatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "losev.feder2711-gmail.com.FLChatTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FLChat.app/FLChat";
+			};
+			name = Release;
+		};
+		2A4661CE22B9E5A400F64393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FLChatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "losev.feder2711-gmail.com.FLChatUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FLChat;
+			};
+			name = Debug;
+		};
+		2A4661CF22B9E5A400F64393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FLChatUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "losev.feder2711-gmail.com.FLChatUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FLChat;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A46619722B9E5A200F64393 /* Build configuration list for PBXProject "FLChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A4661C522B9E5A400F64393 /* Debug */,
+				2A4661C622B9E5A400F64393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A4661C722B9E5A400F64393 /* Build configuration list for PBXNativeTarget "FLChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A4661C822B9E5A400F64393 /* Debug */,
+				2A4661C922B9E5A400F64393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A4661CA22B9E5A400F64393 /* Build configuration list for PBXNativeTarget "FLChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A4661CB22B9E5A400F64393 /* Debug */,
+				2A4661CC22B9E5A400F64393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A4661CD22B9E5A400F64393 /* Build configuration list for PBXNativeTarget "FLChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A4661CE22B9E5A400F64393 /* Debug */,
+				2A4661CF22B9E5A400F64393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2A4661A622B9E5A300F64393 /* FLChat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2A4661A722B9E5A300F64393 /* FLChat.xcdatamodel */,
+			);
+			currentVersion = 2A4661A722B9E5A300F64393 /* FLChat.xcdatamodel */;
+			path = FLChat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2A46619422B9E5A200F64393 /* Project object */;
+}
