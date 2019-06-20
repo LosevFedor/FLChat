@@ -8,13 +8,28 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        passwordField.delegate = self
+        emailField.delegate = self
+
+    }
+    
+    func hiddenKeyboard(){
+        passwordField.resignFirstResponder()
+        emailField.resignFirstResponder()
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hiddenKeyboard()
+        return true
+    }
 
 }
 
