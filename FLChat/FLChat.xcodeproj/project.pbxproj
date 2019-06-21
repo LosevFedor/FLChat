@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */; };
+		2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23641722BCFB0700371C45 /* LablePolicy.swift */; };
 		2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A46619F22B9E5A300F64393 /* AppDelegate.swift */; };
 		2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661A122B9E5A300F64393 /* LogInVC.swift */; };
 		2A4661A522B9E5A300F64393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661A322B9E5A300F64393 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookGoogleButton.swift; sourceTree = "<group>"; };
+		2A23641722BCFB0700371C45 /* LablePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LablePolicy.swift; sourceTree = "<group>"; };
 		2A46619C22B9E5A200F64393 /* FLChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A46619F22B9E5A300F64393 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A4661A122B9E5A300F64393 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 		2A4661D122B9E63100F64393 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */,
+				2A23641722BCFB0700371C45 /* LablePolicy.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,8 +297,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */,
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
+				2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */,
 				2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
