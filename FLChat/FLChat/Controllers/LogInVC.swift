@@ -18,8 +18,33 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
         passwordField.delegate = self
         emailField.delegate = self
+        
+        addObserverKeyboard()
 
     }
+    
+    func addObserverKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    deinit {
+        removeObserverKeyboard()
+    }
+    
+    func removeObserverKeyboard(){
+        
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillChanged(notification: Notification){
+        view.frame.origin.y = -50
+    }
+    
     
     func hiddenKeyboard(){
         passwordField.resignFirstResponder()
