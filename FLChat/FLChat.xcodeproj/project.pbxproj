@@ -17,6 +17,7 @@
 		2A4661AD22B9E5A400F64393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661AB22B9E5A400F64393 /* LaunchScreen.storyboard */; };
 		2A4661B822B9E5A400F64393 /* FLChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661B722B9E5A400F64393 /* FLChatTests.swift */; };
 		2A4661C322B9E5A400F64393 /* FLChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661C222B9E5A400F64393 /* FLChatUITests.swift */; };
+		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		2A4661BE22B9E5A400F64393 /* FLChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4661C222B9E5A400F64393 /* FLChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLChatUITests.swift; sourceTree = "<group>"; };
 		2A4661C422B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		2A46619E22B9E5A300F64393 /* FLChat */ = {
 			isa = PBXGroup;
 			children = (
+				3C2B31FA22BE0EB10076FE7C /* Resources */,
 				2A4661D322B9E69000F64393 /* Models */,
 				2A4661D222B9E64200F64393 /* CoreData */,
 				2A4661D122B9E63100F64393 /* Views */,
@@ -164,6 +167,14 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3C2B31FA22BE0EB10076FE7C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */,
+				3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */,
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
 				2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */,
