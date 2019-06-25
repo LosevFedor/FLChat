@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     
@@ -26,6 +27,25 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     deinit {
         removeObserverKeyboard()
     }
+    
+    @IBAction func LogInButton(_ sender: Any) {
+//        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
+//            result
+//            if error != nil{
+//                print("Error sigin")
+//            }else{
+//                print("Suckes user sigin")
+//            }
+//        }
+        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
+            if error != nil{
+                print("Cannot registrate that user")
+            }else{
+                print("boooom!!! Suckes user was registered")
+            }
+        }
+    }
+    
     
     func removeObserverKeyboard(){
         

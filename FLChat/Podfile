@@ -3,6 +3,7 @@
 
 target 'FLChat' do
 
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
+pod 'Firebase/Auth'
   
 end
