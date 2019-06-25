@@ -45,7 +45,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
         if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification{
-            view.frame.origin.y = -keyboardRect.height
+            view.frame.origin.y = -keyboardRect.height + 170
         }else{
             view.frame.origin.y = 0
         }
