@@ -30,11 +30,15 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         removeObserverKeyboard()
     }
     
-    @IBAction func LogInButton(_ sender: Any) {
+    @IBAction func LoginPressed(_ sender: Any) {
         
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
             if error != nil{
-                self.alertMessage(WAR, EMAIL_PASSWORD_INCORRECT)
+                if self.emailField.text! == "" || self.passwordField.text == ""{
+                    self.fieldsNotFilled(WAR, FIELDS_NOT_FILLED)
+                }else{
+                    self.emailOrPasswordIncorrect(WAR, EMAIL_PASSWORD_INCORRECT)
+                }
             }else{
                 
                 // i need save ore get all credentials from server
@@ -44,9 +48,25 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         
     }
     
-    func alertMessage(_ title:String, _ message: String){
+    func fieldsNotFilled(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        UserAlerts.inctance.IncorrecnLoginPassword(alert, title, message)
+        alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func emailOrPasswordIncorrect(_ title:String, _ message: String){
+        let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
+            
+            AuthService.instance.logInUser(self.emailField.text!, self.passwordField.text!)
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Try again", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     

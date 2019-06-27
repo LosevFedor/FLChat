@@ -9,18 +9,16 @@
 import Foundation
 import Firebase
 
-class LogInUser{
+class AuthService{
     
     private (set) public var userEmail:String!
     private (set) public var userPassword:String!
     private (set) public var userPhone:String!
     private (set) public var userName:String!
     
-    private init (){}
-    
-    static var instance = LogInUser()
+    static var instance = AuthService()
 
-    func logIn(_ email: String, _ password: String){
+    func logInUser(_ email: String, _ password: String){
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil{
                 print("Cannot registrate that user: \(error!)")

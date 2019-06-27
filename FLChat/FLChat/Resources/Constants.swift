@@ -11,3 +11,4 @@ import Foundation
 // Text for alerts
 let WAR = "Warning"
 let EMAIL_PASSWORD_INCORRECT = "Email or password is not correct. Do you want create new account?"
+let FIELDS_NOT_FILLED = "Not all fields are filled."
