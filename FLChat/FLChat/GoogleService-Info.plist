@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>752281888725-k09pvmssb5ieo282miaanh4molgpld3l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.752281888725-k09pvmssb5ieo282miaanh4molgpld3l</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAAuRpK6z_1kJIgyI7xgZyCYPCbF4lq3Gc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>752281888725</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>losev.feder2711-gmail.com.FLChat</string>
+	<key>PROJECT_ID</key>
+	<string>flchat-1970a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flchat-1970a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:752281888725:ios:3a4193b3bf404d1b</string>
+	<key>DATABASE_URL</key>
+	<string>https://flchat-1970a.firebaseio.com</string>
+</dict>
+</plist>

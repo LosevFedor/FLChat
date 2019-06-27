@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     
@@ -25,6 +26,38 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     
     deinit {
         removeObserverKeyboard()
+    }
+    
+    @IBAction func LogInButton(_ sender: Any) {
+        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
+            
+            if error != nil{
+                print("00000")
+                self.alertMessage("Warning", "Email or password is not correct. Do you want create new account?")
+            }else{
+                print("Suckes user sigin")
+            }
+        }
+        
+    }
+    
+    func alertMessage(_ title:String, _ message: String){
+        let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
+            
+            //self.logIn()
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    func logIn(){
+        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
+            if error != nil{
+                print("Cannot registrate that user")
+            }else{
+                print("boooom!!! Suckes user was registered")
+            }
+        }
     }
     
     func removeObserverKeyboard(){
