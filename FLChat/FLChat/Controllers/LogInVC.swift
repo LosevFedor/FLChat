@@ -14,6 +14,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     
+    static let instance = LoginVC()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,12 +31,13 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     }
     
     @IBAction func LogInButton(_ sender: Any) {
+        
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
-            
             if error != nil{
-                print("00000")
-                self.alertMessage("Warning", "Email or password is not correct. Do you want create new account?")
+                self.alertMessage(WAR, EMAIL_PASSWORD_INCORRECT)
             }else{
+                
+                // i need save ore get all credentials from server
                 print("Suckes user sigin")
             }
         }
@@ -43,21 +46,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     
     func alertMessage(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
-            
-            //self.logIn()
-            alert.dismiss(animated: true, completion: nil)
-        }))
+        UserAlerts.inctance.IncorrecnLoginPassword(alert, title, message)
         self.present(alert, animated: true, completion: nil)
-    }
-    func logIn(){
-        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
-            if error != nil{
-                print("Cannot registrate that user")
-            }else{
-                print("boooom!!! Suckes user was registered")
-            }
-        }
     }
     
     func removeObserverKeyboard(){
