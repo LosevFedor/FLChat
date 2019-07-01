@@ -21,13 +21,13 @@ class AuthService{
     func logInUser(_ email: String, _ password: String){
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil{
-                print("Cannot registrate that user: \(error!)")
+                print("Unable to autenticate with Firebase using email: \(error!)")
             }else{
                 self.userEmail = email
                 self.userPassword = password
                 self.userPhone = "Add your phone."
                 self.userName = "Enter your name."
-                print("boooom!!! Suckes user was registered")
+                print("Sucessfully aytentificate with firebase using email")
             }
         }
     }

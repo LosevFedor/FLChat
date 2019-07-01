@@ -14,8 +14,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     
-    static let instance = LoginVC()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,24 +29,27 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     }
     
     @IBAction func LoginPressed(_ sender: Any) {
-        
-        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
-            if error != nil{
-                if self.emailField.text! == "" || self.passwordField.text == ""{
-                    self.fieldsNotFilled(WAR, FIELDS_NOT_FILLED)
+        if let email = emailField.text, let password = passwordField.text{
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                if error != nil{
+                    guard let err = error, err.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted." else {
+                        self.standartErrors(WAR, (error?.localizedDescription)! as String)
+                        return
+                    }
+                    
+                    let errorCreateNewAccount = err.localizedDescription as String
+                    self.customErrors(WAR, errorCreateNewAccount)
+                    
                 }else{
-                    self.emailOrPasswordIncorrect(WAR, EMAIL_PASSWORD_INCORRECT)
+                    print("Email user authenticated with firebase")
                 }
-            }else{
-                
-                // i need save ore get all credentials from server
-                print("Suckes user sigin")
             }
         }
-        
     }
+//
+//
     
-    func fieldsNotFilled(_ title:String, _ message: String){
+    func standartErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
@@ -56,11 +57,19 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         present(alert, animated: true, completion: nil)
     }
     
-    func emailOrPasswordIncorrect(_ title:String, _ message: String){
+    func customErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
             
-            AuthService.instance.logInUser(self.emailField.text!, self.passwordField.text!)
+            guard let password = self.passwordField.text, self.passwordField.text!.count >= 6 else {
+                self.standartErrors(WAR, PASSWORD_LESS)
+                return
+            }
+            guard let email = self.emailField.text, self.emailField.text!.count >= 6 else {
+                self.standartErrors(WAR, EMAIL_LESS)
+                return
+            }
+            AuthService.instance.logInUser(email, password)
             alert.dismiss(animated: true, completion: nil)
         }))
         
