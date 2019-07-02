@@ -36,7 +36,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
                         self.standartErrors(WAR, (error?.localizedDescription)! as String)
                         return
                     }
-                    self.customErrors(WAR, err.localizedDescription)
+                    let descriptionText = "\(err.localizedDescription) Do you want to create a new account?"
+                    self.customErrors(WAR, descriptionText)
                 }else{
                     self.performSegue(withIdentifier: "goToHome", sender: nil)
                 }
