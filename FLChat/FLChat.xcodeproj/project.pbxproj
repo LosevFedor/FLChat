@@ -17,6 +17,9 @@
 		2A4661AD22B9E5A400F64393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661AB22B9E5A400F64393 /* LaunchScreen.storyboard */; };
 		2A4661B822B9E5A400F64393 /* FLChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661B722B9E5A400F64393 /* FLChatTests.swift */; };
 		2A4661C322B9E5A400F64393 /* FLChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661C222B9E5A400F64393 /* FLChatUITests.swift */; };
+		2A96847022C4653E0047503C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96846F22C4653E0047503C /* AuthService.swift */; };
+		2A96847222C46FE20047503C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96847122C46FE20047503C /* Constants.swift */; };
+		2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3138122CB02F5000113A4 /* HomeVC.swift */; };
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
 		FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BA00983289252FB128A1B6 /* libPods-FLChat.a */; };
@@ -57,6 +60,9 @@
 		2A4661BE22B9E5A400F64393 /* FLChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4661C222B9E5A400F64393 /* FLChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLChatUITests.swift; sourceTree = "<group>"; };
 		2A4661C422B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A96846F22C4653E0047503C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		2A96847122C46FE20047503C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2AA3138122CB02F5000113A4 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
 		589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.release.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +128,7 @@
 		2A46619E22B9E5A300F64393 /* FLChat */ = {
 			isa = PBXGroup;
 			children = (
+				3C1D3C0F22C4FE32006697EC /* Services */,
 				3C2B31FA22BE0EB10076FE7C /* Resources */,
 				2A4661D322B9E69000F64393 /* Models */,
 				2A4661D222B9E64200F64393 /* CoreData */,
@@ -159,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				2A4661A122B9E5A300F64393 /* LogInVC.swift */,
+				2AA3138122CB02F5000113A4 /* HomeVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -187,10 +195,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		3C1D3C0F22C4FE32006697EC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2A96846F22C4653E0047503C /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		3C2B31FA22BE0EB10076FE7C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */,
+				2A96847122C46FE20047503C /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -201,7 +218,6 @@
 				E0221BF3073E557728DF9AD1 /* Pods-FLChat.debug.xcconfig */,
 				589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -363,7 +379,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A96847222C46FE20047503C /* Constants.swift in Sources */,
+				2A96847022C4653E0047503C /* AuthService.swift in Sources */,
 				2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */,
+				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
 				3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */,
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,

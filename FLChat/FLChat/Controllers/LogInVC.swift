@@ -28,36 +28,68 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         removeObserverKeyboard()
     }
     
-    @IBAction func LogInButton(_ sender: Any) {
-        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
-            
-            if error != nil{
-                print("00000")
-                self.alertMessage("Warning", "Email or password is not correct. Do you want create new account?")
-            }else{
-                print("Suckes user sigin")
-            }
-        }
-        
+    @IBAction func facebookPressed(_ sender: Any) {
     }
     
-    func alertMessage(_ title:String, _ message: String){
+    @IBAction func googlePressed(_ sender: Any) {
+    }
+    
+    @IBAction func loginPressed(_ sender: Any) {
+        if let email = emailField.text, let password = passwordField.text{
+            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                if error != nil{
+                    guard let err = error, err.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted." else {
+                        self.standartErrors(WAR, (error?.localizedDescription)! as String)
+                        return
+                    }
+                    let descriptionText = "\(err.localizedDescription) Do you want to create a new account?"
+                    self.customErrors(WAR, descriptionText)
+                }else{
+                    self.performSegue(withIdentifier: "goToHome", sender: nil)
+                }
+            }
+        }
+    }
+    
+    func logInUser(_ email: String, _ password: String){
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if error != nil{
+                self.standartErrors(WAR, error!.localizedDescription)
+            }else{
+                self.performSegue(withIdentifier: "goToHome", sender: nil)
+            }
+        }
+    }
+
+    
+    func standartErrors(_ title:String, _ message: String){
+        let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func customErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
-            
-            //self.logIn()
+
+            guard let password = self.passwordField.text, self.passwordField.text!.count >= 6 else {
+                self.standartErrors(WAR, PASSWORD_LESS)
+                return
+            }
+            guard let email = self.emailField.text, self.emailField.text!.count >= 6 else {
+                self.standartErrors(WAR, EMAIL_LESS)
+                return
+            }
+           self.logInUser(email, password)
+            alert.dismiss(animated: true, completion: nil)
+        }))
+
+        alert.addAction(UIAlertAction.init(title: "Try again", style: .default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
-    }
-    func logIn(){
-        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
-            if error != nil{
-                print("Cannot registrate that user")
-            }else{
-                print("boooom!!! Suckes user was registered")
-            }
-        }
     }
     
     func removeObserverKeyboard(){
