@@ -36,18 +36,24 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
                         self.standartErrors(WAR, (error?.localizedDescription)! as String)
                         return
                     }
-                    
-                    let errorCreateNewAccount = err.localizedDescription as String
-                    self.customErrors(WAR, errorCreateNewAccount)
-                    
+                    self.customErrors(WAR, err.localizedDescription)
                 }else{
-                    print("Email user authenticated with firebase")
+                    self.performSegue(withIdentifier: "goToHome", sender: nil)
                 }
             }
         }
     }
-//
-//
+    
+    func logInUser(_ email: String, _ password: String){
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if error != nil{
+                self.standartErrors(WAR, error!.localizedDescription)
+            }else{
+                self.performSegue(withIdentifier: "goToHome", sender: nil)
+            }
+        }
+    }
+
     
     func standartErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
@@ -60,7 +66,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     func customErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
-            
+
             guard let password = self.passwordField.text, self.passwordField.text!.count >= 6 else {
                 self.standartErrors(WAR, PASSWORD_LESS)
                 return
@@ -69,10 +75,10 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
                 self.standartErrors(WAR, EMAIL_LESS)
                 return
             }
-            AuthService.instance.logInUser(email, password)
+           self.logInUser(email, password)
             alert.dismiss(animated: true, completion: nil)
         }))
-        
+
         alert.addAction(UIAlertAction.init(title: "Try again", style: .default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))

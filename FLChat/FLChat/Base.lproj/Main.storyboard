@@ -171,17 +171,17 @@
                     <connections>
                         <outlet property="emailField" destination="fyh-tE-p1l" id="FLX-IK-Irt"/>
                         <outlet property="passwordField" destination="hXa-yW-WdX" id="Pec-U2-Edl"/>
-                        <segue destination="LvA-Zy-2O7" kind="show" identifier="LogIn" id="xda-wL-9H4"/>
+                        <segue destination="LvA-Zy-2O7" kind="show" identifier="goToHome" id="xda-wL-9H4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="91.304347826086968" y="8.7053571428571423"/>
         </scene>
-        <!--View Controller-->
+        <!--HomeVC-->
         <scene sceneID="VR2-eH-FAo">
             <objects>
-                <viewController id="LvA-Zy-2O7" sceneMemberID="viewController">
+                <viewController id="LvA-Zy-2O7" customClass="HomeVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IPt-aM-W1R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
