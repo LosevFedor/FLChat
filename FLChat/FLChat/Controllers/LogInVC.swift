@@ -28,7 +28,13 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         removeObserverKeyboard()
     }
     
-    @IBAction func LoginPressed(_ sender: Any) {
+    @IBAction func facebookPressed(_ sender: Any) {
+    }
+    
+    @IBAction func googlePressed(_ sender: Any) {
+    }
+    
+    @IBAction func loginPressed(_ sender: Any) {
         if let email = emailField.text, let password = passwordField.text{
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil{
