@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     
@@ -29,6 +30,30 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     }
     
     @IBAction func facebookPressed(_ sender: Any) {
+        
+        let facebookLogin = FBSDKLoginManager()
+        
+        facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            if error != nil{
+                self.standartErrors(WAR, error!.localizedDescription)
+            }else if result?.isCancelled == true{
+                print("User rejected registration via facebook")
+            }
+            else{
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current()!.tokenString)
+                self.firebaseAuth(credential)
+            }
+        }
+    }
+    
+    func firebaseAuth(_ credential: AuthCredential){
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if error != nil{
+                self.standartErrors(WAR, error!.localizedDescription)
+            }else{
+                self.performSegue(withIdentifier: "goToHome", sender: nil)
+            }
+        }
     }
     
     @IBAction func googlePressed(_ sender: Any) {

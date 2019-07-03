@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */; };
 		2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23641722BCFB0700371C45 /* LablePolicy.swift */; };
+		2A2AAD9722CC4A8500A06F51 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A2AAD9422CC4A8200A06F51 /* Bolts.framework */; };
+		2A2AAD9822CC4A8500A06F51 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A2AAD9522CC4A8400A06F51 /* FBSDKCoreKit.framework */; };
+		2A2AAD9922CC4A8500A06F51 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A2AAD9622CC4A8500A06F51 /* FBSDKLoginKit.framework */; };
 		2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A46619F22B9E5A300F64393 /* AppDelegate.swift */; };
 		2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661A122B9E5A300F64393 /* LogInVC.swift */; };
 		2A4661A522B9E5A300F64393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661A322B9E5A300F64393 /* Main.storyboard */; };
@@ -46,6 +49,9 @@
 		27BA00983289252FB128A1B6 /* libPods-FLChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookGoogleButton.swift; sourceTree = "<group>"; };
 		2A23641722BCFB0700371C45 /* LablePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LablePolicy.swift; sourceTree = "<group>"; };
+		2A2AAD9422CC4A8200A06F51 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		2A2AAD9522CC4A8400A06F51 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		2A2AAD9622CC4A8500A06F51 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		2A46619C22B9E5A200F64393 /* FLChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A46619F22B9E5A300F64393 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A4661A122B9E5A300F64393 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
@@ -75,6 +81,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */,
+				2A2AAD9822CC4A8500A06F51 /* FBSDKCoreKit.framework in Frameworks */,
+				2A2AAD9922CC4A8500A06F51 /* FBSDKLoginKit.framework in Frameworks */,
+				2A2AAD9722CC4A8500A06F51 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +107,9 @@
 		203979B41C7846796EEC35FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A2AAD9422CC4A8200A06F51 /* Bolts.framework */,
+				2A2AAD9522CC4A8400A06F51 /* FBSDKCoreKit.framework */,
+				2A2AAD9622CC4A8500A06F51 /* FBSDKLoginKit.framework */,
 				27BA00983289252FB128A1B6 /* libPods-FLChat.a */,
 			);
 			name = Frameworks;
@@ -564,6 +576,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FLChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -582,6 +598,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FLChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
