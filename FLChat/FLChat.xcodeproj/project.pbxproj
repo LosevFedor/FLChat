@@ -23,6 +23,7 @@
 		2A96847022C4653E0047503C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96846F22C4653E0047503C /* AuthService.swift */; };
 		2A96847222C46FE20047503C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96847122C46FE20047503C /* Constants.swift */; };
 		2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3138122CB02F5000113A4 /* HomeVC.swift */; };
+		3C0ADACD22CCF34800DE069C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */; };
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
 		FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BA00983289252FB128A1B6 /* libPods-FLChat.a */; };
@@ -69,6 +70,8 @@
 		2A96846F22C4653E0047503C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2A96847122C46FE20047503C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2AA3138122CB02F5000113A4 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		3C0ADACB22CCF34800DE069C /* FLChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FLChat.entitlements; sourceTree = "<group>"; };
+		3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
 		589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.release.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */,
+				3C0ADACD22CCF34800DE069C /* AuthenticationServices.framework in Frameworks */,
 				2A2AAD9822CC4A8500A06F51 /* FBSDKCoreKit.framework in Frameworks */,
 				2A2AAD9922CC4A8500A06F51 /* FBSDKLoginKit.framework in Frameworks */,
 				2A2AAD9722CC4A8500A06F51 /* Bolts.framework in Frameworks */,
@@ -107,6 +111,7 @@
 		203979B41C7846796EEC35FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */,
 				2A2AAD9422CC4A8200A06F51 /* Bolts.framework */,
 				2A2AAD9522CC4A8400A06F51 /* FBSDKCoreKit.framework */,
 				2A2AAD9622CC4A8500A06F51 /* FBSDKLoginKit.framework */,
@@ -140,6 +145,7 @@
 		2A46619E22B9E5A300F64393 /* FLChat */ = {
 			isa = PBXGroup;
 			children = (
+				3C0ADACB22CCF34800DE069C /* FLChat.entitlements */,
 				3C1D3C0F22C4FE32006697EC /* Services */,
 				3C2B31FA22BE0EB10076FE7C /* Resources */,
 				2A4661D322B9E69000F64393 /* Models */,
@@ -302,6 +308,14 @@
 				TargetAttributes = {
 					2A46619B22B9E5A200F64393 = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.AutoFillCredentialProvider = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					2A4661B222B9E5A400F64393 = {
 						CreatedOnToolsVersion = 10.2;
@@ -575,7 +589,9 @@
 			baseConfigurationReference = E0221BF3073E557728DF9AD1 /* Pods-FLChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FLChat/FLChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RX34GC5CL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -597,7 +613,9 @@
 			baseConfigurationReference = 589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FLChat/FLChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RX34GC5CL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

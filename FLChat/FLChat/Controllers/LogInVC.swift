@@ -37,9 +37,10 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
             }else if result?.isCancelled == true{
-                print("User rejected registration via facebook")
+                print("Fed: User rejected registration via facebook")
             }
             else{
+                print("Fed: Facebook needed your device token")
                 let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current()!.tokenString)
                 self.firebaseAuth(credential)
             }
@@ -63,11 +64,11 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         if let email = emailField.text, let password = passwordField.text{
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil{
-                    guard let err = error, err.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted." else {
+                    guard let err = error, err.localizedDescription == NOT_FIND_THIS_USER else {
                         self.standartErrors(WAR, (error?.localizedDescription)! as String)
                         return
                     }
-                    let descriptionText = "\(err.localizedDescription) Do you want to create a new account?"
+                    let descriptionText = "\(err.localizedDescription) \(DO_YOU_NEED_NEW_ACCOUNT)"
                     self.customErrors(WAR, descriptionText)
                 }else{
                     self.performSegue(withIdentifier: "goToHome", sender: nil)
