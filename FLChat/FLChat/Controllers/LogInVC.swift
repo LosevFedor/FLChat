@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GoogleSignIn
 
 class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     
@@ -29,7 +30,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         removeObserverKeyboard()
     }
     
-    @IBAction func facebookPressed(_ sender: Any) {
+    @IBAction func facebookBtnPress(_ sender: Any) {
         
         let facebookLogin = FBSDKLoginManager()
         
@@ -58,6 +59,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
     }
     
     @IBAction func googlePressed(_ sender: Any) {
+        let googleLogin = Login
     }
     
     @IBAction func loginPressed(_ sender: Any) {
