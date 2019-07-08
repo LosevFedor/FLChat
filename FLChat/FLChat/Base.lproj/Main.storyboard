@@ -86,33 +86,30 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jeA-eW-jFF">
-                                                <rect key="frame" x="35" y="662" width="344" height="82"/>
+                                                <rect key="frame" x="70" y="662" width="274" height="82"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85f-Tk-DWF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="37"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="274" height="37"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="37" id="zJX-8k-McN"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
-                                                        <state key="normal" title="Sing in with Facebook |Sing Up">
+                                                        <state key="normal" title="Sign in with Facebook |Sing Up">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="facebookBtnPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lA1-pf-opX"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhK-Ty-FoS">
-                                                        <rect key="frame" x="0.0" y="45" width="344" height="37"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhK-Ty-FoS" customClass="GIDSignInButton">
+                                                        <rect key="frame" x="0.0" y="45" width="274" height="37"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="37" id="Pyf-xK-pyO"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
-                                                        <state key="normal" title="Sing in with Google | Sign Up">
+                                                        <state key="normal" title="Sign in with Google | Sign Up">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <connections>
-                                                            <action selector="googlePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LIf-rV-FU6"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -140,12 +137,12 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Nj9-gX-oXR" secondAttribute="trailing" constant="35" id="7XR-5m-lGO"/>
                                             <constraint firstItem="jeA-eW-jFF" firstAttribute="centerX" secondItem="b0z-Xs-Q6C" secondAttribute="centerX" id="9KR-Rn-ysp"/>
-                                            <constraint firstAttribute="trailing" secondItem="jeA-eW-jFF" secondAttribute="trailing" constant="35" id="E0w-WP-jc6"/>
+                                            <constraint firstAttribute="trailing" secondItem="jeA-eW-jFF" secondAttribute="trailing" constant="70" id="E0w-WP-jc6"/>
                                             <constraint firstItem="Nj9-gX-oXR" firstAttribute="leading" secondItem="b0z-Xs-Q6C" secondAttribute="leading" constant="35" id="EwG-5I-pcL"/>
                                             <constraint firstAttribute="trailing" secondItem="GjN-jU-ltu" secondAttribute="trailing" constant="35" id="Hvi-t9-NBD"/>
                                             <constraint firstItem="7z7-kK-1Ut" firstAttribute="centerX" secondItem="b0z-Xs-Q6C" secondAttribute="centerX" id="NuB-gB-LVs"/>
                                             <constraint firstItem="7z7-kK-1Ut" firstAttribute="leading" secondItem="b0z-Xs-Q6C" secondAttribute="leading" constant="35" id="Rrn-CO-Py0"/>
-                                            <constraint firstItem="jeA-eW-jFF" firstAttribute="leading" secondItem="b0z-Xs-Q6C" secondAttribute="leading" constant="35" id="UK2-ya-OB0"/>
+                                            <constraint firstItem="jeA-eW-jFF" firstAttribute="leading" secondItem="b0z-Xs-Q6C" secondAttribute="leading" constant="70" id="UK2-ya-OB0"/>
                                             <constraint firstAttribute="trailing" secondItem="vKK-iD-PQi" secondAttribute="trailing" constant="35" id="ej0-yj-rlz"/>
                                             <constraint firstItem="GjN-jU-ltu" firstAttribute="leading" secondItem="b0z-Xs-Q6C" secondAttribute="leading" constant="35" id="gK9-UT-pcJ"/>
                                             <constraint firstItem="Nj9-gX-oXR" firstAttribute="centerX" secondItem="b0z-Xs-Q6C" secondAttribute="centerX" id="ghb-HP-XQa"/>

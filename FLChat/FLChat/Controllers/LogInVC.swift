@@ -11,7 +11,7 @@ import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
 
-class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
+class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignInUIDelegate {
     
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -24,6 +24,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         
         addObserverKeyboard()
         
+        GIDSignIn.sharedInstance()?.uiDelegate = self
     }
     
     deinit {
@@ -56,10 +57,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
                 self.performSegue(withIdentifier: "goToHome", sender: nil)
             }
         }
-    }
-    
-    @IBAction func googlePressed(_ sender: Any) {
-        let googleLogin = Login
     }
     
     @IBAction func loginPressed(_ sender: Any) {

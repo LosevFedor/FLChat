@@ -14,7 +14,7 @@ import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-
+  
     var window: UIWindow?
 
 
@@ -57,10 +57,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool{
-        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Failure authentication with Google \(error.localizedDescription)")
+            return
+        }else{
+            print("Succesfully authentication")
+            guard let authentication = user.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            Auth.auth().signIn(with: credential) { (result, error) in
+                if let error = error{
+                    print("Eror SignIn: \(error.localizedDescription)")
+                }else{
+                    print("Succesfully: \(result?.user.email)")
+                }
+            }
+        }
+        
     }
-
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
