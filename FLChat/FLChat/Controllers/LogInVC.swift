@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GoogleSignIn
 
-class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
+class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignInUIDelegate {
     
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
+    
+    let userDefault = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +26,24 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
         
         addObserverKeyboard()
         
+        GIDSignIn.sharedInstance()?.uiDelegate = self
+
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if userDefault.bool(forKey: USER_SIGNED_IN){
+            performSegue(withIdentifier: GO_TO_HOME, sender: self)
+        }
+    }
     deinit {
         removeObserverKeyboard()
     }
     
-    @IBAction func facebookPressed(_ sender: Any) {
+    @IBAction func googleBtnPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
+    
+    @IBAction func facebookBtnPressed(_ sender: Any) {
         
         let facebookLogin = FBSDKLoginManager()
         
@@ -52,15 +66,12 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
             }else{
-                self.performSegue(withIdentifier: "goToHome", sender: nil)
+                self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
             }
         }
     }
     
-    @IBAction func googlePressed(_ sender: Any) {
-    }
-    
-    @IBAction func loginPressed(_ sender: Any) {
+    @IBAction func loginBtnPressed(_ sender: Any) {
         if let email = emailField.text, let password = passwordField.text{
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil{
@@ -71,7 +82,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
                     let descriptionText = "\(err.localizedDescription) \(DO_YOU_NEED_NEW_ACCOUNT)"
                     self.customErrors(WAR, descriptionText)
                 }else{
-                    self.performSegue(withIdentifier: "goToHome", sender: nil)
+                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }
         }
@@ -82,12 +93,11 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard {
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
             }else{
-                self.performSegue(withIdentifier: "goToHome", sender: nil)
+                self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
             }
         }
     }
 
-    
     func standartErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in

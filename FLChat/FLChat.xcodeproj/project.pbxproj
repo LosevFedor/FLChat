@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,7 @@
 		3C0ADACD22CCF34800DE069C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */; };
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
+		3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33D522D45E8900EB8656 /* SettingsVC.swift */; };
 		FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BA00983289252FB128A1B6 /* libPods-FLChat.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
+		3CCB33D522D45E8900EB8656 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.release.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.release.xcconfig"; sourceTree = "<group>"; };
 		E0221BF3073E557728DF9AD1 /* Pods-FLChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.debug.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 			children = (
 				2A4661A122B9E5A300F64393 /* LogInVC.swift */,
 				2AA3138122CB02F5000113A4 /* HomeVC.swift */,
+				3CCB33D522D45E8900EB8656 /* SettingsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				2A46619822B9E5A200F64393 /* Sources */,
 				2A46619922B9E5A200F64393 /* Frameworks */,
 				2A46619A22B9E5A200F64393 /* Resources */,
+				AA354451F695465C8F75013E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -376,6 +380,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AA354451F695465C8F75013E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FLChat/Pods-FLChat-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FLChat/Pods-FLChat-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FLChat/Pods-FLChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C2BEE0B00CAA12CF29205EA2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +435,7 @@
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
 				2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */,
 				2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */,
+				3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
