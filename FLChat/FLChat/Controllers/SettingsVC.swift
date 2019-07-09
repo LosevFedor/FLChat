@@ -12,8 +12,6 @@ import Firebase
 import FBSDKLoginKit
 
 class SettingsVC: UIViewController {
-
-    let userDefault = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +27,7 @@ class SettingsVC: UIViewController {
         do{
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance()?.signOut()
-            userDefault.removeObject(forKey: USER_SIGNED_IN)
-            userDefault.synchronize()
-            
-            print("removed all objects (logOut)")
+            UserDefaults.standard.setIsLoggedIn(value: false)
             view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }catch let error as NSError{
             print("User can't SignOut: \(error.localizedDescription)")

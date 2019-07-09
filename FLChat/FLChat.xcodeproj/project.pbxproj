@@ -27,6 +27,7 @@
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
 		3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33D522D45E8900EB8656 /* SettingsVC.swift */; };
+		3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */; };
 		FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BA00983289252FB128A1B6 /* libPods-FLChat.a */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
 		3CCB33D522D45E8900EB8656 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.release.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.release.xcconfig"; sourceTree = "<group>"; };
 		E0221BF3073E557728DF9AD1 /* Pods-FLChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.debug.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 		2A46619E22B9E5A300F64393 /* FLChat */ = {
 			isa = PBXGroup;
 			children = (
+				3CCB33DA22D496D200EB8656 /* Extentions */,
 				3C0ADACB22CCF34800DE069C /* FLChat.entitlements */,
 				3C1D3C0F22C4FE32006697EC /* Services */,
 				3C2B31FA22BE0EB10076FE7C /* Resources */,
@@ -231,6 +234,14 @@
 				2A96847122C46FE20047503C /* Constants.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		3CCB33DA22D496D200EB8656 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */,
+			);
+			name = Extentions;
 			sourceTree = "<group>";
 		};
 		F1FF741F5CDF55DF48C569B3 /* Pods */ = {
@@ -430,6 +441,7 @@
 				2A96847022C4653E0047503C /* AuthService.swift in Sources */,
 				2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
+				3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */,
 				3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */,
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
