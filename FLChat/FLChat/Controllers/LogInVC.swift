@@ -25,13 +25,19 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         addObserverKeyboard()
         
         GIDSignIn.sharedInstance()?.uiDelegate = self
+
     }
     
     deinit {
         removeObserverKeyboard()
     }
     
-    @IBAction func facebookBtnPress(_ sender: Any) {
+    @IBAction func googleBtnPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
+    
+    @IBAction func facebookBtnPressed(_ sender: Any) {
         
         let facebookLogin = FBSDKLoginManager()
         
@@ -59,7 +65,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         }
     }
     
-    @IBAction func loginPressed(_ sender: Any) {
+    @IBAction func loginBtnPressed(_ sender: Any) {
         if let email = emailField.text, let password = passwordField.text{
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
                 if error != nil{
@@ -86,7 +92,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         }
     }
 
-    
     func standartErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in

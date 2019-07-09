@@ -82,7 +82,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" image="Log in"/>
                                                 <connections>
-                                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3e6-FO-reh"/>
+                                                    <action selector="loginBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3e6-FO-reh"/>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jeA-eW-jFF">
@@ -98,10 +98,10 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="facebookBtnPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lA1-pf-opX"/>
+                                                            <action selector="facebookBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lA1-pf-opX"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhK-Ty-FoS" customClass="GIDSignInButton">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhK-Ty-FoS">
                                                         <rect key="frame" x="0.0" y="45" width="274" height="37"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="37" id="Pyf-xK-pyO"/>
@@ -110,6 +110,9 @@
                                                         <state key="normal" title="Sign in with Google | Sign Up">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="googleBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yBW-Jl-6IR"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
