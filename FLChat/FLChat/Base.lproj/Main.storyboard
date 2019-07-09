@@ -369,7 +369,7 @@
                         <viewLayoutGuide key="safeArea" id="OYJ-ju-wBR"/>
                     </view>
                     <connections>
-                        <segue destination="mFu-o1-pOT" kind="show" identifier="goToSettings" id="2bg-4O-EHW"/>
+                        <segue destination="mFu-o1-pOT" kind="show" identifier="" id="2bg-4O-EHW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzV-sc-tjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -379,7 +379,7 @@
         <!--SettingsVC-->
         <scene sceneID="Ytu-V4-QIX">
             <objects>
-                <viewController id="mFu-o1-pOT" customClass="SettingsVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="goToSettings" id="mFu-o1-pOT" customClass="SettingsVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IDy-YM-2qU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
