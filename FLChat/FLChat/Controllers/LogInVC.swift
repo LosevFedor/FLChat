@@ -16,6 +16,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     
+    let userDefault = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +29,11 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         GIDSignIn.sharedInstance()?.uiDelegate = self
 
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if userDefault.bool(forKey: USER_SIGNED_IN){
+            performSegue(withIdentifier: GO_TO_HOME, sender: self)
+        }
+    }
     deinit {
         removeObserverKeyboard()
     }
@@ -60,7 +66,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
             }else{
-                self.performSegue(withIdentifier: "goToHome", sender: nil)
+                self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
             }
         }
     }
@@ -76,7 +82,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                     let descriptionText = "\(err.localizedDescription) \(DO_YOU_NEED_NEW_ACCOUNT)"
                     self.customErrors(WAR, descriptionText)
                 }else{
-                    self.performSegue(withIdentifier: "goToHome", sender: nil)
+                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }
         }
@@ -87,7 +93,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
             }else{
-                self.performSegue(withIdentifier: "goToHome", sender: nil)
+                self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
             }
         }
     }

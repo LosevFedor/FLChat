@@ -19,4 +19,8 @@ let DO_YOU_NEED_NEW_ACCOUNT = "Do you want to create a new account?"
 
 
 // Perform segue
-let GO_HOME = "goToHome"
+let GO_TO_HOME = "goToHome"
+let GO_TO_SETTINGS = "goToSettings"
+
+// User Defaults
+let USER_SIGNED_IN = "userSignedIn"
