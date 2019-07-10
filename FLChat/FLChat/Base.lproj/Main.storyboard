@@ -96,6 +96,7 @@
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                         <state key="normal" title="Sign in with Facebook |Sing Up">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="facebookBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lA1-pf-opX"/>
@@ -109,6 +110,7 @@
                                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                         <state key="normal" title="Sign in with Google | Sign Up">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="googleBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yBW-Jl-6IR"/>
@@ -134,6 +136,7 @@
                                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                                             </label>
                                         </subviews>
@@ -388,26 +391,280 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgS-zD-rXQ">
-                                        <rect key="frame" x="20" y="20" width="32" height="28"/>
+                                        <rect key="frame" x="20" y="0.0" width="70" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="Cnk-Ou-dAN"/>
+                                            <constraint firstAttribute="height" constant="44" id="hpo-z4-1WV"/>
+                                        </constraints>
                                         <state key="normal" image="Back"/>
                                         <connections>
                                             <action selector="backBtnPressed:" destination="mFu-o1-pOT" eventType="touchUpInside" id="Vxy-Am-TAg"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1L-AC-iBt">
-                                        <rect key="frame" x="154" y="523" width="108" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.63999038929999996" green="0.1936841607" blue="0.83536881210000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1L-AC-iBt" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="174.5" y="699" width="65" height="65"/>
+                                        <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="65" id="wch-sB-IDx"/>
+                                            <constraint firstAttribute="height" constant="65" id="xbR-i9-d04"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Sign Out"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWith">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="33"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="SignOutPressed:" destination="mFu-o1-pOT" eventType="touchUpInside" id="tHP-ox-Ce9"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zt-I4-A1v">
+                                        <rect key="frame" x="130.5" y="0.0" width="153.5" height="44"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="40"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mace photo" translatesAutoresizingMaskIntoConstraints="NO" id="2Bf-yA-Vbb">
+                                        <rect key="frame" x="107" y="69" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="vlR-ng-vGV"/>
+                                            <constraint firstAttribute="height" constant="200" id="wyM-l9-XAb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-tY-fKU">
+                                        <rect key="frame" x="35" y="279" width="344" height="28.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You not added your phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgk-Jh-2gs">
+                                        <rect key="frame" x="90" y="312.5" width="234.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Then you change fields like phone, password or email we will send your changes to your email addres." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVb-Ei-SNO">
+                                        <rect key="frame" x="35" y="774" width="344" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVS-01-2lY" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="348" width="334" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="ifZ-ri-SZy"/>
+                                        </constraints>
+                                        <state key="normal" title="Add phone">
+                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWith">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-Z3-N8H" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="403" width="334" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="NXY-z7-SZB"/>
+                                        </constraints>
+                                        <state key="normal" title="Change password">
+                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWith">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZz-K6-Pzz" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="458" width="334" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="xRh-zL-NWR"/>
+                                        </constraints>
+                                        <state key="normal" title="Change email">
+                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWith">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kr-dt-9HV" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="513" width="334" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="pyA-jg-fYA"/>
+                                        </constraints>
+                                        <state key="normal" title="Change name">
+                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWith">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="boU-lA-tQE">
+                                        <rect key="frame" x="35" y="568" width="51" height="31"/>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7l-X3-Bw0">
+                                        <rect key="frame" x="35" y="609" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off notification sounds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxx-Mf-AuJ">
+                                        <rect key="frame" x="94" y="574.5" width="169.5" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="yZ0-1F-Pj7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.94902604820000003" green="0.94900828599999998" blue="0.9490202069" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGT-o3-2pb">
+                                        <rect key="frame" x="94" y="615.5" width="127.5" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="jwW-RH-w0g"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.94902604820000003" green="0.94900828599999998" blue="0.9490202069" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.31764705882352939" green="0.8901960784313725" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="UgS-zD-rXQ" firstAttribute="top" secondItem="4ZA-72-F6X" secondAttribute="top" constant="20" id="Xt3-3m-K2A"/>
+                                    <constraint firstItem="jGT-o3-2pb" firstAttribute="centerY" secondItem="e7l-X3-Bw0" secondAttribute="centerY" id="0K6-mW-rLd"/>
+                                    <constraint firstItem="A1L-AC-iBt" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="17m-dt-uUH"/>
+                                    <constraint firstItem="boU-lA-tQE" firstAttribute="top" secondItem="5kr-dt-9HV" secondAttribute="bottom" constant="10" id="2A7-ID-SP0"/>
+                                    <constraint firstItem="2Bf-yA-Vbb" firstAttribute="centerY" secondItem="4ZA-72-F6X" secondAttribute="centerY" constant="-240" id="5Zl-8t-4GX"/>
+                                    <constraint firstAttribute="trailing" secondItem="5kr-dt-9HV" secondAttribute="trailing" constant="40" id="6Sb-iN-QSi"/>
+                                    <constraint firstItem="ZVS-01-2lY" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="40" id="8Ru-aX-e7S"/>
+                                    <constraint firstItem="cUi-tY-fKU" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="35" id="8SJ-Ti-Qr2"/>
+                                    <constraint firstItem="eVb-Ei-SNO" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="8aD-n0-2WV"/>
+                                    <constraint firstItem="0zt-I4-A1v" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="9Y3-rz-JKC"/>
+                                    <constraint firstAttribute="trailing" secondItem="eVb-Ei-SNO" secondAttribute="trailing" constant="35" id="BpZ-XB-YHW"/>
+                                    <constraint firstItem="gZz-K6-Pzz" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="40" id="FLG-yg-LZp"/>
+                                    <constraint firstItem="gZz-K6-Pzz" firstAttribute="top" secondItem="GAe-Z3-N8H" secondAttribute="bottom" constant="10" id="HJC-Y5-DHF"/>
+                                    <constraint firstItem="GAe-Z3-N8H" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="IdM-Jq-Pqd"/>
+                                    <constraint firstItem="ZVS-01-2lY" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="Lx7-nh-wOu"/>
+                                    <constraint firstItem="e7l-X3-Bw0" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="35" id="MTm-b7-ofV"/>
+                                    <constraint firstAttribute="trailing" secondItem="cUi-tY-fKU" secondAttribute="trailing" constant="35" id="NAt-Ek-qte"/>
+                                    <constraint firstItem="boU-lA-tQE" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="35" id="O9U-Id-qOD"/>
+                                    <constraint firstItem="jgk-Jh-2gs" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="OBx-Ol-2t2"/>
+                                    <constraint firstItem="jGT-o3-2pb" firstAttribute="leading" secondItem="e7l-X3-Bw0" secondAttribute="trailing" constant="10" id="Ojd-PF-KLL"/>
+                                    <constraint firstItem="eVb-Ei-SNO" firstAttribute="top" secondItem="A1L-AC-iBt" secondAttribute="bottom" constant="10" id="PTt-q6-ZDQ"/>
+                                    <constraint firstItem="0zt-I4-A1v" firstAttribute="centerY" secondItem="UgS-zD-rXQ" secondAttribute="centerY" id="PWe-hI-5Nq"/>
+                                    <constraint firstItem="GAe-Z3-N8H" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="40" id="PYP-k7-ftQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="GAe-Z3-N8H" secondAttribute="trailing" constant="40" id="QX0-E9-ktT"/>
+                                    <constraint firstAttribute="trailing" secondItem="gZz-K6-Pzz" secondAttribute="trailing" constant="40" id="S19-fL-qcl"/>
+                                    <constraint firstItem="2Bf-yA-Vbb" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="csE-si-HMp"/>
+                                    <constraint firstItem="UgS-zD-rXQ" firstAttribute="top" secondItem="4ZA-72-F6X" secondAttribute="top" id="fcO-H2-TU5"/>
+                                    <constraint firstItem="cxx-Mf-AuJ" firstAttribute="leading" secondItem="boU-lA-tQE" secondAttribute="trailing" constant="10" id="fj3-IA-6pz"/>
+                                    <constraint firstItem="eVb-Ei-SNO" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="35" id="g1n-qJ-EoI"/>
+                                    <constraint firstAttribute="bottom" secondItem="eVb-Ei-SNO" secondAttribute="bottom" constant="10" id="hov-zr-r7w"/>
                                     <constraint firstItem="UgS-zD-rXQ" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="20" id="jnN-BQ-SBt"/>
+                                    <constraint firstItem="cUi-tY-fKU" firstAttribute="top" secondItem="2Bf-yA-Vbb" secondAttribute="bottom" constant="10" id="jnj-3r-Q9N"/>
+                                    <constraint firstItem="5kr-dt-9HV" firstAttribute="leading" secondItem="4ZA-72-F6X" secondAttribute="leading" constant="40" id="kuI-Zg-P5s"/>
+                                    <constraint firstItem="GAe-Z3-N8H" firstAttribute="top" secondItem="ZVS-01-2lY" secondAttribute="bottom" constant="10" id="lIE-eJ-tMR"/>
+                                    <constraint firstItem="jgk-Jh-2gs" firstAttribute="top" secondItem="cUi-tY-fKU" secondAttribute="bottom" constant="5" id="oWv-r3-aHP"/>
+                                    <constraint firstItem="ZVS-01-2lY" firstAttribute="top" secondItem="jgk-Jh-2gs" secondAttribute="bottom" constant="14" id="oqQ-AU-BPL"/>
+                                    <constraint firstItem="cxx-Mf-AuJ" firstAttribute="centerY" secondItem="boU-lA-tQE" secondAttribute="centerY" id="pjr-1R-enF"/>
+                                    <constraint firstItem="0zt-I4-A1v" firstAttribute="top" secondItem="4ZA-72-F6X" secondAttribute="top" id="r60-87-X9V"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZVS-01-2lY" secondAttribute="trailing" constant="40" id="rof-ix-GQu"/>
+                                    <constraint firstItem="5kr-dt-9HV" firstAttribute="top" secondItem="gZz-K6-Pzz" secondAttribute="bottom" constant="10" id="s3g-jq-7ZF"/>
+                                    <constraint firstItem="cUi-tY-fKU" firstAttribute="centerX" secondItem="4ZA-72-F6X" secondAttribute="centerX" id="xf2-i2-XTk"/>
+                                    <constraint firstItem="e7l-X3-Bw0" firstAttribute="top" secondItem="boU-lA-tQE" secondAttribute="bottom" constant="10" id="xru-30-5IT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -435,5 +692,6 @@
         <image name="Log in" width="285" height="60"/>
         <image name="Logo" width="287" height="259"/>
         <image name="Settings" width="62" height="60"/>
+        <image name="mace photo" width="166" height="166"/>
     </resources>
 </document>

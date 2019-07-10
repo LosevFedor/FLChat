@@ -11,6 +11,7 @@ import UIKit
 class SlideInTransiotion: NSObject, UIViewControllerAnimatedTransitioning {
 
     var isPresenting = false
+    var dimmingView = UIView()
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
@@ -22,19 +23,25 @@ class SlideInTransiotion: NSObject, UIViewControllerAnimatedTransitioning {
         
         let containerView = transitionContext.containerView
         
-        let finalWidth = toViewController.view.bounds.width * 0.77
+        let finalWidth = toViewController.view.bounds.width * SHOW_PART_SETTINGS
         let finalHeight = toViewController.view.bounds.height
         
         if isPresenting{
+            dimmingView.backgroundColor = dimingBackgroundColor
+            dimmingView.alpha = HIDE_ALPHA
+            containerView.addSubview(dimmingView)
+            dimmingView.frame = containerView.bounds
             containerView.addSubview(toViewController.view)
             toViewController.view.frame = CGRect(x: -finalWidth, y: 0, width: finalWidth, height: finalHeight)
         }
         
         let transform = {
+            self.dimmingView.alpha = SHOW_ALPHA
             toViewController.view.transform = CGAffineTransform(translationX: finalWidth, y: 0)
         }
         
         let identity = {
+            self.dimmingView.alpha = HIDE_ALPHA
             fromViewController.view.transform = .identity
         }
         
