@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */; };
-		2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A23641722BCFB0700371C45 /* LablePolicy.swift */; };
 		2A2AAD9722CC4A8500A06F51 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A2AAD9422CC4A8200A06F51 /* Bolts.framework */; };
 		2A2AAD9822CC4A8500A06F51 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A2AAD9522CC4A8400A06F51 /* FBSDKCoreKit.framework */; };
 		2A2AAD9922CC4A8500A06F51 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A2AAD9622CC4A8500A06F51 /* FBSDKLoginKit.framework */; };
@@ -26,8 +24,11 @@
 		3C0ADACD22CCF34800DE069C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */; };
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
+		3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */; };
 		3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33D522D45E8900EB8656 /* SettingsVC.swift */; };
 		3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */; };
+		3CCB33DE22D4BEA800EB8656 /* SlideInTransiotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */; };
+		3CCB33E022D4C94400EB8656 /* HomeVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DF22D4C94400EB8656 /* HomeVC+Extension.swift */; };
 		FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BA00983289252FB128A1B6 /* libPods-FLChat.a */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +51,6 @@
 
 /* Begin PBXFileReference section */
 		27BA00983289252FB128A1B6 /* libPods-FLChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookGoogleButton.swift; sourceTree = "<group>"; };
-		2A23641722BCFB0700371C45 /* LablePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LablePolicy.swift; sourceTree = "<group>"; };
 		2A2AAD9422CC4A8200A06F51 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		2A2AAD9522CC4A8400A06F51 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		2A2AAD9622CC4A8500A06F51 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -76,8 +75,11 @@
 		3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
+		3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneButtonsSettings.swift; sourceTree = "<group>"; };
 		3CCB33D522D45E8900EB8656 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
+		3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransiotion.swift; sourceTree = "<group>"; };
+		3CCB33DF22D4C94400EB8656 /* HomeVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeVC+Extension.swift"; sourceTree = "<group>"; };
 		589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.release.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.release.xcconfig"; sourceTree = "<group>"; };
 		E0221BF3073E557728DF9AD1 /* Pods-FLChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.debug.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -198,8 +200,8 @@
 		2A4661D122B9E63100F64393 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2A23641522BC7FD600371C45 /* FacebookGoogleButton.swift */,
-				2A23641722BCFB0700371C45 /* LablePolicy.swift */,
+				3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */,
+				3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */,
+				3CCB33DF22D4C94400EB8656 /* HomeVC+Extension.swift */,
 			);
 			name = Extentions;
 			sourceTree = "<group>";
@@ -437,15 +440,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCB33E022D4C94400EB8656 /* HomeVC+Extension.swift in Sources */,
 				2A96847222C46FE20047503C /* Constants.swift in Sources */,
+				3CCB33DE22D4BEA800EB8656 /* SlideInTransiotion.swift in Sources */,
 				2A96847022C4653E0047503C /* AuthService.swift in Sources */,
-				2A23641622BC7FD600371C45 /* FacebookGoogleButton.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
 				3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */,
+				3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */,
 				3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */,
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
-				2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */,
 				2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */,
 				3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */,
 			);
