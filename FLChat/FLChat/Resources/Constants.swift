@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // Type Errors
 let WAR = "Warning"
@@ -22,3 +23,8 @@ let DO_YOU_NEED_NEW_ACCOUNT = "Do you want to create a new account?"
 let GO_TO_HOME = "goToHome"
 let GO_TO_SETTINGS = "goToSettings"
 
+// Settings view
+let SHOW_PART_SETTINGS: CGFloat = 0.78
+let SHOW_ALPHA: CGFloat = 0.5
+let HIDE_ALPHA: CGFloat = 0.0
+let dimingBackgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

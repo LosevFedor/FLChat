@@ -10,6 +10,8 @@ import UIKit
 
 class HomeVC: UIViewController {
 
+    let transition = SlideInTransiotion()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,7 +20,9 @@ class HomeVC: UIViewController {
     
     
     @IBAction func settingsBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: GO_TO_SETTINGS, sender: self)
+        guard let settingsVC = storyboard?.instantiateViewController(withIdentifier: GO_TO_SETTINGS) else { return }
+        settingsVC.modalPresentationStyle = .overCurrentContext
+        settingsVC.transitioningDelegate = self
+        present(settingsVC, animated: true, completion: nil)
     }
-    
 }
