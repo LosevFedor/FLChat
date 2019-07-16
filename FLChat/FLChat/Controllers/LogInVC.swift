@@ -16,6 +16,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     
+    static let instance = LoginVC()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,12 +64,15 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     }
     
     func firebaseAuth(_ credential: AuthCredential){
-        Auth.auth().signIn(with: credential) { (user, error) in
+        Auth.auth().signIn(with: credential) { (result, error) in
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
+                    let id = result!.user.uid
+                    let email = result!.user.email
+                    self.addUserFirebaseDB(id, email!)
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }
@@ -87,6 +92,9 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
+                        let id = result!.user.uid
+                        let email = result!.user.email
+                        self.addUserFirebaseDB(id, email!)
                         self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                     }
                 }
@@ -101,12 +109,21 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
+                    let id = result!.user.uid
+                    let email = result!.user.email
+                    self.addUserFirebaseDB(id, email!)
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }
         }
     }
 
+    func addUserFirebaseDB(_ id: String, _ email: String){
+        let ud = User.instance.userData(email)
+        DataService.instance.createFirebaseDBUser(uid: id, userData: ud)
+    }
+    
+    
     func standartErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in

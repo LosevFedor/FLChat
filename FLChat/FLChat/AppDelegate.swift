@@ -69,6 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     print("Eror SignIn: \(error.localizedDescription)")
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
+                    
+                    let id = result!.user.uid
+                    let email = result!.user.email
+                    LoginVC.instance.addUserFirebaseDB(id, email!)
                     self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }

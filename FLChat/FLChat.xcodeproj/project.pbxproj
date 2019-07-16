@@ -20,6 +20,7 @@
 		2A4661AD22B9E5A400F64393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4661AB22B9E5A400F64393 /* LaunchScreen.storyboard */; };
 		2A4661B822B9E5A400F64393 /* FLChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661B722B9E5A400F64393 /* FLChatTests.swift */; };
 		2A4661C322B9E5A400F64393 /* FLChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661C222B9E5A400F64393 /* FLChatUITests.swift */; };
+		2A62FDE322DD6B4200D26B16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDE222DD6B4200D26B16 /* User.swift */; };
 		2A96847022C4653E0047503C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96846F22C4653E0047503C /* AuthService.swift */; };
 		2A96847222C46FE20047503C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96847122C46FE20047503C /* Constants.swift */; };
 		2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3138122CB02F5000113A4 /* HomeVC.swift */; };
@@ -70,6 +71,7 @@
 		2A4661BE22B9E5A400F64393 /* FLChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4661C222B9E5A400F64393 /* FLChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLChatUITests.swift; sourceTree = "<group>"; };
 		2A4661C422B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A62FDE222DD6B4200D26B16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2A96846F22C4653E0047503C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2A96847122C46FE20047503C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2AA3138122CB02F5000113A4 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		2A4661D322B9E69000F64393 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2A62FDE222DD6B4200D26B16 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */,
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
+				2A62FDE322DD6B4200D26B16 /* User.swift in Sources */,
 				2A23641822BCFB0700371C45 /* LablePolicy.swift in Sources */,
 				2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */,
 				3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */,
