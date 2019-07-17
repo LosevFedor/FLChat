@@ -7,31 +7,33 @@
 //
 
 import Foundation
+import UIKit
 
-struct User{
+struct User {
     
     static var instance = User()
     
     private var _name: String?
     private var _image: String?
-    private var _email: String?
     private var _online: Bool?
     private var _notificationOn: Bool?
     private var _notificationSound: Bool?
+    private var _phone: String?
+    
+    var phone: String{
+        get{
+            return _phone!
+        }
+        set{
+            _phone = newValue
+        }
+    }
     
     var name: String{
         get{
             return _name!
         }set{
             _name = newValue
-        }
-    }
-    
-    var email: String{
-        get{
-            return _email!
-        }set{
-            _email = newValue
         }
     }
     
@@ -67,16 +69,17 @@ struct User{
         }
     }
     
+    init() {
+        _phone = "Your phone number"
+        _name = "Your name"
+        _image = "empty field"
+        _online = true
+        _notificationOn = true
+        _notificationSound = true
+    }
     
-    mutating func userData(_ email: String) -> Dictionary<String,Any>{
-        self.name = "Enter your name"
-        self.email = email
-        self.image = "empty field"
-        self.online = true
-        self.notificationOn = true
-        self.notificationSound = true
-
-        let dictionaryUserParameters = ["name": name, "email": email, "image": image, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
+    func userData(_ email: String) -> Dictionary<String,Any>{
+        let dictionaryUserParameters = ["phone": phone, "name": name, "email": email, "image": image, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
         return dictionaryUserParameters
     }
 }

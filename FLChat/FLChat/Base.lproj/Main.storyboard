@@ -442,12 +442,27 @@
                                         <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mace photo" translatesAutoresizingMaskIntoConstraints="NO" id="2Bf-yA-Vbb">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="2Bf-yA-Vbb" customClass="DesigneImageSettings" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="107" y="69" width="200" height="200"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="vlR-ng-vGV"/>
                                             <constraint firstAttribute="height" constant="200" id="wyM-l9-XAb"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusImage">
+                                                <real key="value" value="100"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidthImage">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacityImage">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="GGi-Uz-U4y" appends="YES" id="JHh-dC-Xz6"/>
+                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-tY-fKU">
                                         <rect key="frame" x="35" y="279" width="344" height="28.5"/>
@@ -502,6 +517,9 @@
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="addPhoneBtnPressed:" destination="mFu-o1-pOT" eventType="touchUpInside" id="M04-S2-7K8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-Z3-N8H" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="40" y="403" width="334" height="45"/>
@@ -532,6 +550,9 @@
                                                 <size key="value" width="0.0" height="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="changePasswordBtnPressed:" destination="mFu-o1-pOT" eventType="touchUpInside" id="ZDm-tf-kRZ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZz-K6-Pzz" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="40" y="458" width="334" height="45"/>
@@ -562,6 +583,9 @@
                                                 <size key="value" width="0.0" height="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="changeEmailBtnPressed:" destination="mFu-o1-pOT" eventType="touchUpInside" id="jJa-Ve-EOZ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kr-dt-9HV" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="40" y="513" width="334" height="45"/>
@@ -592,12 +616,21 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="changeNameBtnPressed:" destination="mFu-o1-pOT" eventType="touchUpInside" id="gDC-EX-MqU"/>
+                                        </connections>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="boU-lA-tQE">
                                         <rect key="frame" x="35" y="568" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="pushNotificationSoundBtnPressed:" destination="mFu-o1-pOT" eventType="valueChanged" id="fHc-dg-fMe"/>
+                                        </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7l-X3-Bw0">
                                         <rect key="frame" x="35" y="609" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="pushNotificationBtnPressed:" destination="mFu-o1-pOT" eventType="valueChanged" id="yAn-me-cYU"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off notification sounds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxx-Mf-AuJ">
                                         <rect key="frame" x="94" y="574.5" width="169.5" height="18"/>
@@ -677,8 +710,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zd7-ey-Wsw"/>
                     </view>
+                    <connections>
+                        <outlet property="pushNotificationLabel" destination="jGT-o3-2pb" id="h4P-XU-Tco"/>
+                        <outlet property="pushNotificationSoundLabel" destination="cxx-Mf-AuJ" id="9fa-He-1pk"/>
+                        <outlet property="userImage" destination="2Bf-yA-Vbb" id="cXN-39-zhh"/>
+                        <outlet property="userNameLabel" destination="cUi-tY-fKU" id="czZ-Cg-bDj"/>
+                        <outlet property="userPhoneLabel" destination="jgk-Jh-2gs" id="LOd-jD-JwL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPA-ZN-yg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GGi-Uz-U4y"/>
             </objects>
             <point key="canvasLocation" x="1886.9565217391305" y="-551.11607142857144"/>
         </scene>
@@ -692,6 +733,6 @@
         <image name="Log in" width="285" height="60"/>
         <image name="Logo" width="287" height="259"/>
         <image name="Settings" width="62" height="60"/>
-        <image name="mace photo" width="166" height="166"/>
+        <image name="defaultImage" width="256" height="256"/>
     </resources>
 </document>
