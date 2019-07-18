@@ -454,10 +454,10 @@
                                                 <real key="value" value="100"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidthImage">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacityImage">
-                                                <real key="value" value="0.0"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColorImage">
+                                                <color key="value" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -719,7 +719,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPA-ZN-yg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="GGi-Uz-U4y"/>
+                <tapGestureRecognizer id="GGi-Uz-U4y">
+                    <connections>
+                        <action selector="changeUserImage:" destination="mFu-o1-pOT" id="UQQ-RE-bcj"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1886.9565217391305" y="-551.11607142857144"/>
         </scene>

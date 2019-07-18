@@ -20,6 +20,8 @@
 		2A4661C322B9E5A400F64393 /* FLChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661C222B9E5A400F64393 /* FLChatUITests.swift */; };
 		2A62FDE322DD6B4200D26B16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDE222DD6B4200D26B16 /* User.swift */; };
 		2A62FDE522DECF4B00D26B16 /* DesigneImageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDE422DECF4B00D26B16 /* DesigneImageSettings.swift */; };
+		2A62FDE822E01F9F00D26B16 /* ChangeImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDE622E01F9F00D26B16 /* ChangeImageVC.swift */; };
+		2A62FDE922E01F9F00D26B16 /* ChangeImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A62FDE722E01F9F00D26B16 /* ChangeImageVC.xib */; };
 		2A96847022C4653E0047503C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96846F22C4653E0047503C /* AuthService.swift */; };
 		2A96847222C46FE20047503C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96847122C46FE20047503C /* Constants.swift */; };
 		2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3138122CB02F5000113A4 /* HomeVC.swift */; };
@@ -73,6 +75,8 @@
 		2A4661C422B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A62FDE222DD6B4200D26B16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2A62FDE422DECF4B00D26B16 /* DesigneImageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneImageSettings.swift; sourceTree = "<group>"; };
+		2A62FDE622E01F9F00D26B16 /* ChangeImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeImageVC.swift; sourceTree = "<group>"; };
+		2A62FDE722E01F9F00D26B16 /* ChangeImageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeImageVC.xib; sourceTree = "<group>"; };
 		2A96846F22C4653E0047503C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2A96847122C46FE20047503C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2AA3138122CB02F5000113A4 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				2A4661A122B9E5A300F64393 /* LogInVC.swift */,
 				2AA3138122CB02F5000113A4 /* HomeVC.swift */,
 				3CCB33D522D45E8900EB8656 /* SettingsVC.swift */,
+				2A62FDE622E01F9F00D26B16 /* ChangeImageVC.swift */,
+				2A62FDE722E01F9F00D26B16 /* ChangeImageVC.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4661AD22B9E5A400F64393 /* LaunchScreen.storyboard in Resources */,
+				2A62FDE922E01F9F00D26B16 /* ChangeImageVC.xib in Resources */,
 				3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */,
 				2A4661AA22B9E5A400F64393 /* Assets.xcassets in Resources */,
 				2A4661A522B9E5A300F64393 /* Main.storyboard in Resources */,
@@ -449,6 +456,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A62FDE822E01F9F00D26B16 /* ChangeImageVC.swift in Sources */,
 				3CCB33E022D4C94400EB8656 /* HomeVC+Extension.swift in Sources */,
 				2A62FDE522DECF4B00D26B16 /* DesigneImageSettings.swift in Sources */,
 				2A96847222C46FE20047503C /* Constants.swift in Sources */,

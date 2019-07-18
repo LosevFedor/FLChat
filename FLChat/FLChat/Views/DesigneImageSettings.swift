@@ -14,6 +14,7 @@ class DesigneImageSettings: UIImageView{
     @IBInspectable private var cornerRadiusImage: CGFloat = 1.0{
         didSet{
             layer.cornerRadius = cornerRadiusImage
+            layer.masksToBounds = true
         }
     }
     @IBInspectable private var borderWidthImage: CGFloat = 1.0{
@@ -21,21 +22,9 @@ class DesigneImageSettings: UIImageView{
             layer.borderWidth = borderWidthImage
         }
     }
-    @IBInspectable private var shadowOpacityImage: Float = 1.0{
+    @IBInspectable private var borderColorImage: UIColor = UIColor.clear{
         didSet{
-            layer.shadowOpacity = shadowOpacityImage
+            layer.borderColor = borderColorImage.cgColor
         }
     }
-    @IBInspectable private var shadowColorImage: UIColor = UIColor.clear{
-        didSet{
-            layer.shadowColor = shadowColorImage.cgColor
-        }
-    }
-    @IBInspectable private var shadowRadiusImage: CGFloat = 1.0{
-        didSet{
-            layer.shadowRadius = shadowRadiusImage
-        }
-    }
-    
-    
 }

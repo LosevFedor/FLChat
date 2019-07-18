@@ -64,5 +64,7 @@ class SettingsVC: UIViewController {
     }
     @IBAction func pushNotificationBtnPressed(_ sender: Any) {
     }
-    
+    @IBAction func changeUserImage(_ Sender: Any){
+        print("I want to be change my image")
+    }
 }
