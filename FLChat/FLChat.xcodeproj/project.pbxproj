@@ -161,6 +161,7 @@
 		2A46619E22B9E5A300F64393 /* FLChat */ = {
 			isa = PBXGroup;
 			children = (
+				2A62FDEA22E0987E00D26B16 /* XIBs */,
 				3CCB33DA22D496D200EB8656 /* Extentions */,
 				3C0ADACB22CCF34800DE069C /* FLChat.entitlements */,
 				3C1D3C0F22C4FE32006697EC /* Services */,
@@ -204,7 +205,6 @@
 				2AA3138122CB02F5000113A4 /* HomeVC.swift */,
 				3CCB33D522D45E8900EB8656 /* SettingsVC.swift */,
 				2A62FDE622E01F9F00D26B16 /* ChangeImageVC.swift */,
-				2A62FDE722E01F9F00D26B16 /* ChangeImageVC.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -233,6 +233,14 @@
 				2A62FDE222DD6B4200D26B16 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2A62FDEA22E0987E00D26B16 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				2A62FDE722E01F9F00D26B16 /* ChangeImageVC.xib */,
+			);
+			path = XIBs;
 			sourceTree = "<group>";
 		};
 		3C1D3C0F22C4FE32006697EC /* Services */ = {
