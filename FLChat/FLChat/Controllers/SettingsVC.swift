@@ -65,6 +65,8 @@ class SettingsVC: UIViewController {
     @IBAction func pushNotificationBtnPressed(_ sender: Any) {
     }
     @IBAction func changeUserImage(_ Sender: Any){
-        print("I want to be change my image")
+        let changeImageVC = ChangeImageVC()
+        changeImageVC.modalPresentationStyle = .custom
+        present(changeImageVC, animated: true, completion: nil)
     }
 }
