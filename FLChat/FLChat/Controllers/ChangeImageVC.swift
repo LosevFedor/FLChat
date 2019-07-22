@@ -10,13 +10,26 @@ import UIKit
 
 class ChangeImageVC: UIViewController {
 
+    @IBOutlet weak var bgView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupView()
     }
+    
+    
     @IBAction func backBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    func setupView(){
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(ChangeImageVC.closeTap(_:)))
+        bgView.addGestureRecognizer(closeTouch)
+    }
+    
+    @objc func closeTap(_ recognizer: UITapGestureRecognizer){
+        dismiss(animated: true, completion: nil)
+    }
 
 }
