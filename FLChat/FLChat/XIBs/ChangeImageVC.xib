@@ -52,6 +52,9 @@
                                 <constraint firstAttribute="height" constant="120" id="YpA-sk-KsZ"/>
                             </constraints>
                             <state key="normal" image="User camera"/>
+                            <connections>
+                                <action selector="makePhotoBtnPressed:" destination="-1" eventType="touchUpInside" id="rfJ-g0-uR4"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make a photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghY-RT-0Go">
                             <rect key="frame" x="99" y="68.5" width="137" height="31"/>
@@ -80,6 +83,9 @@
                                 <constraint firstAttribute="width" constant="120" id="nNB-6s-tJ0"/>
                             </constraints>
                             <state key="normal" image="Select photo"/>
+                            <connections>
+                                <action selector="selectUserImageBtnPressed:" destination="-1" eventType="touchUpInside" id="K5O-aN-Xr9"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.31764705879999999" green="0.89019607840000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

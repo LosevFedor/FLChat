@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ChangeImageVC: UIViewController {
 
+    var imagePicker = UIImagePickerController()
+    
     @IBOutlet weak var bgView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imagePicker.delegate = self
         setupView()
     }
     
@@ -31,5 +35,30 @@ class ChangeImageVC: UIViewController {
     @objc func closeTap(_ recognizer: UITapGestureRecognizer){
         dismiss(animated: true, completion: nil)
     }
-
+    
+    @IBAction func makePhotoBtnPressed(_ sender: Any) {
+      
+    }
+    @IBAction func selectUserImageBtnPressed(_ sender: UIButton) {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
 }
+
+extension ChangeImageVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = [UIImagePickerController.InfoKey.editedImage] as? UIImage{
+            
+            print("OK")
+        }
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+}
+
+
