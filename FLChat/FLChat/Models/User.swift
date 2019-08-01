@@ -69,6 +69,8 @@ struct User {
         }
     }
     
+    
+    
     init() {
         _phone = "Your phone number"
         _name = "Your name"
@@ -78,8 +80,4 @@ struct User {
         _notificationSound = true
     }
     
-    func userData(_ email: String) -> Dictionary<String,Any>{
-        let dictionaryUserParameters = ["phone": phone, "name": name, "email": email, "image": image, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
-        return dictionaryUserParameters
-    }
 }

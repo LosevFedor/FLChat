@@ -35,7 +35,6 @@ class SettingsVC: UIViewController {
     }
     
     
-    
     @IBAction func backBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -54,16 +53,22 @@ class SettingsVC: UIViewController {
     }
     @IBAction func addPhoneBtnPressed(_ sender: Any) {
     }
+    
     @IBAction func changePasswordBtnPressed(_ sender: Any) {
     }
+    
     @IBAction func changeEmailBtnPressed(_ sender: Any) {
     }
+    
     @IBAction func changeNameBtnPressed(_ sender: Any) {
     }
+    
     @IBAction func pushNotificationSoundBtnPressed(_ sender: Any) {
     }
+    
     @IBAction func pushNotificationBtnPressed(_ sender: Any) {
     }
+    
     @IBAction func changeUserImage(_ Sender: Any){
         let changeImageVC = ChangeImageVC()
         changeImageVC.modalPresentationStyle = .custom

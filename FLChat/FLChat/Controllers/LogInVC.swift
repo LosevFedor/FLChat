@@ -119,7 +119,15 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     }
 
     func addUserFirebaseDB(_ id: String, _ email: String){
-        let ud = User.instance.userData(email)
+        
+        let userPhone = "Your phone number"
+        let userName = "Your name"
+        let userImage = "empty field"
+        let userOnline = true
+        let userNotificationOn = true
+        let userNotificationSound = true
+        
+        let ud = DataService.instance.userData(email, userPhone, userName, userImage, userOnline, userNotificationOn, userNotificationSound)
         DataService.instance.createFirebaseDBUser(uid: id, userData: ud)
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class ChangeImageVC: UIViewController {
 
@@ -50,9 +51,10 @@ class ChangeImageVC: UIViewController {
 extension ChangeImageVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = [UIImagePickerController.InfoKey.editedImage] as? UIImage{
-            
-            print("OK")
+        if let image = info[.originalImage] as? UIImage{
+            guard let id = Auth.auth().currentUser?.uid else { return }
+            let image = DataService.instance.changeUserImage("This is good day today")
+            DataService.instance.updateDbImageUser(uid: id, userImage: image)
         }
         
         dismiss(animated: true, completion: nil)
