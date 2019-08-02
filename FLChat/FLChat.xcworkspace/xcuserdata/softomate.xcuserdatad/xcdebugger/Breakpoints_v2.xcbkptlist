@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FLChat/Controllers/LogInVC.swift"
-            timestampString = "583818126.486358"
+            timestampString = "586407652.384809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "loginPressed(_:)"
+            landmarkName = "firebaseAuth(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,13 +42,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FLChat/Controllers/LogInVC.swift"
-            timestampString = "583818308.24353"
+            timestampString = "586407652.384887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
             endingLineNumber = "51"
-            landmarkName = "firebaseAuth(_:)"
+            landmarkName = "facebookBtnPressed(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FLChat.LoginVC.facebookBtnPressed(Any) -&gt; ()"
+                  moduleName = "FLChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/softomate/Desktop/FLchatApp/App/FLChat/FLChat/FLChat/Controllers/LogInVC.swift"
+                  timestampString = "586407654.916265"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FBSDKLoginManagerLoginResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in FLChat.LoginVC.facebookBtnPressed(Any) -&gt; ()"
+                  moduleName = "FLChat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/softomate/Desktop/FLchatApp/App/FLChat/FLChat/FLChat/Controllers/LogInVC.swift"
+                  timestampString = "586407654.919234"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "121">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,12 +90,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FLChat/Controllers/LogInVC.swift"
-            timestampString = "583818309.3515331"
+            timestampString = "586407652.384943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "firebaseAuth(_:)"
+            landmarkName = "facebookBtnPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FLChat/Controllers/SettingsVC.swift"
+            timestampString = "586407652.384999"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "setUserSettings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FLChat/Controllers/SettingsVC.swift"
+            timestampString = "586407652.385427"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "setUserSettings()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

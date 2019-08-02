@@ -11,14 +11,14 @@ import Firebase
 import UIKit
 
 let DB_BASE = Database.database().reference()
-
+let STORAGE_BASE = 
 class DataService {
     
     static let instance = DataService()
     
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
-    
+   // private var _REF_STORAGE_BASE =
     var REF_BASE: DatabaseReference {
         return _REF_BASE
     }
@@ -46,4 +46,6 @@ class DataService {
         let dictUserImage = ["image": userImage]
         return dictUserImage
     }
+    
+    func getUserSettings(){}
 }

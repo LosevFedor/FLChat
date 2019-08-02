@@ -71,13 +71,14 @@ struct User {
     
     
     
-    init() {
-        _phone = "Your phone number"
-        _name = "Your name"
-        _image = "empty field"
-        _online = true
-        _notificationOn = true
-        _notificationSound = true
-    }
+//
+//    init() {
+//        _phone = "Your phone number"
+//        _name = "Your name"
+//        _image = "empty field"
+//        _online = true
+//        _notificationOn = true
+//        _notificationSound = true
+//    }
     
 }

@@ -51,14 +51,32 @@ class ChangeImageVC: UIViewController {
 extension ChangeImageVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage{
-            guard let id = Auth.auth().currentUser?.uid else { return }
-            let image = DataService.instance.changeUserImage("This is good day today")
-            DataService.instance.updateDbImageUser(uid: id, userImage: image)
+        
+        var selectedImageFromPicker:UIImage?
+        
+        if let editedImage = info[.editedImage] as? UIImage{
+//            guard let id = Auth.auth().currentUser?.uid else { return }
+//            let editImage = DataService.instance.changeUserImage("editedImage")
+//            DataService.instance.updateDbImageUser(uid: id, userImage: editImage)
+            
+            selectedImageFromPicker = editedImage
+        }else if let originalImage = info[.originalImage] as? UIImage{
+//            guard let id = Auth.auth().currentUser?.uid else { return }
+//            let originImage = DataService.instance.changeUserImage("This is good day today")
+//            DataService.instance.updateDbImageUser(uid: id, userImage: originImage)
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker{
+            uploadToFirebaseStorageUsingImage(selectedImage)
         }
         
         dismiss(animated: true, completion: nil)
         
+    }
+    
+    private func uploadToFirebaseStorageUsingImage(_ image: UIImage){
+        let ref = Storage.storage().reference().child(<#T##path: String##String#>)
     }
     
 }
