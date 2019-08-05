@@ -20,6 +20,7 @@ class DataService {
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("user_image_folder")
+
     
     // Unique user identification
     private var _REF_UID = Auth.auth().currentUser?.uid
@@ -46,6 +47,19 @@ class DataService {
     
     func updateDbImageUser(uid: String, userImage: Dictionary<String,Any>){
         REF_USERS.child(uid).updateChildValues(userImage)
+    }
+    
+    func getUserCredentialsDbFirebase(uid: String){
+        REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            
+            let value = snapshot.value as? Dictionary<String,Any>
+            
+            User.instance.phone = (value?["phone"] as? String)!
+            User.instance.name = (value?["name"] as? String)!
+            User.instance.online = (value?["online"] as? Bool)!
+            User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
+            User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
+        }
     }
 
     

@@ -69,9 +69,17 @@ struct User {
         }
     }
     
+//    func getUserCredentialsFronBbFirebase(){
+//        let uid = DataService.instance.REF_UID
+//        
+//        
+//        
+//        
+//        
+//    }
     
     
-//
+
 //    init() {
 //        _phone = "Your phone number"
 //        _name = "Your name"

@@ -30,10 +30,12 @@ class SettingsVC: UIViewController {
     
     func setUserSettings(){
         
-        let userName = Auth.auth().currentUser?.displayName
-        print(userName)
-        userNameLabel.text = User.instance.name
-        userPhoneLabel.text = User.instance.phone
+        
+        let uid = DataService.instance.REF_UID
+        DataService.instance.getUserCredentialsDbFirebase(uid: uid)
+        
+        userNameLabel.text = "User.instance.name"
+        userPhoneLabel.text = "User.instance.phone"
         userImage.image = #imageLiteral(resourceName: "defaultImage")
     }
     
