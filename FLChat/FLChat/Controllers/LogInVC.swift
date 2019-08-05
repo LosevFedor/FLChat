@@ -70,7 +70,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
-                    let id = result!.user.uid
+                    let id = DataService.instance.REF_UID
                     let email = result!.user.email
                     self.addUserFirebaseDB(id, email!)
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
@@ -92,7 +92,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
-                        let id = result!.user.uid
+                        let id = DataService.instance.REF_UID
                         let email = result!.user.email
                         self.addUserFirebaseDB(id, email!)
                         self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
@@ -109,7 +109,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
-                    let id = result!.user.uid
+                    let id = DataService.instance.REF_UID
                     let email = result!.user.email
                     self.addUserFirebaseDB(id, email!)
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
