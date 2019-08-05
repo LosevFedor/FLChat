@@ -29,14 +29,14 @@ class SettingsVC: UIViewController {
     }
     
     func setUserSettings(){
-        
-        
         let uid = DataService.instance.REF_UID
-        DataService.instance.getUserCredentialsDbFirebase(uid: uid)
-        
-        userNameLabel.text = "User.instance.name"
-        userPhoneLabel.text = "User.instance.phone"
-        userImage.image = #imageLiteral(resourceName: "defaultImage")
+        DataService.instance.getUserCredentialsDbFirebase(uid: uid) { (complete) in
+            if complete{
+                self.userNameLabel.text = User.instance.name
+                self.userPhoneLabel.text = User.instance.phone
+                self.userImage.image = #imageLiteral(resourceName: "defaultImage")
+            }
+        }
     }
     
     

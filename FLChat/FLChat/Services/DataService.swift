@@ -49,16 +49,18 @@ class DataService {
         REF_USERS.child(uid).updateChildValues(userImage)
     }
     
-    func getUserCredentialsDbFirebase(uid: String){
+    
+    func getUserCredentialsDbFirebase(uid: String, completion: @escaping (_ finishingSnapshot: Bool) -> ()){
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            
+
             let value = snapshot.value as? Dictionary<String,Any>
-            
+
             User.instance.phone = (value?["phone"] as? String)!
             User.instance.name = (value?["name"] as? String)!
             User.instance.online = (value?["online"] as? Bool)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
             User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
+
         }
     }
 
