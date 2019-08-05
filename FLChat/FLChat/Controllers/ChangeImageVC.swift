@@ -76,7 +76,18 @@ extension ChangeImageVC: UIImagePickerControllerDelegate, UINavigationController
     }
     
     private func uploadToFirebaseStorageUsingImage(_ image: UIImage){
-        let ref = Storage.storage().reference().child(<#T##path: String##String#>)
+        let uid = DataService.instance.REF_UID
+        let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
+        
+        if let uploadData = image.jpegData(compressionQuality: 0.2){
+            ref.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil{
+                    print("Failed to upload image:\(error)")
+                }
+
+                print(metadata?.accessibilityPath as Any)
+            }
+        }
     }
     
 }

@@ -11,21 +11,33 @@ import Firebase
 import UIKit
 
 let DB_BASE = Database.database().reference()
-let STORAGE_BASE = 
+let STORAGE_BASE = Storage.storage().reference()
+
 class DataService {
     
     static let instance = DataService()
     
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
-   // private var _REF_STORAGE_BASE =
+    private var _REF_STORAGE_BASE = STORAGE_BASE.child("user_image_folder")
+    
+    // Unique user identification
+    private var _REF_UID = Auth.auth().currentUser?.uid
+    
     var REF_BASE: DatabaseReference {
         return _REF_BASE
     }
     
     var REF_USERS: DatabaseReference {
-        print("_REF_USERS \(_REF_USERS)")
         return _REF_USERS
+    }
+    
+    var REF_STORAGE_BASE: StorageReference {
+        return _REF_STORAGE_BASE
+    }
+    
+    var REF_UID: String {
+        return _REF_UID!
     }
     
     func createFirebaseDBUser(uid: String, userData: Dictionary<String, Any>){
