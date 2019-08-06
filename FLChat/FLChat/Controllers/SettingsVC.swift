@@ -17,6 +17,11 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userPhoneLabel: UILabel!
     
+    @IBOutlet weak var switchValueSound: UISwitch!
+    @IBOutlet weak var switchValueNotification: UISwitch!
+    
+    
+    
     @IBOutlet weak var pushNotificationSoundLabel: UILabel!
     @IBOutlet weak var pushNotificationLabel: UILabel!
     
@@ -31,10 +36,12 @@ class SettingsVC: UIViewController {
     func setUserSettings(){
         let uid = DataService.instance.REF_UID
         DataService.instance.getUserCredentialsDbFirebase(uid: uid) { (complete) in
-            if complete{
+            if complete {
                 self.userNameLabel.text = User.instance.name
                 self.userPhoneLabel.text = User.instance.phone
-                self.userImage.image = #imageLiteral(resourceName: "defaultImage")
+                //self.userImage.image = User.instance.image
+                self.switchValueSound.isOn = User.instance.notificationSound
+                self.switchValueNotification.isOn = User.instance.notificationOn
             }
         }
     }

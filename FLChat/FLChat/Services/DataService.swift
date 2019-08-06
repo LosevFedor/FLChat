@@ -50,7 +50,7 @@ class DataService {
     }
     
     
-    func getUserCredentialsDbFirebase(uid: String, completion: @escaping (_ finishingSnapshot: Bool) -> ()){
+    func getUserCredentialsDbFirebase(uid: String, completion: @escaping (_ completionSnapshot: Bool) -> ()){
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
 
             let value = snapshot.value as? Dictionary<String,Any>
@@ -58,15 +58,15 @@ class DataService {
             User.instance.phone = (value?["phone"] as? String)!
             User.instance.name = (value?["name"] as? String)!
             User.instance.online = (value?["online"] as? Bool)!
+            User.instance.image = (value?["image"] as? String)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
             User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
-
         }
     }
 
     
-    func userData(_ email: String, _ phone: String, _ name: String, _ image: String, _ online: Bool, _ notificationOn: Bool, _ notificationSound: Bool) -> Dictionary<String,Any>{
-        let dictUserParams = ["phone": phone, "name": name, "email": email, "image": image, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
+    func userData(_ email: String, _ phone: String, _ name: String, _ online: Bool, _ notificationOn: Bool, _ notificationSound: Bool) -> Dictionary<String,Any>{
+        let dictUserParams = ["phone": phone, "name": name, "email": email, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
         return dictUserParams
     }
     
