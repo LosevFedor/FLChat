@@ -19,7 +19,9 @@ class DataService {
     
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
-    private var _REF_STORAGE_BASE = STORAGE_BASE.child("user_image_folder")
+    
+    // Path to user image folder in to firebase-storage
+    private var _REF_STORAGE_BASE = STORAGE_BASE.child("user_image")
 
     
     // Unique user identification
@@ -57,7 +59,9 @@ class DataService {
 
             User.instance.phone = (value?["phone"] as? String)!
             User.instance.name = (value?["name"] as? String)!
-            User.instance.online = (value?["online"] as? Bool)!
+            
+            //User.instance.online = (value?["online"] as? Bool)!
+            
             User.instance.image = (value?["image"] as? String)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
             User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
@@ -73,6 +77,21 @@ class DataService {
     func changeUserImage(_ userImage: String) -> Dictionary<String,Any>{
         let dictUserImage = ["image": userImage]
         return dictUserImage
+    }
+    
+    func addDefaultImageToStorageAfterLogIn(_ uid: String){
+        
+        let ref = REF_STORAGE_BASE.child(uid)
+        let defaultUserImage = UIImage(named:  "defaultImage")
+        if let uploadImage = defaultUserImage?.jpegData(compressionQuality: 0.2){
+            ref.putData(uploadImage, metadata: nil) { (metadata, error) in
+                if error != nil{
+                    print("Can't upload image: \(String(describing: error?.localizedDescription))")
+                }
+                
+                print("OK")
+            }
+        }
     }
     
     func getUserSettings(){}

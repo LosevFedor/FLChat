@@ -84,7 +84,7 @@ extension ChangeImageVC: UIImagePickerControllerDelegate, UINavigationController
                 if error != nil{
                     print("Failed to upload image:\(error)")
                 }
-
+ 
                 print(metadata?.accessibilityPath as Any)
             }
         }
