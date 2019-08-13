@@ -13,17 +13,17 @@ struct User {
     
     static var instance = User()
     
-    private var _name: String?
-    private var _image: String?
-    private var _phone: String?
+    private var _name = "Your name"
+    private var _image = "User image"
+    private var _phone = "Your phone number"
     
-    private var _online: Bool?
-    private var _notificationOn: Bool?
-    private var _notificationSound: Bool?
+    private var _online = true
+    private var _notificationOn = true
+    private var _notificationSound = true
     
     var phone: String{
         get{
-            return _phone!
+            return _phone
         }
         set{
             _phone = newValue
@@ -32,7 +32,7 @@ struct User {
     
     var name: String{
         get{
-            return _name!
+            return _name
         }set{
             _name = newValue
         }
@@ -40,7 +40,7 @@ struct User {
     
     var image: String{
         get{
-            return _image!
+            return _image
         }set{
             _image = newValue
         }
@@ -48,7 +48,7 @@ struct User {
     
     var online: Bool{
         get{
-            return _online!
+            return _online
         }set{
             _online = newValue
         }
@@ -56,7 +56,7 @@ struct User {
     
     var notificationOn: Bool{
         get{
-            return _notificationOn!
+            return _notificationOn
         }set{
             _notificationOn = newValue
         }
@@ -64,7 +64,7 @@ struct User {
     
     var notificationSound: Bool{
         get{
-            return _notificationSound!
+            return _notificationSound
         }set{
             _notificationSound = newValue
         }

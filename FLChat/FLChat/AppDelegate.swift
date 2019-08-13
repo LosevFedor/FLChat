@@ -70,9 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     
-                    let id = DataService.instance.REF_UID
+                    let uid = DataService.instance.REF_UID
                     let email = result!.user.email
-                    LoginVC.instance.addUserFirebaseDB(id, email!)
+                    DataService.instance.registerUserIntoDatabase(uid, email!)
                     self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }

@@ -70,9 +70,9 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
-                    let id = DataService.instance.REF_UID
+                    let uid = DataService.instance.REF_UID
                     let email = result!.user.email
-                    self.addUserFirebaseDB(id, email!)
+                    DataService.instance.registerUserIntoDatabase(uid, email!)
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }
@@ -92,10 +92,11 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
-                        let id = DataService.instance.REF_UID
+                        let uid = DataService.instance.REF_UID
                         let email = result!.user.email
-                        self.addUserFirebaseDB(id, email!)
+                        DataService.instance.registerUserIntoDatabase(uid, email!)
                         self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                        
                     }
                 }
             }
@@ -111,27 +112,14 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 if UserDefaults.standard.isLoggedIn(){
                     let uid = DataService.instance.REF_UID
                     let email = result!.user.email
-                    self.addUserFirebaseDB(uid, email!)
+                    
+                    DataService.instance.registerUserIntoDatabase(uid, email!)
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }
         }
     }
 
-    func addUserFirebaseDB(_ uid: String, _ email: String){
-        
-        let userPhone = "Your phone number"
-        let userName = "Your name"
-        let userOnline = true
-        let userNotificationOn = true
-        let userNotificationSound = true
-        
-        let ud = DataService.instance.userData(email, userPhone, userName, userOnline, userNotificationOn, userNotificationSound)
-        
-            DataService.instance.createFirebaseDBUser(uid: uid, userData: ud)
-            DataService.instance.addDefaultUserImage(uid)
-        
-    }
     
     
     func standartErrors(_ title:String, _ message: String){

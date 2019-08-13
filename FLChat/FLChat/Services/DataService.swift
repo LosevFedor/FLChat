@@ -43,7 +43,7 @@ class DataService {
         return _REF_UID!
     }
     
-    func createFirebaseDBUser(uid: String, userData: Dictionary<String, Any>){
+    func updateUserIntoBatabaseWithUID(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
     }
     
@@ -60,7 +60,7 @@ class DataService {
             User.instance.phone = (value?["phone"] as? String)!
             User.instance.name = (value?["name"] as? String)!
             
-            // User.instance.image = (value?["image"] as? String)!
+            User.instance.image = (value?["image"] as? String)!
 
             User.instance.online = (value?["online"] as? Bool)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
@@ -69,8 +69,8 @@ class DataService {
     }
 
     
-    func userData(_ email: String, _ phone: String, _ name: String, _ online: Bool, _ notificationOn: Bool, _ notificationSound: Bool) -> Dictionary<String,Any>{
-        let dictUserParams = ["phone": phone, "name": name, "email": email, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
+    func userData(_ email: String, _ phone: String, _ name: String, _ image: String, _ online: Bool, _ notificationOn: Bool, _ notificationSound: Bool) -> Dictionary<String,Any>{
+        let dictUserParams = ["phone": phone, "name": name, "image": image, "email": email, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
         return dictUserParams
     }
     
@@ -79,8 +79,7 @@ class DataService {
         return dictUserImage
     }
     
-    func addDefaultUserImage(_ uid: String){
-        
+    func registerUserIntoDatabase(_ uid: String, _ email: String){
         let ref = REF_STORAGE_BASE.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
         if let uploadImage = defaultUserImage?.jpegData(compressionQuality: 0.2){
@@ -89,7 +88,16 @@ class DataService {
                     print("Can't upload image: \(String(describing: error?.localizedDescription))")
                 }
                 
-                print("OK")
+                ref.downloadURL(completion: { (url, error) in
+                    if error != nil{
+                        print("can't get absolute URL string from firebase: \(String(describing: error?.localizedDescription))")
+                    }
+                    
+                    let ud = self.userData(email, User.instance.phone, User.instance.name, url!.absoluteString, User.instance.online, User.instance.notificationOn, User.instance.notificationSound)
+                    
+                    self.updateUserIntoBatabaseWithUID(uid: uid, userData: ud)
+                })
+                
             }
         }
     }

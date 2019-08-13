@@ -39,7 +39,7 @@ class SettingsVC: UIViewController {
             if complete {
                 self.userNameLabel.text = User.instance.name
                 self.userPhoneLabel.text = User.instance.phone
-                //self.userImage.image = User.instance.image
+                self.userImage.image = UIImage(named: User.instance.image)
                 self.switchValueSound.isOn = User.instance.notificationSound
                 self.switchValueNotification.isOn = User.instance.notificationOn
             }
