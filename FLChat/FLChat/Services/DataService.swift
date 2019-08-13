@@ -79,7 +79,7 @@ class DataService {
         return dictUserImage
     }
     
-    func addDefaultImageToStorageAfterLogIn(_ uid: String){
+    func addDefaultUserImage(_ uid: String){
         
         let ref = REF_STORAGE_BASE.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")

@@ -130,7 +130,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         
 //        do{
             DataService.instance.createFirebaseDBUser(uid: uid, userData: ud)
-            DataService.instance.addDefaultImageToStorageAfterLogIn(uid)
+            DataService.instance.addDefaultUserImage(uid)
 //        }catch{
 //            print("Can't upload datas to firebase: \(error.localizedDescription)")
 //        }
