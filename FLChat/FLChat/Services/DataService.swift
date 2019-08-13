@@ -60,9 +60,9 @@ class DataService {
             User.instance.phone = (value?["phone"] as? String)!
             User.instance.name = (value?["name"] as? String)!
             
-            //User.instance.online = (value?["online"] as? Bool)!
-            
-            User.instance.image = (value?["image"] as? String)!
+            // User.instance.image = (value?["image"] as? String)!
+
+            User.instance.online = (value?["online"] as? Bool)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
             User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
         }
