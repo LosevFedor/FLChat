@@ -28,3 +28,5 @@ let SHOW_PART_SETTINGS: CGFloat = 0.78
 let SHOW_ALPHA: CGFloat = 0.5
 let HIDE_ALPHA: CGFloat = 0.0
 let dimingBackgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+let COMPRESSION_IMAGE: CGFloat = 0.02

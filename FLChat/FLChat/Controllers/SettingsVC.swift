@@ -114,21 +114,35 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         }
         
         if let selectedImage = selectedImageFromPicker{
-            uploadToFirebaseStorageUsingImage(selectedImage)
+            uploadNewUserImageIntoDatabase(selectedImage) { (updated, error) in
+                if updated{
+                    self.setUserSettings()
+                }
+            }
         }
         
         dismiss(animated: true, completion: nil)
         
     }
     
-    private func uploadToFirebaseStorageUsingImage(_ image: UIImage){
+    private func uploadNewUserImageIntoDatabase(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ update: Bool, _ error: Error?) -> ()){
         let uid = DataService.instance.REF_UID
         let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
         
-        if let uploadData = image.jpegData(compressionQuality: 0.2){
+        if let uploadData = image.jpegData(compressionQuality: COMPRESSION_IMAGE){
             ref.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil{
-                    print("Failed to upload image:\(error)")
+                    print("Failed to upload image:\(String(describing: error?.localizedDescription))")
+                }
+                
+                ref.downloadURL { (url, error) in
+                    guard let url = url else{
+                        copletedUpdateURLIntoDatabase(false, error)
+                        return
+                    }
+                    let userData = DataService.instance.changeUserImage(url.absoluteString)
+                    DataService.instance.updateUserIntoDatabaseWithUID(uid: uid, userData: userData)
+                    copletedUpdateURLIntoDatabase(true, nil)
                 }
             }
         }

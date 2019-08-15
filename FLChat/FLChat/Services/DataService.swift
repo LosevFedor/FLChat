@@ -43,7 +43,7 @@ class DataService {
         return _REF_UID!
     }
     
-    func updateUserIntoBatabaseWithUID(uid: String, userData: Dictionary<String, Any>){
+    func updateUserIntoDatabaseWithUID(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
     }
     
@@ -85,7 +85,7 @@ class DataService {
         let ref = REF_STORAGE_BASE.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
         
-        if let uploadImage = defaultUserImage?.jpegData(compressionQuality: 0.2){
+        if let uploadImage = defaultUserImage?.jpegData(compressionQuality: COMPRESSION_IMAGE){
             ref.putData(uploadImage, metadata: nil) { (metadata, error) in
                 if error != nil{
                     print("Can't upload image: \(String(describing: error?.localizedDescription))")
@@ -97,11 +97,10 @@ class DataService {
                         return
                     }
                     let userData = self.userData(email, User.instance.phone, User.instance.name, url.absoluteString, User.instance.online, User.instance.notificationOn, User.instance.notificationSound)
-                    self.updateUserIntoBatabaseWithUID(uid: uid, userData: userData)
+                    self.updateUserIntoDatabaseWithUID(uid: uid, userData: userData)
                     completedUserRegistration(true, nil)
                 }
             }
         }
     }
-    func getUserSettings(){}
 }
