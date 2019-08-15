@@ -69,7 +69,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     print("Eror SignIn: \(error.localizedDescription)")
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
-                    self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                    
+                    let uid = DataService.instance.REF_UID
+                    let email = result!.user.email
+                    
+                    DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                        self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                    })
                 }
             }
         }

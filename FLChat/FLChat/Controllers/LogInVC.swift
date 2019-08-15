@@ -16,6 +16,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     
+    static let instance = LoginVC()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,19 +58,25 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             else{
                 print("Fed: Facebook needed your device token")
                 let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current()!.tokenString)
-                self.firebaseAuth(credential)
+                self.facebookAuth(credential)
             }
         }
     }
     
-    func firebaseAuth(_ credential: AuthCredential){
-        Auth.auth().signIn(with: credential) { (user, error) in
+    func facebookAuth(_ credential: AuthCredential){
+        Auth.auth().signIn(with: credential) { (result, error) in
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
-                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                    let uid = DataService.instance.REF_UID
+                    let email = result!.user.email
+                    
+                    DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                        self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                    })
+
                 }
             }
         }
@@ -87,7 +95,12 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
-                        self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                        let uid = DataService.instance.REF_UID
+                        let email = result!.user.email
+
+                        DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                        })
                     }
                 }
             }
@@ -101,12 +114,23 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
-                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                    let uid = DataService.instance.REF_UID
+                    let email = result!.user.email
+                    
+                    DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                        if error != nil{
+                            print("Can't registrate user in to firebase: \(error?.localizedDescription)")
+                        }else{
+                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                        }
+                    })
                 }
             }
         }
     }
 
+    
+    
     func standartErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
