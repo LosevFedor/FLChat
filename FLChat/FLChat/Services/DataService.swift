@@ -21,7 +21,7 @@ class DataService {
     private var _REF_USERS = DB_BASE.child("users")
     
     // Path to user image folder in to firebase-storage
-    private var _REF_STORAGE_BASE = STORAGE_BASE.child("user_image")
+    private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
 
     
     // Unique user identification
@@ -52,9 +52,8 @@ class DataService {
     }
     
     
-    func getUserCredentialsDbFirebase(uid: String, completion: @escaping (_ completionSnapshot: Bool) -> ()){
+    func getUserCredentialsDbFirebase(uid: String, completedSnapshot: @escaping (_ snapshot: Bool) -> ()){
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-
             let value = snapshot.value as? Dictionary<String,Any>
 
             User.instance.phone = (value?["phone"] as? String)!
@@ -65,7 +64,10 @@ class DataService {
             User.instance.online = (value?["online"] as? Bool)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
             User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
+            
+            completedSnapshot(true)
         }
+        completedSnapshot(false)
     }
 
     
@@ -79,28 +81,27 @@ class DataService {
         return dictUserImage
     }
     
-    func registerUserIntoDatabase(_ uid: String, _ email: String){
+    func registrationUserIntoDatabase(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error: Error?) -> ()){
         let ref = REF_STORAGE_BASE.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
+        
         if let uploadImage = defaultUserImage?.jpegData(compressionQuality: 0.2){
             ref.putData(uploadImage, metadata: nil) { (metadata, error) in
                 if error != nil{
                     print("Can't upload image: \(String(describing: error?.localizedDescription))")
                 }
                 
-                ref.downloadURL(completion: { (url, error) in
-                    if error != nil{
-                        print("can't get absolute URL string from firebase: \(String(describing: error?.localizedDescription))")
+                ref.downloadURL { (url, error) in
+                    guard let url = url else{
+                        completedUserRegistration(false,error)
+                        return
                     }
-                    
-                    let ud = self.userData(email, User.instance.phone, User.instance.name, url!.absoluteString, User.instance.online, User.instance.notificationOn, User.instance.notificationSound)
-                    
-                    self.updateUserIntoBatabaseWithUID(uid: uid, userData: ud)
-                })
-                
+                    let userData = self.userData(email, User.instance.phone, User.instance.name, url.absoluteString, User.instance.online, User.instance.notificationOn, User.instance.notificationSound)
+                    self.updateUserIntoBatabaseWithUID(uid: uid, userData: userData)
+                    completedUserRegistration(true, nil)
+                }
             }
         }
     }
-    
     func getUserSettings(){}
 }
