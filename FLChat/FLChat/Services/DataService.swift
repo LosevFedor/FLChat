@@ -19,11 +19,8 @@ class DataService {
     
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
-    
     // Path to user image folder in to firebase-storage
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
-
-    
     // Unique user identification
     private var _REF_UID = Auth.auth().currentUser?.uid
     
@@ -90,6 +87,16 @@ class DataService {
         return dictUserPhone
     }
     
+    private func changeUsserNotificationSound(_ userNotificationSound: Bool) -> Dictionary<String,Any>{
+        let dictUserNotificationSound = ["notificationSound": userNotificationSound]
+        return dictUserNotificationSound
+    }
+    
+    private func changeUserPushNotification(_ userPushNotification: Bool) -> Dictionary<String, Any>{
+        let dictUserPushNotification = ["notificationOn": userPushNotification]
+        return dictUserPushNotification
+    }
+    
     func registrationUserIntoDatabase(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error:Error?) -> ()){
         let ref = REF_STORAGE_BASE.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
@@ -123,5 +130,17 @@ class DataService {
         let userData = changeUserPhone(newUserPhone)
         self.updateUserIntoDatabaseWithUID(uid, userData)
         completedChangeUserPhone(true,nil)
+    }
+    
+    func changeUserNotificationSoundIntoDatabaseWithUID(_ uid: String, _ newUserNotificationSound: Bool, completedChangeUserNotificationSound: @escaping(_ change:Bool, _ error: Error?) -> ()){
+        let userData = changeUsserNotificationSound(newUserNotificationSound)
+        self.updateUserIntoDatabaseWithUID(uid, userData)
+        completedChangeUserNotificationSound(true,nil)
+    }
+    
+    func changeUserPushNotificationIntoDatabaseWithUID(_ uid: String, _ newUserPushNotification: Bool, completedChangeUserPushNotification: @escaping(_ change:Bool, _ error: Error?) -> ()){
+        let userData = changeUserPushNotification(newUserPushNotification)
+        self.updateUserIntoDatabaseWithUID(uid, userData)
+        completedChangeUserPushNotification(true,nil)
     }
 }
