@@ -79,6 +79,7 @@ class SettingsVC: UIViewController {
         }
         
     }
+    
     fileprivate func checkTextFieldForEpties(_ textField: String, _ defaultTitle: String) -> String {
         
         var usertextFieldParam = textField
@@ -116,6 +117,7 @@ class SettingsVC: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
     @IBAction func changePasswordBtnPressed(_ sender: Any) {
     }
     
@@ -150,11 +152,31 @@ class SettingsVC: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-   
     @IBAction func pushNotificationSoundBtnPressed(_ sender: Any) {
+        
+        let soundOn = self.switchValueSound.isOn
+        let uid = DataService.instance.REF_UID
+        DataService.instance.changeUserNotificationSoundIntoDatabaseWithUID(uid, soundOn) { (changeSound, error) in
+            if error != nil{
+                print("Can't change user notification in to database")
+            }
+            if changeSound{
+                self.setUserSettings()
+            }
+        }
     }
     
     @IBAction func pushNotificationBtnPressed(_ sender: Any) {
+        let pushNotificationOn = switchValueNotification.isOn
+        let uid = DataService.instance.REF_UID
+        DataService.instance.changeUserPushNotificationIntoDatabaseWithUID(uid, pushNotificationOn) { (changePush, error) in
+            if error != nil{
+                print("Can't change user push notification in to database \(String(describing: error?.localizedDescription))")
+            }
+            if changePush{
+                self.setUserSettings()
+            }
+        }
     }
     
     @IBAction func changeUserImage(_ Sender: Any){
@@ -188,7 +210,7 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         
     }
     
-    private func uploadNewUserImageIntoDatabase(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ update: Bool, _ error: Error?) -> ()){
+    private func uploadNewUserImageIntoDatabase(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ upload: Bool, _ error: Error?) -> ()){
         let uid = DataService.instance.REF_UID
         let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
         
