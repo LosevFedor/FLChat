@@ -119,7 +119,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                     
                     DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
                         if error != nil{
-                            print("Can't registrate user in to firebase: \(error?.localizedDescription)")
+                            print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
                         }else{
                             self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                         }

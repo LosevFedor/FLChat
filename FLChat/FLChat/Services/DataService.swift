@@ -43,7 +43,7 @@ class DataService {
         return _REF_UID!
     }
     
-    func updateUserIntoDatabaseWithUID(uid: String, userData: Dictionary<String, Any>){
+    func updateUserIntoDatabaseWithUID(_ uid: String, _ userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
     }
     
@@ -70,18 +70,27 @@ class DataService {
         completedSnapshot(false)
     }
 
-    
-    func userData(_ email: String, _ phone: String, _ name: String, _ image: String, _ online: Bool, _ notificationOn: Bool, _ notificationSound: Bool) -> Dictionary<String,Any>{
-        let dictUserParams = ["phone": phone, "name": name, "image": image, "email": email, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
-        return dictUserParams
-    }
-    
     func changeUserImage(_ userImage: String) -> Dictionary<String,Any>{
         let dictUserImage = ["image": userImage]
         return dictUserImage
     }
     
-    func registrationUserIntoDatabase(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error: Error?) -> ()){
+    private func userData(_ email: String, _ phone: String, _ name: String, _ image: String, _ online: Bool, _ notificationOn: Bool, _ notificationSound: Bool) -> Dictionary<String,Any>{
+        let dictUserParams = ["phone": phone, "name": name, "image": image, "email": email, "online": online, "notificationOn": notificationOn, "notificationSound": notificationSound] as [String : Any]
+        return dictUserParams
+    }
+    
+    private func changeUserName(_ userName: String) -> Dictionary<String,Any>{
+        let dictUserName = ["name": userName]
+        return dictUserName
+    }
+    
+    private func changeUserPhone(_ userPhone: String) -> Dictionary<String,Any>{
+        let dictUserPhone = ["phone": userPhone]
+        return dictUserPhone
+    }
+    
+    func registrationUserIntoDatabase(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error:Error?) -> ()){
         let ref = REF_STORAGE_BASE.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
         
@@ -97,10 +106,22 @@ class DataService {
                         return
                     }
                     let userData = self.userData(email, User.instance.phone, User.instance.name, url.absoluteString, User.instance.online, User.instance.notificationOn, User.instance.notificationSound)
-                    self.updateUserIntoDatabaseWithUID(uid: uid, userData: userData)
+                    self.updateUserIntoDatabaseWithUID(uid, userData)
                     completedUserRegistration(true, nil)
                 }
             }
         }
+    }
+    
+    func changeUserNameIntoDatabaseWithUID(_ uid: String, _ newUserName: String, copletedChangeUserName: @escaping(_ changed:Bool, _ error:Error?) -> ()){
+        let userData = changeUserName(newUserName)
+        self.updateUserIntoDatabaseWithUID(uid, userData)
+        copletedChangeUserName(true,nil)
+    }
+    
+    func changeUserPhoneIntoDatabaseWithUID(_ uid: String, _ newUserPhone: String, completedChangeUserPhone: @escaping(_ change:Bool, _ error:Error?) -> ()){
+        let userData = changeUserPhone(newUserPhone)
+        self.updateUserIntoDatabaseWithUID(uid, userData)
+        completedChangeUserPhone(true,nil)
     }
 }
