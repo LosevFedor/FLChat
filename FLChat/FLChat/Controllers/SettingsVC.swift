@@ -27,6 +27,9 @@ class SettingsVC: UIViewController {
     
     var imagePicker = UIImagePickerController()
     
+    var userNameTextField: UITextField?
+    var userPhoneTextField: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,9 +79,43 @@ class SettingsVC: UIViewController {
         }
         
     }
-    @IBAction func addPhoneBtnPressed(_ sender: Any) {
+    fileprivate func checkTextFieldForEpties(_ textField: String, _ defaultTitle: String) -> String {
+        
+        var usertextFieldParam = textField
+        if usertextFieldParam == ""{
+            usertextFieldParam = defaultTitle
+        }
+        return usertextFieldParam
     }
     
+    @IBAction func changePhoneBtnPressed(_ sender: Any) {
+        let alertController: UIAlertController = UIAlertController(title: "Change your phone number", message: nil, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            self.userPhoneTextField = textField
+            self.userPhoneTextField?.placeholder = "Enter your new phone number"
+        }
+        let okAlert = UIAlertAction(title: "OK", style: .cancel) { (okAction) in
+            let uid = DataService.instance.REF_UID
+            
+            
+            self.userPhoneTextField?.text = self.checkTextFieldForEpties(self.userPhoneTextField!.text!, DEFAULT_PHONE_FIELD)
+            
+            DataService.instance.changeUserPhoneIntoDatabaseWithUID(uid, (self.userPhoneTextField?.text)!) { (changed, error) in
+                if error != nil {
+                    print("Can't change user phone: \(String(describing: error?.localizedDescription))")
+                }
+                if changed{
+                    self.setUserSettings()
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        alertController.addAction(okAlert)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     @IBAction func changePasswordBtnPressed(_ sender: Any) {
     }
     
@@ -86,8 +123,34 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func changeNameBtnPressed(_ sender: Any) {
+        
+        let alertController: UIAlertController = UIAlertController(title: "Change your name", message: nil, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            self.userNameTextField = textField
+            self.userNameTextField?.placeholder = "Enter your new name"
+        }
+        let okAlert = UIAlertAction(title: "OK", style: .cancel) { (okAction) in
+            let uid = DataService.instance.REF_UID
+            
+            self.userNameTextField?.text = self.checkTextFieldForEpties(self.userNameTextField!.text!, DEFAULT_NAME_FIELD)
+            
+            DataService.instance.changeUserNameIntoDatabaseWithUID(uid, (self.userNameTextField?.text)!) { (changed, error) in
+                if error != nil {
+                    print("Can't change user name: \(String(describing: error?.localizedDescription))")
+                }
+                if changed{
+                    self.setUserSettings()
+                }
+            }
+        }
+        let cancelAlert = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(okAlert)
+        alertController.addAction(cancelAlert)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
+   
     @IBAction func pushNotificationSoundBtnPressed(_ sender: Any) {
     }
     
@@ -141,7 +204,7 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
                         return
                     }
                     let userData = DataService.instance.changeUserImage(url.absoluteString)
-                    DataService.instance.updateUserIntoDatabaseWithUID(uid: uid, userData: userData)
+                    DataService.instance.updateUserIntoDatabaseWithUID(uid, userData)
                     copletedUpdateURLIntoDatabase(true, nil)
                 }
             }

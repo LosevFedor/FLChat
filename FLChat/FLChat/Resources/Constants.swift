@@ -30,3 +30,6 @@ let HIDE_ALPHA: CGFloat = 0.0
 let dimingBackgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
 let COMPRESSION_IMAGE: CGFloat = 0.02
+
+let DEFAULT_PHONE_FIELD = "User phone number"
+let DEFAULT_NAME_FIELD = "User name"
