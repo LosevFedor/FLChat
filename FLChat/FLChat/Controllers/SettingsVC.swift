@@ -118,11 +118,6 @@ class SettingsVC: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func changePasswordBtnPressed(_ sender: Any) {
-    }
-    
-    @IBAction func changeEmailBtnPressed(_ sender: Any) {
-    }
     
     @IBAction func changeNameBtnPressed(_ sender: Any) {
         
