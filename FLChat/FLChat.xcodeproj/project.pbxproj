@@ -31,6 +31,7 @@
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
 		3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */; };
 		3CAD6FBB230CF24A00F6F464 /* AllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */; };
+		3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */; };
 		3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33D522D45E8900EB8656 /* SettingsVC.swift */; };
 		3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */; };
 		3CCB33DE22D4BEA800EB8656 /* SlideInTransiotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */; };
@@ -88,6 +89,7 @@
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
 		3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneButtonsSettings.swift; sourceTree = "<group>"; };
 		3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsers.swift; sourceTree = "<group>"; };
+		3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneCollectionView.swift; sourceTree = "<group>"; };
 		3CCB33D522D45E8900EB8656 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransiotion.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */,
 				3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */,
 				2A62FDE422DECF4B00D26B16 /* DesigneImageSettings.swift */,
+				3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				2A96847022C4653E0047503C /* AuthService.swift in Sources */,
 				2AE20DCA22DC372300779A23 /* DataService.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
+				3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */,
 				3C0DE678230C0FF1006F00E8 /* AddNewFriendsVC.swift in Sources */,
 				3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */,
 				3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */,
