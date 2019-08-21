@@ -66,6 +66,25 @@ class DataService {
         }
         completedSnapshot(false)
     }
+    
+    func getAllUsersFromDatabase(completedSnapshotAllUsers: @escaping (_ allUsers: [AllUsers], _ error: Error?) -> ()){
+        REF_USERS.observeSingleEvent(of: .value) { (allUsersSnapshot) in
+            
+            var allUsersArray = [AllUsers]()
+            guard let allUsersSnapshot = allUsersSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            
+            for user in allUsersSnapshot{
+                let userName = user.childSnapshot(forPath: "name").value as! String
+                let userImage = user.childSnapshot(forPath: "image").value as! String
+                let userStatus = user.childSnapshot(forPath: "online").value as! Bool
+                let user = AllUsers(userName, userImage, userStatus)
+                allUsersArray.append(user)
+            }
+            
+            completedSnapshotAllUsers(allUsersArray, nil)
+            
+        }
+    }
 
     func changeUserImage(_ userImage: String) -> Dictionary<String,Any>{
         let dictUserImage = ["image": userImage]

@@ -22,6 +22,10 @@ let DO_YOU_NEED_NEW_ACCOUNT = "Do you want to create a new account?"
 // Perform segue
 let GO_TO_HOME = "goToHome"
 let GO_TO_SETTINGS = "goToSettings"
+let GO_TO_ADD_NEW_FRIENDS = "goToAddNewFriends"
+
+// Cell identifiers
+let ADD_NEW_FRIENDS_CELL = "addNewFriendsCell"
 
 // Settings view
 let SHOW_PART_SETTINGS: CGFloat = 0.78

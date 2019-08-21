@@ -7,35 +7,53 @@
 //
 
 import UIKit
+import Firebase
 
 class AddNewFriendsVC: UIViewController{
 
+    var flowLayout = UICollectionViewFlowLayout()
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    var allUsersArray = [AllUsers]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DataService.instance.getAllUsersFromDatabase { (returnedAllUsersArray, error) in
+            self.allUsersArray = returnedAllUsersArray
+            self.collectionView?.reloadData()
+        }
     }
-    */
-
+    
+    @IBAction func backBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return allUsersArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ADD_NEW_FRIENDS_CELL, for: indexPath) as? AddNewFriendsCell else {
+            return UICollectionViewCell()
+        }
+        let allUsers = allUsersArray[indexPath.row]
+        cell.configureCell(userName: allUsers.userName, userImage: allUsers.userImage, userStatus: allUsers.userStatus)
+        
+        return cell
+    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     
