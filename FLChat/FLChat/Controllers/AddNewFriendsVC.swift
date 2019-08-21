@@ -11,10 +11,7 @@ import Firebase
 
 class AddNewFriendsVC: UIViewController{
 
-    var flowLayout = UICollectionViewFlowLayout()
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     
     var allUsersArray = [AllUsers]()
     

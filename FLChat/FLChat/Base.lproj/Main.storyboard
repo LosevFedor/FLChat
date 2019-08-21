@@ -430,54 +430,73 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5e-0b-9N6">
                                 <rect key="frame" x="0.0" y="118" width="375" height="549"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EmI-ia-zWq">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EmI-ia-zWq" customClass="DesigneCollectionView" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="335" height="509"/>
                                         <color key="backgroundColor" red="0.94902604818344116" green="0.9490082859992981" blue="0.94902020692825317" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eli-hz-QgT">
-                                            <size key="itemSize" width="89" height="127"/>
+                                            <size key="itemSize" width="87" height="119"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addNewFriendsCell" id="NJi-az-8ay" customClass="AddNewFriendsCell" customModule="FLChat" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="10" width="89" height="127"/>
+                                                <rect key="frame" x="10" y="10" width="87" height="119"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="89" height="127"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="87" height="119"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-bV-GNb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="89" height="127"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="87" height="119"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-7t-S6D">
-                                                                    <rect key="frame" x="4.5" y="5" width="80" height="80"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-7t-S6D" customClass="DesigneImage" customModule="FLChat" customModuleProvider="target">
+                                                                    <rect key="frame" x="3.5" y="5" width="80" height="80"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="YQB-dU-ojJ"/>
                                                                         <constraint firstAttribute="height" constant="80" id="Ytz-CS-gwo"/>
                                                                     </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusImage">
+                                                                            <real key="value" value="40"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidthImage">
+                                                                            <real key="value" value="2"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColorImage">
+                                                                            <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIe-qO-36z">
-                                                                    <rect key="frame" x="11.5" y="87" width="66.5" height="20"/>
+                                                                    <rect key="frame" x="10.5" y="87" width="66.5" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="15" id="cYI-7i-Zb3"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <color key="shadowColor" red="0.76078951360000002" green="0.76077502969999999" blue="0.76078486440000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="online" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUc-dA-qiC">
-                                                                    <rect key="frame" x="26.5" y="109" width="36" height="18"/>
+                                                                    <rect key="frame" x="26.5" y="104" width="36" height="13"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="13" id="NXH-gW-y8f"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="13"/>
                                                                     <color key="textColor" red="0.30840110780000002" green="0.5618229508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <color key="shadowColor" red="0.76078951360000002" green="0.76077502969999999" blue="0.76078486440000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" red="0.94902604818344116" green="0.9490082859992981" blue="0.94902020692825317" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
                                                                 <constraint firstItem="PIe-qO-36z" firstAttribute="top" secondItem="bvi-7t-S6D" secondAttribute="bottom" constant="2" id="1zo-dl-lTB"/>
                                                                 <constraint firstItem="bvi-7t-S6D" firstAttribute="centerX" secondItem="Mfy-bV-GNb" secondAttribute="centerX" id="9d3-9N-kEq"/>
                                                                 <constraint firstItem="XUc-dA-qiC" firstAttribute="top" secondItem="PIe-qO-36z" secondAttribute="bottom" constant="2" id="ID3-JW-n8A"/>
                                                                 <constraint firstItem="PIe-qO-36z" firstAttribute="centerX" secondItem="Mfy-bV-GNb" secondAttribute="centerX" id="IX1-y9-8aI"/>
                                                                 <constraint firstItem="bvi-7t-S6D" firstAttribute="top" secondItem="Mfy-bV-GNb" secondAttribute="top" constant="5" id="OGI-V9-oV5"/>
-                                                                <constraint firstItem="XUc-dA-qiC" firstAttribute="centerX" secondItem="Mfy-bV-GNb" secondAttribute="centerX" id="jpC-xz-tio"/>
+                                                                <constraint firstItem="XUc-dA-qiC" firstAttribute="centerX" secondItem="Mfy-bV-GNb" secondAttribute="centerX" constant="1" id="jpC-xz-tio"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -495,6 +514,17 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusCollectionView">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidthCollectionView">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColorCollectionView">
+                                                <color key="value" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -528,7 +558,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5H-MD-ndg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886" y="376"/>
+            <point key="canvasLocation" x="1885.5999999999999" y="375.56221889055473"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="Ytu-V4-QIX">
@@ -571,7 +601,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="vdm-lZ-eGi">
                                         <rect key="frame" x="87.5" y="44" width="200" height="256"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Bf-yA-Vbb" customClass="DesigneImageSettings" customModule="FLChat" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Bf-yA-Vbb" customClass="DesigneImage" customModule="FLChat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
@@ -626,7 +656,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="acY-UV-51K">
                                         <rect key="frame" x="20" y="307" width="335" height="340"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVS-01-2lY" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVS-01-2lY" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -659,7 +689,7 @@
                                                     <action selector="changePhoneBtnPressed:" destination="mFu-o1-pOT" eventType="touchUpInside" id="M04-S2-7K8"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kr-dt-9HV" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kr-dt-9HV" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="335" height="40"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -755,7 +785,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1L-AC-iBt" customClass="DesigneButtonsSettings" customModule="FLChat" customModuleProvider="target">
+                                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1L-AC-iBt" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="180" width="335" height="40"/>
                                                 <color key="backgroundColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
