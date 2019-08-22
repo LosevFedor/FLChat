@@ -39,7 +39,7 @@ class SettingsVC: UIViewController {
     
     func setUserSettings(){
         let uid = DataService.instance.REF_UID
-        DataService.instance.getUserCredentialsDbFirebase(uid: uid) { (complete) in
+        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (complete) in
             if complete {
                 self.userNameLabel.text = User.instance.name
                 self.userPhoneLabel.text = User.instance.phone

@@ -12,6 +12,7 @@ import Firebase
 class AddNewFriendsVC: UIViewController{
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emailSearchTextField: UITextField!
     
     var allUsersArray = [AllUsers]()
     
@@ -19,8 +20,24 @@ class AddNewFriendsVC: UIViewController{
         super.viewDidLoad()
         collectionView?.delegate = self
         collectionView?.dataSource = self
+        emailSearchTextField.delegate = self
+        emailSearchTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+        
     }
     
+    @objc func textFieldDidChanged(){
+        if emailSearchTextField.text == ""{
+            DataService.instance.getAllUsersFromDatabase { (returnedAllUsersArray, error) in
+                self.allUsersArray = returnedAllUsersArray
+                self.collectionView?.reloadData()
+            }
+        }else{
+            DataService.instance.getUserByEmailFromDatabase(forSearchQuery: emailSearchTextField.text!) { (returnedUsersArray) in
+                self.allUsersArray = returnedUsersArray
+                self.collectionView?.reloadData()
+            }
+        }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         DataService.instance.getAllUsersFromDatabase { (returnedAllUsersArray, error) in
@@ -45,13 +62,16 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
             return UICollectionViewCell()
         }
         let allUsers = allUsersArray[indexPath.row]
-        cell.configureCell(userName: allUsers.userName, userImage: allUsers.userImage, userStatus: allUsers.userStatus)
+        cell.configureCell(allUsers.userName, allUsers.userImage, allUsers.userStatus)
         
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+}
+
+extension AddNewFriendsVC: UITextFieldDelegate{
     
 }
+

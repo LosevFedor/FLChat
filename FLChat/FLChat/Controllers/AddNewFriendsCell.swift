@@ -14,8 +14,7 @@ class AddNewFriendsCell: UICollectionViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userStatus: UILabel!
     
-    
-    func configureCell(userName: String, userImage: String, userStatus: Bool){
+    func configureCell(_ userName: String, _ userImage: String, _ userStatus: Bool){
         self.userName.text = userName
         let profileImageUrl = userImage
         let url = URL(string: profileImageUrl)

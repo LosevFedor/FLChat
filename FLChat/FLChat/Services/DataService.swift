@@ -23,6 +23,7 @@ class DataService {
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
     // Unique user identification
     private var _REF_UID = Auth.auth().currentUser?.uid
+    private var _REF_EMAIL = Auth.auth().currentUser?.email
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -40,6 +41,10 @@ class DataService {
         return _REF_UID!
     }
     
+    var REF_EMAIL: String {
+        return _REF_EMAIL!
+    }
+    
     func updateUserIntoDatabaseWithUID(_ uid: String, _ userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
     }
@@ -49,13 +54,13 @@ class DataService {
     }
     
     
-    func getUserCredentialsDbFirebase(uid: String, completedSnapshot: @escaping (_ snapshot: Bool) -> ()){
+    func getUserCredentialsFromDatabase(uid: String, completedSnapshot: @escaping (_ snapshot: Bool) -> ()){
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as? Dictionary<String,Any>
 
             User.instance.phone = (value?["phone"] as? String)!
             User.instance.name = (value?["name"] as? String)!
-            
+            User.instance.email = (value?["email"] as? String)!
             User.instance.image = (value?["image"] as? String)!
 
             User.instance.online = (value?["online"] as? Bool)!
@@ -67,6 +72,7 @@ class DataService {
         completedSnapshot(false)
     }
     
+    
     func getAllUsersFromDatabase(completedSnapshotAllUsers: @escaping (_ allUsers: [AllUsers], _ error: Error?) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (allUsersSnapshot) in
             
@@ -74,16 +80,45 @@ class DataService {
             guard let allUsersSnapshot = allUsersSnapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for user in allUsersSnapshot{
+                
                 let userName = user.childSnapshot(forPath: "name").value as! String
                 let userImage = user.childSnapshot(forPath: "image").value as! String
+                let userEmail = user.childSnapshot(forPath: "email").value as! String
+                let userPhone = user.childSnapshot(forPath: "phone").value as! String
                 let userStatus = user.childSnapshot(forPath: "online").value as! Bool
-                let user = AllUsers(userName, userImage, userStatus)
-                allUsersArray.append(user)
+                
+                if userEmail != self.REF_EMAIL {
+                    let user = AllUsers(userName, userImage, userEmail, userPhone, userStatus)
+                    allUsersArray.append(user)
+                }
             }
-            
             completedSnapshotAllUsers(allUsersArray, nil)
-            
         }
+    }
+    
+    func getUserByEmailFromDatabase(forSearchQuery query: String, completedSearching: @escaping (_ userParametersArray: [AllUsers]) -> ()){
+        REF_USERS.observeSingleEvent(of: .value) { (allUserSnapshot) in
+            
+            var searchUser = [AllUsers]()
+            guard let userSnapshot = allUserSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            
+            for user in userSnapshot{
+                let userName = user.childSnapshot(forPath: "name").value as! String
+                let userImage = user.childSnapshot(forPath: "image").value as! String
+                let userEmail = user.childSnapshot(forPath: "email").value as! String
+                let userPhone = user.childSnapshot(forPath: "phone").value as! String
+                let userStatus = user.childSnapshot(forPath: "online").value as! Bool
+                
+                if userEmail.contains(query) && userEmail != self.REF_EMAIL {
+                    let searchUserByEmail = AllUsers(userName, userImage, userEmail, userPhone, userStatus)
+                    searchUser.append(searchUserByEmail)
+                }
+            }
+            completedSearching(searchUser)
+        }
+        
+        
+        
     }
 
     func changeUserImage(_ userImage: String) -> Dictionary<String,Any>{

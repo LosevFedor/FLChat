@@ -11,6 +11,8 @@ class AllUsers{
     
     private var _userName: String?
     private var _userImage: String?
+    private var _userEmail: String?
+    private var _userPhone: String?
     private var _userStatus: Bool?
     
     var userName: String {
@@ -23,15 +25,26 @@ class AllUsers{
             return _userImage!
         }
     }
+    var userEmail: String {
+        get{
+            return _userEmail!
+        }
+    }
+    var userPhone: String {
+        get{
+            return _userPhone!
+        }
+    }
     var userStatus: Bool {
         get{
             return _userStatus!
         }
     }
-    
-    init(_ name: String, _ image: String, _ status: Bool) {
+    init(_ name: String, _ image: String, _ email: String, _ phone: String, _ status: Bool) {
         self._userName = name
         self._userImage = image
+        self._userEmail = email
+        self._userPhone = phone
         self._userStatus = status
     }
 }
