@@ -37,27 +37,38 @@ class SettingsVC: UIViewController {
         imagePicker.delegate = self
     }
     
+    fileprivate func getCurrentUserImageFromStringForSettings(_ currentImage: String) {
+        let profileImageUrl = currentImage
+        let url = URL(string: profileImageUrl)
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+            if error != nil {
+                print("Cant convert the url for image: \(String(describing: error?.localizedDescription))")
+            }
+            DispatchQueue.main.async {
+                self.userImage.image = UIImage(data: data!)
+            }
+        }).resume()
+    }
+    
     func setUserSettings(){
         let uid = DataService.instance.REF_UID
         DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (complete) in
             if complete {
-                self.userNameLabel.text = User.instance.name
-                self.userPhoneLabel.text = User.instance.phone
                 
-                let profileImageUrl = User.instance.image
-                let url = URL(string: profileImageUrl)
+                let currentName = User.instance.name
+                let currentPhone = User.instance.phone
+                let currentImage = User.instance.image
+                let currentNotificationSound = User.instance.notificationSound
+                let currentNotificationOn = User.instance.notificationOn
                 
-                URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
-                    if error != nil {
-                        print("Cant convert the url for image: \(String(describing: error?.localizedDescription))")
-                    }
-                    DispatchQueue.main.async {
-                        self.userImage.image = UIImage(data: data!)
-                    }
-                }).resume()
+                self.userNameLabel.text = currentName
+                self.userPhoneLabel.text = currentPhone
                 
-                self.switchValueSound.isOn = User.instance.notificationSound
-                self.switchValueNotification.isOn = User.instance.notificationOn
+                self.getCurrentUserImageFromStringForSettings(currentImage)
+                
+                self.switchValueSound.isOn = currentNotificationSound
+                self.switchValueNotification.isOn = currentNotificationOn
             }
         }
     }
