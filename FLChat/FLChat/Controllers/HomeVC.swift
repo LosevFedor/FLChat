@@ -18,6 +18,10 @@ class HomeVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func addNewFriendsBtnPressed(_ sender: Any) {
+        guard let addNewFriendsVC = storyboard?.instantiateViewController(withIdentifier: GO_TO_ADD_NEW_FRIENDS) else { return }
+        present(addNewFriendsVC, animated: true, completion: nil)
+    }
     
     @IBAction func settingsBtnPressed(_ sender: Any) {
         guard let settingsVC = storyboard?.instantiateViewController(withIdentifier: GO_TO_SETTINGS) else { return }

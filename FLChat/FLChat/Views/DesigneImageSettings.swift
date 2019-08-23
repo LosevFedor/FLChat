@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class DesigneImageSettings: UIImageView{
+class DesigneImage: UIImageView{
     
     @IBInspectable private var cornerRadiusImage: CGFloat = 1.0{
         didSet{

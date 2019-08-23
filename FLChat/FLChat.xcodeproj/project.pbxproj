@@ -25,9 +25,13 @@
 		2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3138122CB02F5000113A4 /* HomeVC.swift */; };
 		2AE20DCA22DC372300779A23 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE20DC922DC372300779A23 /* DataService.swift */; };
 		3C0ADACD22CCF34800DE069C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */; };
+		3C0DE678230C0FF1006F00E8 /* AddNewFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */; };
+		3C0DE67A230C10CB006F00E8 /* AddNewFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */; };
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
 		3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */; };
+		3CAD6FBB230CF24A00F6F464 /* AllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */; };
+		3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */; };
 		3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33D522D45E8900EB8656 /* SettingsVC.swift */; };
 		3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */; };
 		3CCB33DE22D4BEA800EB8656 /* SlideInTransiotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */; };
@@ -79,9 +83,13 @@
 		2AE20DC922DC372300779A23 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		3C0ADACB22CCF34800DE069C /* FLChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FLChat.entitlements; sourceTree = "<group>"; };
 		3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendsVC.swift; sourceTree = "<group>"; };
+		3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendsCell.swift; sourceTree = "<group>"; };
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
 		3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneButtonsSettings.swift; sourceTree = "<group>"; };
+		3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsers.swift; sourceTree = "<group>"; };
+		3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneCollectionView.swift; sourceTree = "<group>"; };
 		3CCB33D522D45E8900EB8656 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransiotion.swift; sourceTree = "<group>"; };
@@ -200,6 +208,8 @@
 				2A4661A122B9E5A300F64393 /* LogInVC.swift */,
 				2AA3138122CB02F5000113A4 /* HomeVC.swift */,
 				3CCB33D522D45E8900EB8656 /* SettingsVC.swift */,
+				3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */,
+				3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -210,6 +220,7 @@
 				3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */,
 				3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */,
 				2A62FDE422DECF4B00D26B16 /* DesigneImageSettings.swift */,
+				3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				2A62FDE222DD6B4200D26B16 /* User.swift */,
+				3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -457,13 +469,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CAD6FBB230CF24A00F6F464 /* AllUsers.swift in Sources */,
 				3CCB33E022D4C94400EB8656 /* HomeVC+Extension.swift in Sources */,
 				2A62FDE522DECF4B00D26B16 /* DesigneImageSettings.swift in Sources */,
+				3C0DE67A230C10CB006F00E8 /* AddNewFriendsCell.swift in Sources */,
 				2A96847222C46FE20047503C /* Constants.swift in Sources */,
 				3CCB33DE22D4BEA800EB8656 /* SlideInTransiotion.swift in Sources */,
 				2A96847022C4653E0047503C /* AuthService.swift in Sources */,
 				2AE20DCA22DC372300779A23 /* DataService.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
+				3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */,
+				3C0DE678230C0FF1006F00E8 /* AddNewFriendsVC.swift in Sources */,
 				3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */,
 				3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */,
 				3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */,

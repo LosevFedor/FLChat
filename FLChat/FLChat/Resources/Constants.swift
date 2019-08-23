@@ -22,6 +22,10 @@ let DO_YOU_NEED_NEW_ACCOUNT = "Do you want to create a new account?"
 // Perform segue
 let GO_TO_HOME = "goToHome"
 let GO_TO_SETTINGS = "goToSettings"
+let GO_TO_ADD_NEW_FRIENDS = "goToAddNewFriends"
+
+// Cell identifiers
+let ADD_NEW_FRIENDS_CELL = "addNewFriendsCell"
 
 // Settings view
 let SHOW_PART_SETTINGS: CGFloat = 0.78
@@ -29,7 +33,7 @@ let SHOW_ALPHA: CGFloat = 0.5
 let HIDE_ALPHA: CGFloat = 0.0
 let dimingBackgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
-let COMPRESSION_IMAGE: CGFloat = 0.02
+let COMPRESSION_IMAGE: CGFloat = 0.001
 
 let DEFAULT_PHONE_FIELD = "User phone number"
 let DEFAULT_NAME_FIELD = "User name"

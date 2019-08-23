@@ -16,6 +16,7 @@ struct User {
     private var _name = "Your name"
     private var _image = "User image"
     private var _phone = "Your phone number"
+    private var _email = "default@email.com"
     
     private var _online = true
     private var _notificationOn = true
@@ -43,6 +44,14 @@ struct User {
             return _image
         }set{
             _image = newValue
+        }
+    }
+    
+    var email: String {
+        get{
+            return _email
+        }set{
+            _email = newValue
         }
     }
     
