@@ -69,6 +69,33 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedUser = allUsersArray[indexPath.row]
+        
+        guard let selectUserVC = storyboard?.instantiateViewController(withIdentifier: "selectedUserVC") as? SelectedUserVC else { return }
+        
+        let currentUser = AllUsers(selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+
+        let profileImageUrl = currentUser.userImage
+        let url = URL(string: profileImageUrl)
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+            if error != nil {
+                print("Cant convert the url for image: \(String(describing: error?.localizedDescription))")
+            }
+            DispatchQueue.main.async {
+                guard let currentUserImage = UIImage(data: data!) else { return }
+                let currenUserName = currentUser.userName
+                let curentUserEmail = currentUser.userEmail
+                let curentUserPhone = currentUser.userPhone
+                let currentUserStatus = currentUser.userStatus
+                
+                selectUserVC.initData(currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus)
+                self.present(selectUserVC, animated: true, completion: nil)
+            }
+        }).resume()
+    }
+    
 }
 
 extension AddNewFriendsVC: UITextFieldDelegate{
