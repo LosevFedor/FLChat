@@ -112,7 +112,7 @@ class SettingsVC: UIViewController {
             
             self.userPhoneTextField?.text = self.checkTextFieldForEpties(self.userPhoneTextField!.text!, DEFAULT_PHONE_FIELD)
             
-            DataService.instance.changeUserPhoneIntoDatabaseWithUID(uid, (self.userPhoneTextField?.text)!) { (changed, error) in
+            DataService.instance.changeUserPhoneIntoDBWithUID(uid, (self.userPhoneTextField?.text)!) { (changed, error) in
                 if error != nil {
                     print("Can't change user phone: \(String(describing: error?.localizedDescription))")
                 }
@@ -205,7 +205,7 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         }
         
         if let selectedImage = selectedImageFromPicker{
-            uploadNewUserImageIntoDatabase(selectedImage) { (updated, error) in
+            uploadNewUserImageIntoDB(selectedImage) { (updated, error) in
                 if updated{
                     self.setUserSettings()
                 }
@@ -216,7 +216,7 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         
     }
     
-    private func uploadNewUserImageIntoDatabase(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ upload: Bool, _ error: Error?) -> ()){
+    private func uploadNewUserImageIntoDB(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ upload: Bool, _ error: Error?) -> ()){
         let uid = DataService.instance.REF_UID
         let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
         
@@ -231,8 +231,8 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
                         copletedUpdateURLIntoDatabase(false, error)
                         return
                     }
-                    let userData = DataService.instance.changeUserImage(url.absoluteString)
-                    DataService.instance.updateUserIntoDatabaseWithUID(uid, userData)
+                    let newUserImage = DataService.instance.changeUserImage(url.absoluteString)
+                    DataService.instance.updateUserIntoDatabaseWithUID(uid, newUserImage)
                     copletedUpdateURLIntoDatabase(true, nil)
                 }
             }
