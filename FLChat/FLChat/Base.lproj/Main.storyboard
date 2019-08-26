@@ -604,7 +604,7 @@
                                         </constraints>
                                         <state key="normal" image="Back"/>
                                         <connections>
-                                            <action selector="BackBtnPressed:" destination="rnl-KH-rYa" eventType="touchUpInside" id="Q9C-je-Isq"/>
+                                            <action selector="backBtnPressed:" destination="rnl-KH-rYa" eventType="touchUpInside" id="Q9C-je-Isq"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ol-qn-KYh">
@@ -651,8 +651,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What you can to do?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sB7-yr-VhB">
-                                        <rect key="frame" x="109" y="354" width="157" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What you can to do?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sB7-yr-VhB">
+                                        <rect key="frame" x="20" y="354" width="335" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -661,11 +661,11 @@
                                         <rect key="frame" x="164.5" y="394.5" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="doSomthingButton:" destination="rnl-KH-rYa" eventType="touchUpInside" id="KUq-tn-n3C"/>
+                                            <action selector="sendFrienRequestBtnPressed:" destination="rnl-KH-rYa" eventType="touchUpInside" id="KUq-tn-n3C"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXM-d4-RDb">
-                                        <rect key="frame" x="144" y="318.5" width="87.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXM-d4-RDb">
+                                        <rect key="frame" x="20" y="318.5" width="335" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -673,10 +673,14 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Wkg-xq-Wji" firstAttribute="centerX" secondItem="sTB-HX-d8h" secondAttribute="centerX" id="1nH-MR-0Wd"/>
+                                    <constraint firstAttribute="trailing" secondItem="QXM-d4-RDb" secondAttribute="trailing" constant="20" id="8Sq-yX-uF5"/>
                                     <constraint firstItem="7Cg-g9-2yY" firstAttribute="centerY" secondItem="sTB-HX-d8h" secondAttribute="centerY" constant="-100" id="AR4-Y2-jOV"/>
                                     <constraint firstItem="Wkg-xq-Wji" firstAttribute="top" secondItem="sB7-yr-VhB" secondAttribute="bottom" constant="20" id="Ah3-sz-3Mt"/>
                                     <constraint firstItem="7Cg-g9-2yY" firstAttribute="centerX" secondItem="sTB-HX-d8h" secondAttribute="centerX" id="BmI-Nx-wAC"/>
                                     <constraint firstItem="QXM-d4-RDb" firstAttribute="top" secondItem="7Cg-g9-2yY" secondAttribute="bottom" constant="15" id="Oz3-zU-nZO"/>
+                                    <constraint firstAttribute="trailing" secondItem="sB7-yr-VhB" secondAttribute="trailing" constant="20" id="Qeg-Cr-ksK"/>
+                                    <constraint firstItem="QXM-d4-RDb" firstAttribute="leading" secondItem="sTB-HX-d8h" secondAttribute="leading" constant="20" id="iGD-JQ-IqH"/>
+                                    <constraint firstItem="sB7-yr-VhB" firstAttribute="leading" secondItem="sTB-HX-d8h" secondAttribute="leading" constant="20" id="l3c-u3-bbz"/>
                                     <constraint firstItem="sB7-yr-VhB" firstAttribute="top" secondItem="QXM-d4-RDb" secondAttribute="bottom" constant="15" id="nR6-MP-KWm"/>
                                     <constraint firstItem="QXM-d4-RDb" firstAttribute="centerX" secondItem="sTB-HX-d8h" secondAttribute="centerX" id="zYh-Ru-tVF"/>
                                     <constraint firstItem="sB7-yr-VhB" firstAttribute="centerX" secondItem="sTB-HX-d8h" secondAttribute="centerX" id="zei-dF-Xa6"/>
