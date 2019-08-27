@@ -374,6 +374,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OYJ-ju-wBR"/>
                     </view>
+                    <navigationItem key="navigationItem" id="sc0-pd-dcu"/>
                     <connections>
                         <segue destination="mFu-o1-pOT" kind="show" identifier="" id="2bg-4O-EHW"/>
                         <segue destination="1T7-GW-Fnc" kind="show" id="T2W-y6-AGi"/>
@@ -394,16 +395,39 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXe-60-kJ3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-pd-lrR">
-                                        <rect key="frame" x="20" y="64" width="335" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-pd-lrR" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="59" width="335" height="45"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="1Rv-2m-hSg"/>
+                                            <constraint firstAttribute="height" constant="45" id="1Rv-2m-hSg"/>
                                         </constraints>
                                         <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWith">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="1" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.31764705879999999" green="0.89019607840000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -414,7 +438,7 @@
                                     <constraint firstAttribute="bottom" secondItem="QiR-pd-lrR" secondAttribute="bottom" constant="6" id="kIx-Sd-lL2"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="jnV-cJ-uFn">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="jnV-cJ-uFn">
                                 <rect key="frame" x="20" y="20" width="335" height="39"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNV-Kk-3Of">
@@ -429,10 +453,12 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiK-YJ-BQh">
-                                        <rect key="frame" x="43" y="0.0" width="292" height="39"/>
+                                        <rect key="frame" x="65" y="0.0" width="270" height="39"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
                             </stackView>
@@ -470,10 +496,13 @@
                                                                             <real key="value" value="40"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidthImage">
-                                                                            <real key="value" value="2"/>
+                                                                            <real key="value" value="1"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColorImage">
                                                                             <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                            <size key="value" width="0.0" height="0.0"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
@@ -585,16 +614,20 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi6-HC-n8b">
-                                        <rect key="frame" x="50" y="68.5" width="305" height="19.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                        <rect key="frame" x="50" y="68" width="305" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfi-yy-EU5">
-                                        <rect key="frame" x="50" y="44" width="305" height="23.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                        <rect key="frame" x="50" y="42" width="305" height="26"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFu-PK-klP">
                                         <rect key="frame" x="20" y="0.0" width="30" height="39"/>
@@ -608,10 +641,12 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ol-qn-KYh">
-                                        <rect key="frame" x="50" y="0.0" width="305" height="41"/>
+                                        <rect key="frame" x="50" y="0.0" width="305" height="42"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="30"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.31764705879999999" green="0.89019607840000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -622,11 +657,11 @@
                                     <constraint firstItem="0ol-qn-KYh" firstAttribute="leading" secondItem="mFu-PK-klP" secondAttribute="trailing" id="8H2-yD-ARr"/>
                                     <constraint firstItem="mFu-PK-klP" firstAttribute="top" secondItem="XE4-jl-KVT" secondAttribute="top" id="Dih-92-GTT"/>
                                     <constraint firstItem="mFu-PK-klP" firstAttribute="leading" secondItem="XE4-jl-KVT" secondAttribute="leading" constant="20" id="HAC-Gr-SGA"/>
-                                    <constraint firstItem="Sfi-yy-EU5" firstAttribute="top" secondItem="0ol-qn-KYh" secondAttribute="bottom" constant="3" id="JeH-Bq-DpS"/>
+                                    <constraint firstItem="Sfi-yy-EU5" firstAttribute="top" secondItem="0ol-qn-KYh" secondAttribute="bottom" id="JeH-Bq-DpS"/>
                                     <constraint firstAttribute="height" constant="90" id="LYZ-oM-Xdw"/>
                                     <constraint firstAttribute="trailing" secondItem="0ol-qn-KYh" secondAttribute="trailing" constant="20" id="PqC-MB-IPG"/>
                                     <constraint firstItem="hi6-HC-n8b" firstAttribute="leading" secondItem="0ol-qn-KYh" secondAttribute="leading" id="eDX-d5-FKl"/>
-                                    <constraint firstItem="hi6-HC-n8b" firstAttribute="top" secondItem="Sfi-yy-EU5" secondAttribute="bottom" constant="1" id="gb5-7g-fFB"/>
+                                    <constraint firstItem="hi6-HC-n8b" firstAttribute="top" secondItem="Sfi-yy-EU5" secondAttribute="bottom" id="gb5-7g-fFB"/>
                                     <constraint firstItem="0ol-qn-KYh" firstAttribute="top" secondItem="XE4-jl-KVT" secondAttribute="top" id="lfw-9v-cUx"/>
                                 </constraints>
                             </view>
@@ -641,7 +676,7 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidthImage">
-                                                <real key="value" value="2"/>
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusImage">
                                                 <real key="value" value="125"/>
@@ -649,26 +684,64 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColorImage">
                                                 <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="1" height="1"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What you can to do?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sB7-yr-VhB">
-                                        <rect key="frame" x="20" y="354" width="335" height="20.5"/>
+                                        <rect key="frame" x="20" y="358.5" width="335" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.65363675355911255" green="0.7948877215385437" blue="0.46264183521270752" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wkg-xq-Wji">
-                                        <rect key="frame" x="164.5" y="394.5" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wkg-xq-Wji" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="400" width="315" height="60"/>
+                                        <color key="backgroundColor" red="0.65363675355911255" green="0.7948877215385437" blue="0.46264183521270752" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="vpi-DD-N2y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="21"/>
+                                        <state key="normal" title="Send friend request">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWith">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.5294155478477478" green="0.52940511703491211" blue="0.52941220998764038" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="sendFrienRequestBtnPressed:" destination="rnl-KH-rYa" eventType="touchUpInside" id="KUq-tn-n3C"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXM-d4-RDb">
-                                        <rect key="frame" x="20" y="318.5" width="335" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="20" y="318.5" width="335" height="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.48778480291366577" green="0.87946885824203491" blue="0.76468688249588013" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                 </subviews>
                                 <constraints>
@@ -677,8 +750,10 @@
                                     <constraint firstItem="7Cg-g9-2yY" firstAttribute="centerY" secondItem="sTB-HX-d8h" secondAttribute="centerY" constant="-100" id="AR4-Y2-jOV"/>
                                     <constraint firstItem="Wkg-xq-Wji" firstAttribute="top" secondItem="sB7-yr-VhB" secondAttribute="bottom" constant="20" id="Ah3-sz-3Mt"/>
                                     <constraint firstItem="7Cg-g9-2yY" firstAttribute="centerX" secondItem="sTB-HX-d8h" secondAttribute="centerX" id="BmI-Nx-wAC"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wkg-xq-Wji" secondAttribute="trailing" constant="30" id="HyL-aX-xE0"/>
                                     <constraint firstItem="QXM-d4-RDb" firstAttribute="top" secondItem="7Cg-g9-2yY" secondAttribute="bottom" constant="15" id="Oz3-zU-nZO"/>
                                     <constraint firstAttribute="trailing" secondItem="sB7-yr-VhB" secondAttribute="trailing" constant="20" id="Qeg-Cr-ksK"/>
+                                    <constraint firstItem="Wkg-xq-Wji" firstAttribute="leading" secondItem="sTB-HX-d8h" secondAttribute="leading" constant="30" id="ah8-3d-pFe"/>
                                     <constraint firstItem="QXM-d4-RDb" firstAttribute="leading" secondItem="sTB-HX-d8h" secondAttribute="leading" constant="20" id="iGD-JQ-IqH"/>
                                     <constraint firstItem="sB7-yr-VhB" firstAttribute="leading" secondItem="sTB-HX-d8h" secondAttribute="leading" constant="20" id="l3c-u3-bbz"/>
                                     <constraint firstItem="sB7-yr-VhB" firstAttribute="top" secondItem="QXM-d4-RDb" secondAttribute="bottom" constant="15" id="nR6-MP-KWm"/>

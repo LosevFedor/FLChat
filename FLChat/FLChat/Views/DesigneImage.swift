@@ -27,4 +27,14 @@ class DesigneImage: UIImageView{
             layer.borderColor = borderColorImage.cgColor
         }
     }
+    @IBInspectable private var shadowOpacity:  Float = 0{
+        didSet{
+            self.layer.shadowOpacity = shadowOpacity
+        }
+    }
+    @IBInspectable private var shadowOffset: CGSize = CGSize(width: 0.0, height: 0.0){
+        didSet{
+            self.layer.shadowOffset = shadowOffset
+        }
+    }
 }

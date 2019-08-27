@@ -23,7 +23,7 @@ class SelectedUserVC: UIViewController {
     @IBOutlet weak var doSomthingButton: UIButton!
     
     var currentBackgroundUserImg:UIImage!
-    var currentUserId: String!
+    var currentUserUID: String!
     var currentUserName:String!
     var currentUserImage: UIImage!
     var currentUserEmail:String!
@@ -54,7 +54,7 @@ class SelectedUserVC: UIViewController {
     }
     
     func initData(_ id: String, _ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool){
-        currentUserId = id
+        currentUserUID = id
         currentUserName = name
         currentUserImage = image
         currentBackgroundUserImg = image
@@ -75,50 +75,19 @@ class SelectedUserVC: UIViewController {
     }
     
     @IBAction func sendFrienRequestBtnPressed(_ sender: Any){
-        
-        let toId = currentUserId!
+        let toId = currentUserUID!
         let fromId = DataService.instance.REF_UID
         let timeStamp = Double(NSDate().timeIntervalSince1970)
         let msgRequestFriend = "Hi! I want to be your friend"
-        
-        let toUserParams = toUserFriendRequest()
-        let fromUserParams = fromUserFriendRequest()
-        
-        DataService.instance.createRequestAddFriendIntoDB(fromId, toId, timeStamp, msgRequestFriend, fromUserParams, toUserParams)
-    }
-    
-    private func toUserFriendRequest() -> Dictionary<String,Any>{
-        let name = currentUserName!
-        
-        let image = getImageURL(currentUserImage)
-        let email = currentUserEmail!
-        let status = currentUserStatus!
-        
-        let userFields: Dictionary<String,Any> = ["toUserName": name, "toUserImage": image, "toUserEmail": email, "toUserStatus":status]
-        return userFields
-    }
-    
-    private func fromUserFriendRequest() -> Dictionary<String,Any>{
-        let name = User.instance.name
-        let image = User.instance.image
-        let email = User.instance.email
-        let status = User.instance.statusOnline
-        
-        let whoSendRequest: Dictionary<String,Any> = ["fromUserName": name, "fromUserImage": image, "fromUserEmail": email, "fromUserStatus": status]
-        return whoSendRequest
-    }
-    
-    private func getImageURL(_ image: UIImage) -> String{
-        let ref = DataService.instance.REF_STORAGE_BASE.child(currentUserId)
-        var convertedImageString = ""
-        DispatchQueue.main.async {
-            ref.downloadURL { (url, error) in
-                guard let url = url else { return }
-                convertedImageString = url.absoluteString
-            }
+        let friendRequestConfirmed = false
+        DataService.instance.createRequestForFriendIntoDB(fromId, toId, timeStamp, msgRequestFriend, friendRequestConfirmed) { (sendRequest) in
+            
+            let alertController = UIAlertController(title: "Your friend request was successfully sent to the \"\(self.currentUserName!)\"", message: nil, preferredStyle: .alert)
+            let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(okAlert)
+            self.present(alertController, animated: true, completion: nil)
         }
-        
-        return convertedImageString
     }
-
 }

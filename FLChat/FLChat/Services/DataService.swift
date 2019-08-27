@@ -181,19 +181,16 @@ class DataService {
         }
     }
     
-    func createRequestAddFriendIntoDB(_ fromUser: String, _ toUser: String, _ time: Double, _ msg: String, _ fromUserParams: Dictionary<String,Any>, _ toUserParams: Dictionary<String,Any>){
+    func createRequestForFriendIntoDB(_ fromUser: String, _ toUser: String, _ time: Double, _ msg: String, _ requestConfirmed: Bool, requestWillSend: @escaping(_ requestSend: Bool)-> ()){
         let ref = DataService.instance.REF_FRIEND_REQUEST
-        
         let fromId = fromUser
         let toId = toUser
         let timeStamp = time
-        let msgRequest = msg
-        
-        let fromUserParams = fromUserParams
-        let toUserParams = toUserParams
-        
-        let value: Dictionary<String, Any> = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": msgRequest, "fromUserParams": fromUserParams, "toUserParams": toUserParams]
+        let message = msg
+        let statusRequest = requestConfirmed
+        let value: Dictionary<String, Any> = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": message, "statusRequest": statusRequest]
         ref.updateChildValues(value)
+        requestWillSend(true)
     }
     
     func changeUserNameIntoDatabaseWithUID(_ uid: String, _ newUserName: String, copletedChangeUserName: @escaping(_ changed:Bool, _ error:Error?) -> ()){
