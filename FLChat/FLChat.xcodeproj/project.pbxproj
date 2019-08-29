@@ -19,7 +19,7 @@
 		2A4661B822B9E5A400F64393 /* FLChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661B722B9E5A400F64393 /* FLChatTests.swift */; };
 		2A4661C322B9E5A400F64393 /* FLChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4661C222B9E5A400F64393 /* FLChatUITests.swift */; };
 		2A62FDE322DD6B4200D26B16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDE222DD6B4200D26B16 /* User.swift */; };
-		2A62FDE522DECF4B00D26B16 /* DesigneImageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDE422DECF4B00D26B16 /* DesigneImageSettings.swift */; };
+		2A62FDE522DECF4B00D26B16 /* DesigneImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62FDE422DECF4B00D26B16 /* DesigneImage.swift */; };
 		2A96847022C4653E0047503C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96846F22C4653E0047503C /* AuthService.swift */; };
 		2A96847222C46FE20047503C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A96847122C46FE20047503C /* Constants.swift */; };
 		2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3138122CB02F5000113A4 /* HomeVC.swift */; };
@@ -27,11 +27,15 @@
 		3C0ADACD22CCF34800DE069C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */; };
 		3C0DE678230C0FF1006F00E8 /* AddNewFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */; };
 		3C0DE67A230C10CB006F00E8 /* AddNewFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */; };
-		3C104EB0230F731900461F19 /* SelectedUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C104EAF230F731900461F19 /* SelectedUserVC.swift */; };
+		3C104EB0230F731900461F19 /* SelectUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C104EAF230F731900461F19 /* SelectUserVC.swift */; };
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
+		3C2216362314EA7900A8DA0C /* DesigneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2216352314EA7900A8DA0C /* DesigneTextField.swift */; };
+		3C2216382315297A00A8DA0C /* MyRequestFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */; };
+		3C22163A231529F800A8DA0C /* MyRequestFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C221639231529F800A8DA0C /* MyRequestFriendsCell.swift */; };
+		3C22163C231531FF00A8DA0C /* RequestFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C22163B231531FF00A8DA0C /* RequestFriend.swift */; };
 		3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */; };
-		3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */; };
-		3CAD6FBB230CF24A00F6F464 /* AllUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */; };
+		3C9EB8BD22D5B32F009A1D18 /* DesigneButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9EB8BC22D5B32F009A1D18 /* DesigneButtons.swift */; };
+		3CAD6FBB230CF24A00F6F464 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD6FBA230CF24A00F6F464 /* Users.swift */; };
 		3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */; };
 		3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33D522D45E8900EB8656 /* SettingsVC.swift */; };
 		3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */; };
@@ -77,7 +81,7 @@
 		2A4661C222B9E5A400F64393 /* FLChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLChatUITests.swift; sourceTree = "<group>"; };
 		2A4661C422B9E5A400F64393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A62FDE222DD6B4200D26B16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2A62FDE422DECF4B00D26B16 /* DesigneImageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneImageSettings.swift; sourceTree = "<group>"; };
+		2A62FDE422DECF4B00D26B16 /* DesigneImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneImage.swift; sourceTree = "<group>"; };
 		2A96846F22C4653E0047503C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2A96847122C46FE20047503C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2AA3138122CB02F5000113A4 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -86,11 +90,15 @@
 		3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendsVC.swift; sourceTree = "<group>"; };
 		3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendsCell.swift; sourceTree = "<group>"; };
-		3C104EAF230F731900461F19 /* SelectedUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedUserVC.swift; sourceTree = "<group>"; };
+		3C104EAF230F731900461F19 /* SelectUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserVC.swift; sourceTree = "<group>"; };
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3C2216352314EA7900A8DA0C /* DesigneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneTextField.swift; sourceTree = "<group>"; };
+		3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRequestFriendsVC.swift; sourceTree = "<group>"; };
+		3C221639231529F800A8DA0C /* MyRequestFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRequestFriendsCell.swift; sourceTree = "<group>"; };
+		3C22163B231531FF00A8DA0C /* RequestFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFriend.swift; sourceTree = "<group>"; };
 		3C2B31FB22BE0F060076FE7C /* ShowHideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideKeyboard.swift; sourceTree = "<group>"; };
-		3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneButtonsSettings.swift; sourceTree = "<group>"; };
-		3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsers.swift; sourceTree = "<group>"; };
+		3C9EB8BC22D5B32F009A1D18 /* DesigneButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneButtons.swift; sourceTree = "<group>"; };
+		3CAD6FBA230CF24A00F6F464 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneCollectionView.swift; sourceTree = "<group>"; };
 		3CCB33D522D45E8900EB8656 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
@@ -212,7 +220,9 @@
 				3CCB33D522D45E8900EB8656 /* SettingsVC.swift */,
 				3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */,
 				3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */,
-				3C104EAF230F731900461F19 /* SelectedUserVC.swift */,
+				3C104EAF230F731900461F19 /* SelectUserVC.swift */,
+				3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */,
+				3C221639231529F800A8DA0C /* MyRequestFriendsCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -221,9 +231,10 @@
 			isa = PBXGroup;
 			children = (
 				3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */,
-				3C9EB8BC22D5B32F009A1D18 /* DesigneButtonsSettings.swift */,
-				2A62FDE422DECF4B00D26B16 /* DesigneImageSettings.swift */,
+				3C9EB8BC22D5B32F009A1D18 /* DesigneButtons.swift */,
+				2A62FDE422DECF4B00D26B16 /* DesigneImage.swift */,
 				3CAD6FBC230D293700F6F464 /* DesigneCollectionView.swift */,
+				3C2216352314EA7900A8DA0C /* DesigneTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,7 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				2A62FDE222DD6B4200D26B16 /* User.swift */,
-				3CAD6FBA230CF24A00F6F464 /* AllUsers.swift */,
+				3CAD6FBA230CF24A00F6F464 /* Users.swift */,
+				3C22163B231531FF00A8DA0C /* RequestFriend.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,23 +484,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CAD6FBB230CF24A00F6F464 /* AllUsers.swift in Sources */,
+				3CAD6FBB230CF24A00F6F464 /* Users.swift in Sources */,
 				3CCB33E022D4C94400EB8656 /* HomeVC+Extension.swift in Sources */,
-				2A62FDE522DECF4B00D26B16 /* DesigneImageSettings.swift in Sources */,
+				2A62FDE522DECF4B00D26B16 /* DesigneImage.swift in Sources */,
 				3C0DE67A230C10CB006F00E8 /* AddNewFriendsCell.swift in Sources */,
 				2A96847222C46FE20047503C /* Constants.swift in Sources */,
 				3CCB33DE22D4BEA800EB8656 /* SlideInTransiotion.swift in Sources */,
 				2A96847022C4653E0047503C /* AuthService.swift in Sources */,
 				2AE20DCA22DC372300779A23 /* DataService.swift in Sources */,
-				3C104EB0230F731900461F19 /* SelectedUserVC.swift in Sources */,
+				3C104EB0230F731900461F19 /* SelectUserVC.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
+				3C2216362314EA7900A8DA0C /* DesigneTextField.swift in Sources */,
 				3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */,
+				3C2216382315297A00A8DA0C /* MyRequestFriendsVC.swift in Sources */,
 				3C0DE678230C0FF1006F00E8 /* AddNewFriendsVC.swift in Sources */,
 				3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */,
-				3C9EB8BD22D5B32F009A1D18 /* DesigneButtonsSettings.swift in Sources */,
+				3C22163C231531FF00A8DA0C /* RequestFriend.swift in Sources */,
+				3C9EB8BD22D5B32F009A1D18 /* DesigneButtons.swift in Sources */,
 				3C2B31FC22BE0F060076FE7C /* ShowHideKeyboard.swift in Sources */,
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
+				3C22163A231529F800A8DA0C /* MyRequestFriendsCell.swift in Sources */,
 				2A62FDE322DD6B4200D26B16 /* User.swift in Sources */,
 				2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */,
 				3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */,
