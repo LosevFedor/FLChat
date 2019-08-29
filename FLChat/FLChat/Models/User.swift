@@ -13,14 +13,22 @@ struct User {
     
     static var instance = User()
     
+    //private var _userId = "default id"
+    
     private var _name = "Your name"
     private var _image = "User image"
     private var _phone = "Your phone number"
     private var _email = "default@email.com"
     
-    private var _online = true
+    private var _statusOnline = true
     private var _notificationOn = true
     private var _notificationSound = true
+    
+//    var userId: String {
+//        get{
+//            return _userId
+//        }
+//    }
     
     var phone: String{
         get{
@@ -55,11 +63,11 @@ struct User {
         }
     }
     
-    var online: Bool{
+    var statusOnline: Bool{
         get{
-            return _online
+            return _statusOnline
         }set{
-            _online = newValue
+            _statusOnline = newValue
         }
     }
     

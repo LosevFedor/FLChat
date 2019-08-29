@@ -1,16 +1,17 @@
 //
-//  DesigneButtonsSettings.swift
+//  DesigneTextField.swift
 //  FLChat
 //
-//  Created by Fedor Losev on 10/07/2019.
+//  Created by Fedor Losev on 27/08/2019.
 //  Copyright © 2019 losev.feder2711@gmail.com. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 @IBDesignable
-class DesigneButtons: UIButton {
-
+class DesigneTextField: UITextField{
+    
     @IBInspectable private var cornerRadius: CGFloat = 0{
         didSet{
             self.layer.cornerRadius = cornerRadius
@@ -46,5 +47,10 @@ class DesigneButtons: UIButton {
             self.layer.shadowOffset = shadowOffset
         }
     }
-
+    @IBInspectable private var borderColor: UIColor = UIColor.clear{
+        didSet{
+            layer.borderColor = borderColor.cgColor
+        }
+    }
+    
 }

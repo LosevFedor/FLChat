@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     let uid = DataService.instance.REF_UID
                     let email = result!.user.email
                     
-                    DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                    DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
                         self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                     })
                 }

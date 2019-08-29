@@ -73,7 +73,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                     let uid = DataService.instance.REF_UID
                     let email = result!.user.email
                     
-                    DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                    DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
                         self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                     })
 
@@ -98,7 +98,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                         let uid = DataService.instance.REF_UID
                         let email = result!.user.email
 
-                        DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                        DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
                             self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                         })
                     }
@@ -117,7 +117,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                     let uid = DataService.instance.REF_UID
                     let email = result!.user.email
                     
-                    DataService.instance.registrationUserIntoDatabase(uid, email!, completedUserRegistration: { (registration, error) in
+                    DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
                         if error != nil{
                             print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
                         }else{

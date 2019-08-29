@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class SelectedUserVC: UIViewController {
 
-    
-    
     @IBOutlet weak var selectedUserNameLabel: UILabel!
     @IBOutlet weak var selectedUserEmailLabel: UILabel!
     @IBOutlet weak var selectedUserStatusLabel: UILabel!
@@ -24,6 +23,7 @@ class SelectedUserVC: UIViewController {
     @IBOutlet weak var doSomthingButton: UIButton!
     
     var currentBackgroundUserImg:UIImage!
+    var currentUserUID: String!
     var currentUserName:String!
     var currentUserImage: UIImage!
     var currentUserEmail:String!
@@ -44,8 +44,8 @@ class SelectedUserVC: UIViewController {
         super.viewDidLoad()
         selectedUserNameLabel.text = currentUserName
         selectedUserImg.image = currentUserImage
-        selectedUserEmailLabel.text = currentUserEmail
-        selectedUserPhoneLabel.text = currentUserPhone
+        selectedUserEmailLabel.text = "Email: \(currentUserEmail!)"
+        selectedUserPhoneLabel.text = "Phone: \(currentUserPhone!)"
         selectedUserStatusLabel.text = currentUserStatus
         selectedUserWhatYouCanToDoLabel.text = currentUserWhatYouCanToDo
         selectedBackgroundUserImg.image = currentBackgroundUserImg
@@ -53,12 +53,13 @@ class SelectedUserVC: UIViewController {
         addBlureEffeckForselectedBackgroundUserUmg()
     }
     
-    func initData(_ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool){
+    func initData(_ id: String, _ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool){
+        currentUserUID = id
         currentUserName = name
         currentUserImage = image
         currentBackgroundUserImg = image
-        currentUserEmail = "Email: \(email)"
-        currentUserPhone = "Phone: \(phone)"
+        currentUserEmail = email
+        currentUserPhone = phone
         currentUserStatus = { () -> String in
             if status{
                 return "online"
@@ -66,16 +67,27 @@ class SelectedUserVC: UIViewController {
                 return "ofline"
             }
         }()
-        currentUserWhatYouCanToDo = "You can sand message this is user"
+        currentUserWhatYouCanToDo = "You don't have this is person in to your friends"
     }
     
-    @IBAction func BackBtnPressed(_ sender: Any) {
+    @IBAction func backBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func doSomthingButton(_ sender: Any){
-        
+    @IBAction func sendFrienRequestBtnPressed(_ sender: Any){
+        let toId = currentUserUID!
+        let fromId = DataService.instance.REF_UID
+        let timeStamp = Double(NSDate().timeIntervalSince1970)
+        let msgRequestFriend = "Hi! I want to be your friend"
+        let friendRequestConfirmed = false
+        DataService.instance.createRequestForFriendIntoDB(fromId, toId, timeStamp, msgRequestFriend, friendRequestConfirmed) { (sendRequest) in
+            
+            let alertController = UIAlertController(title: "Your friend request was successfully sent to the \"\(self.currentUserName!)\"", message: nil, preferredStyle: .alert)
+            let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(okAlert)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
-    
-
 }

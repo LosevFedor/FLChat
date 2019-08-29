@@ -9,12 +9,18 @@
 import Foundation
 class AllUsers{
     
+    private var _userId: String?
     private var _userName: String?
     private var _userImage: String?
     private var _userEmail: String?
     private var _userPhone: String?
     private var _userStatus: Bool?
     
+    var userId: String {
+        get{
+            return _userId!
+        }
+    }
     var userName: String {
         get{
             return _userName!
@@ -40,7 +46,8 @@ class AllUsers{
             return _userStatus!
         }
     }
-    init(_ name: String, _ image: String, _ email: String, _ phone: String, _ status: Bool) {
+    init(_ id: String, _ name: String, _ image: String, _ email: String, _ phone: String, _ status: Bool) {
+        self._userId = id
         self._userName = name
         self._userImage = image
         self._userEmail = email

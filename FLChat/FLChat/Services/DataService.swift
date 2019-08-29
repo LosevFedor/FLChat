@@ -19,6 +19,7 @@ class DataService {
     
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
+    private var _REF_FRIEND_REQUEST = DB_BASE.child("friend_request").childByAutoId()
     // Path to user image folder in to firebase-storage
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
     // Unique user identification
@@ -31,6 +32,10 @@ class DataService {
     
     var REF_USERS: DatabaseReference {
         return _REF_USERS
+    }
+    
+    var REF_FRIEND_REQUEST: DatabaseReference {
+        return _REF_FRIEND_REQUEST
     }
     
     var REF_STORAGE_BASE: StorageReference {
@@ -63,7 +68,7 @@ class DataService {
             User.instance.email = (value?["email"] as? String)!
             User.instance.image = (value?["image"] as? String)!
 
-            User.instance.online = (value?["online"] as? Bool)!
+            User.instance.statusOnline = (value?["online"] as? Bool)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
             User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
             
@@ -81,6 +86,7 @@ class DataService {
             
             for user in allUsersSnapshot{
                 
+                let userId = user.key
                 let userName = user.childSnapshot(forPath: "name").value as! String
                 let userImage = user.childSnapshot(forPath: "image").value as! String
                 let userEmail = user.childSnapshot(forPath: "email").value as! String
@@ -88,7 +94,7 @@ class DataService {
                 let userStatus = user.childSnapshot(forPath: "online").value as! Bool
                 
                 if userEmail != self.REF_EMAIL {
-                    let user = AllUsers(userName, userImage, userEmail, userPhone, userStatus)
+                    let user = AllUsers(userId, userName, userImage, userEmail, userPhone, userStatus)
                     allUsersArray.append(user)
                 }
             }
@@ -103,6 +109,7 @@ class DataService {
             guard let userSnapshot = allUserSnapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for user in userSnapshot{
+                let userId = user.key
                 let userName = user.childSnapshot(forPath: "name").value as! String
                 let userImage = user.childSnapshot(forPath: "image").value as! String
                 let userEmail = user.childSnapshot(forPath: "email").value as! String
@@ -110,7 +117,7 @@ class DataService {
                 let userStatus = user.childSnapshot(forPath: "online").value as! Bool
                 
                 if userEmail.contains(query) && userEmail != self.REF_EMAIL {
-                    let searchUserByEmail = AllUsers(userName, userImage, userEmail, userPhone, userStatus)
+                    let searchUserByEmail = AllUsers(userId, userName, userImage, userEmail, userPhone, userStatus)
                     searchUser.append(searchUserByEmail)
                 }
             }
@@ -151,7 +158,7 @@ class DataService {
         return dictUserPushNotification
     }
     
-    func registrationUserIntoDatabase(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error:Error?) -> ()){
+    func registrationUserIntoDB(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error:Error?) -> ()){
         let ref = REF_STORAGE_BASE.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
         
@@ -166,12 +173,24 @@ class DataService {
                         completedUserRegistration(false,error)
                         return
                     }
-                    let userData = self.userData(email, User.instance.phone, User.instance.name, url.absoluteString, User.instance.online, User.instance.notificationOn, User.instance.notificationSound)
+                    let userData = self.userData(email, User.instance.phone, User.instance.name, url.absoluteString, User.instance.statusOnline, User.instance.notificationOn, User.instance.notificationSound)
                     self.updateUserIntoDatabaseWithUID(uid, userData)
                     completedUserRegistration(true, nil)
                 }
             }
         }
+    }
+    
+    func createRequestForFriendIntoDB(_ fromUser: String, _ toUser: String, _ time: Double, _ msg: String, _ requestConfirmed: Bool, requestWillSend: @escaping(_ requestSend: Bool)-> ()){
+        let ref = DataService.instance.REF_FRIEND_REQUEST
+        let fromId = fromUser
+        let toId = toUser
+        let timeStamp = time
+        let message = msg
+        let statusRequest = requestConfirmed
+        let value: Dictionary<String, Any> = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": message, "statusRequest": statusRequest]
+        ref.updateChildValues(value)
+        requestWillSend(true)
     }
     
     func changeUserNameIntoDatabaseWithUID(_ uid: String, _ newUserName: String, copletedChangeUserName: @escaping(_ changed:Bool, _ error:Error?) -> ()){
@@ -180,21 +199,33 @@ class DataService {
         copletedChangeUserName(true,nil)
     }
     
-    func changeUserPhoneIntoDatabaseWithUID(_ uid: String, _ newUserPhone: String, completedChangeUserPhone: @escaping(_ change:Bool, _ error:Error?) -> ()){
-        let userData = changeUserPhone(newUserPhone)
-        self.updateUserIntoDatabaseWithUID(uid, userData)
+    func changeUserPhoneIntoDBWithUID(_ uid: String, _ newUserPhone: String, completedChangeUserPhone: @escaping(_ change:Bool, _ error:Error?) -> ()){
+        let userPhone = changeUserPhone(newUserPhone)
+        self.updateUserIntoDatabaseWithUID(uid, userPhone)
         completedChangeUserPhone(true,nil)
     }
     
     func changeUserNotificationSoundIntoDatabaseWithUID(_ uid: String, _ newUserNotificationSound: Bool, completedChangeUserNotificationSound: @escaping(_ change:Bool, _ error: Error?) -> ()){
-        let userData = changeUsserNotificationSound(newUserNotificationSound)
-        self.updateUserIntoDatabaseWithUID(uid, userData)
+        let userNotificationSound = changeUsserNotificationSound(newUserNotificationSound)
+        self.updateUserIntoDatabaseWithUID(uid, userNotificationSound)
         completedChangeUserNotificationSound(true,nil)
     }
     
     func changeUserPushNotificationIntoDatabaseWithUID(_ uid: String, _ newUserPushNotification: Bool, completedChangeUserPushNotification: @escaping(_ change:Bool, _ error: Error?) -> ()){
-        let userData = changeUserPushNotification(newUserPushNotification)
-        self.updateUserIntoDatabaseWithUID(uid, userData)
+        let userPushNotification = changeUserPushNotification(newUserPushNotification)
+        self.updateUserIntoDatabaseWithUID(uid, userPushNotification)
         completedChangeUserPushNotification(true,nil)
     }
+    
+//    func getImageURLFromDB(_ uid: String, _ image: UIImage, complete: @escaping (_ isUrl: Bool) -> ()) -> String {
+//        
+//        let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
+//        var convertedImageString = ""
+//        ref.downloadURL { (url, error) in
+//            guard let url = url else { return }
+//            convertedImageString = url.absoluteString
+//            complete(true)
+//        }
+//        return convertedImageString
+//    }
 }
