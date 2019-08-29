@@ -19,7 +19,8 @@ class DataService {
     
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
-    private var _REF_FRIEND_REQUEST = DB_BASE.child("friend_request").childByAutoId()
+    private var _REF_FRIEND_REQUEST = DB_BASE.child("friend_request")
+    private var _REF_USER_FRIEND_REQUEST = DB_BASE.child("user_friend_request")
     // Path to user image folder in to firebase-storage
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
     // Unique user identification
@@ -36,6 +37,10 @@ class DataService {
     
     var REF_FRIEND_REQUEST: DatabaseReference {
         return _REF_FRIEND_REQUEST
+    }
+    
+    var REF_USER_FRIEND_REQUEST: DatabaseReference {
+        return _REF_USER_FRIEND_REQUEST
     }
     
     var REF_STORAGE_BASE: StorageReference {
@@ -77,15 +82,38 @@ class DataService {
         completedSnapshot(false)
     }
     
+    func getUsersWhomFriendRequestBeenSendFromDB(snapshotMyRequestintoFriend: @escaping(_ userWhomSendRequest: [Users]) -> ()){
+        let uid = REF_UID
+        var arrayUsers = [Users]()
+        REF_USER_FRIEND_REQUEST.child(uid).observe(.childAdded, with: { (snapshot) in
+            let requestId = snapshot.key
+            let requestReferense = self.REF_FRIEND_REQUEST.child(requestId)
+            requestReferense.observeSingleEvent(of: .value, with: { (snapshot) in
+                let requestUser = requestReferense.child("toIdUser")
+                requestUser.observe(.value, with: { (snapshotToId) in
+                    guard let dictionary = snapshotToId.value as? Dictionary<String,Any> else { return }
+                    
+                    let name = (dictionary["name"] as? String)!
+                    let image = (dictionary["image"] as? String)!
+                    let email = (dictionary["email"] as? String)!
+                    let phone = (dictionary["phone"] as? String)!
+                    let status = (dictionary["online"] as? Bool)!
+                    
+                    let user = Users(name, image, email, phone, status)
+                    arrayUsers.append(user)
+                    snapshotMyRequestintoFriend(arrayUsers)
+                }, withCancel: nil)
+            }, withCancel: nil)
+        }, withCancel: nil)
+    }
     
-    func getAllUsersFromDatabase(completedSnapshotAllUsers: @escaping (_ allUsers: [AllUsers], _ error: Error?) -> ()){
-        REF_USERS.observeSingleEvent(of: .value) { (allUsersSnapshot) in
+    func getUsersFromDatabase(completedSnapshotAllUsers: @escaping (_ allUsers: [Users], _ error: Error?) -> ()){
+        REF_USERS.observeSingleEvent(of: .value) { (usersSnapshot) in
             
-            var allUsersArray = [AllUsers]()
-            guard let allUsersSnapshot = allUsersSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            var usersArray = [Users]()
+            guard let allUsersSnapshot = usersSnapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for user in allUsersSnapshot{
-                
                 let userId = user.key
                 let userName = user.childSnapshot(forPath: "name").value as! String
                 let userImage = user.childSnapshot(forPath: "image").value as! String
@@ -94,18 +122,18 @@ class DataService {
                 let userStatus = user.childSnapshot(forPath: "online").value as! Bool
                 
                 if userEmail != self.REF_EMAIL {
-                    let user = AllUsers(userId, userName, userImage, userEmail, userPhone, userStatus)
-                    allUsersArray.append(user)
+                    let user = Users(userId, userName, userImage, userEmail, userPhone, userStatus)
+                    usersArray.append(user)
                 }
             }
-            completedSnapshotAllUsers(allUsersArray, nil)
+            completedSnapshotAllUsers(usersArray, nil)
         }
     }
     
-    func getUserByEmailFromDatabase(forSearchQuery query: String, completedSearching: @escaping (_ userParametersArray: [AllUsers]) -> ()){
+    func getUsersByEmailFromDatabase(forSearchQuery query: String, completedSearching: @escaping (_ userParametersArray: [Users]) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (allUserSnapshot) in
             
-            var searchUser = [AllUsers]()
+            var searchUser = [Users]()
             guard let userSnapshot = allUserSnapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for user in userSnapshot{
@@ -117,15 +145,12 @@ class DataService {
                 let userStatus = user.childSnapshot(forPath: "online").value as! Bool
                 
                 if userEmail.contains(query) && userEmail != self.REF_EMAIL {
-                    let searchUserByEmail = AllUsers(userId, userName, userImage, userEmail, userPhone, userStatus)
+                    let searchUserByEmail = Users(userId, userName, userImage, userEmail, userPhone, userStatus)
                     searchUser.append(searchUserByEmail)
                 }
             }
             completedSearching(searchUser)
         }
-        
-        
-        
     }
 
     func changeUserImage(_ userImage: String) -> Dictionary<String,Any>{
@@ -181,16 +206,25 @@ class DataService {
         }
     }
     
-    func createRequestForFriendIntoDB(_ fromUser: String, _ toUser: String, _ time: Double, _ msg: String, _ requestConfirmed: Bool, requestWillSend: @escaping(_ requestSend: Bool)-> ()){
-        let ref = DataService.instance.REF_FRIEND_REQUEST
-        let fromId = fromUser
-        let toId = toUser
-        let timeStamp = time
-        let message = msg
-        let statusRequest = requestConfirmed
-        let value: Dictionary<String, Any> = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": message, "statusRequest": statusRequest]
+    func createRequestForFriendIntoDB(_ fromId: String, _ fromIdUser:Dictionary<String,Any>, _ toId: String, _ toIdUser:Dictionary<String,Any>, _ time: Double, _ msg: String, _ confirmReques: Bool, requestWillSend: @escaping(_ requestSend: Bool, _ autoKey: String) -> ()){
+        let ref = REF_FRIEND_REQUEST.childByAutoId()
+        let autoKeyRef = ref.key!
+        let value: Dictionary<String, Any> = ["fromId": fromId, "fromIdUser": fromIdUser, "toId": toId, "toIdUser": toIdUser, "timeStamp": time, "message": msg, "confirmReques": confirmReques]
         ref.updateChildValues(value)
-        requestWillSend(true)
+        requestWillSend(true, autoKeyRef)
+    }
+    
+    func createUserRequestForFriendIntoDB(_ key: String, requestSend: @escaping(_ requestSend: Bool)-> ()){
+        let uid = REF_UID
+        let ref = REF_USER_FRIEND_REQUEST.child(uid)
+        let requstId = "\(key)"
+        let value: Dictionary<String, Any> = ["\(requstId)": 1]
+        ref.updateChildValues(value) { (error, ref) in
+            if error != nil{
+                print("Can't create new object in to Database: \(String(describing: error?.localizedDescription))")
+            }
+            requestSend(true)
+        }
     }
     
     func changeUserNameIntoDatabaseWithUID(_ uid: String, _ newUserName: String, copletedChangeUserName: @escaping(_ changed:Bool, _ error:Error?) -> ()){

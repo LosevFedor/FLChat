@@ -14,7 +14,7 @@ class AddNewFriendsVC: UIViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var emailSearchTextField: UITextField!
     
-    var allUsersArray = [AllUsers]()
+    private var usersArray = [Users]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,26 +22,25 @@ class AddNewFriendsVC: UIViewController{
         collectionView?.dataSource = self
         emailSearchTextField.delegate = self
         emailSearchTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
-        
     }
     
     @objc func textFieldDidChanged(){
         if emailSearchTextField.text == ""{
-            DataService.instance.getAllUsersFromDatabase { (returnedAllUsersArray, error) in
-                self.allUsersArray = returnedAllUsersArray
+            DataService.instance.getUsersFromDatabase { (returnedAllUsersArray, error) in
+                self.usersArray = returnedAllUsersArray
                 self.collectionView?.reloadData()
             }
         }else{
-            DataService.instance.getUserByEmailFromDatabase(forSearchQuery: emailSearchTextField.text!) { (returnedUsersArray) in
-                self.allUsersArray = returnedUsersArray
+            DataService.instance.getUsersByEmailFromDatabase(forSearchQuery: emailSearchTextField.text!) { (returnedUsersArray) in
+                self.usersArray = returnedUsersArray
                 self.collectionView?.reloadData()
             }
         }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataService.instance.getAllUsersFromDatabase { (returnedAllUsersArray, error) in
-            self.allUsersArray = returnedAllUsersArray
+        DataService.instance.getUsersFromDatabase { (returnedAllUsersArray, error) in
+            self.usersArray = returnedAllUsersArray
             self.collectionView?.reloadData()
         }
     }
@@ -54,16 +53,13 @@ class AddNewFriendsVC: UIViewController{
 
 extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allUsersArray.count
+        return usersArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ADD_NEW_FRIENDS_CELL, for: indexPath) as? AddNewFriendsCell else {
-            return UICollectionViewCell()
-        }
-        let allUsers = allUsersArray[indexPath.row]
-        cell.configureCell(allUsers.userName, allUsers.userImage, allUsers.userStatus)
-        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ADD_NEW_FRIENDS_CELL, for: indexPath) as? AddNewFriendsCell else { return UICollectionViewCell() }
+        let user = usersArray[indexPath.row]
+        cell.configureCell(user.userName, user.userImage, user.userStatus)
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,12 +67,12 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedUser = allUsersArray[indexPath.row]
+        let selectedUser = usersArray[indexPath.row]
         
-        guard let selectUserVC = storyboard?.instantiateViewController(withIdentifier: "selectedUserVC") as? SelectedUserVC else { return }
+        guard let selectUserVC = storyboard?.instantiateViewController(withIdentifier: "selectedUserVC") as? SelectUserVC else { return }
         
-        let currentUser = AllUsers(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
-
+        let currentUser = Users(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+ 
         let profileImageUrl = currentUser.userImage
         let url = URL(string: profileImageUrl)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
@@ -92,8 +88,8 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
                 let curentUserEmail = currentUser.userEmail
                 let curentUserPhone = currentUser.userPhone
                 let currentUserStatus = currentUser.userStatus
-                
-                selectUserVC.initData(currentUserId, currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus)
+                let currentUserUrlImage = currentUser.userImage
+                selectUserVC.initData(currentUserId, currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
                 self.present(selectUserVC, animated: true, completion: nil)
             }
         }).resume()
