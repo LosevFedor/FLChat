@@ -88,7 +88,7 @@ class SettingsVC: UIViewController {
             try Auth.auth().signOut()
             GIDSignIn.sharedInstance()?.signOut()
             UserDefaults.standard.setIsLoggedIn(value: false)
-            //UserDefaults.standard.removeLogIn()
+            User.instance.resetUserSettings()
             view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }catch let error as NSError{
             print("User can't SignOut: \(error.localizedDescription)")

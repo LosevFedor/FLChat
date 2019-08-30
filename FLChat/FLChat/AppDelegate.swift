@@ -71,11 +71,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     
                     let uid = (Auth.auth().currentUser?.uid)!
-                    let email = result!.user.email
+                    let email = (result!.user.email)!
                     
-                    DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
-                        self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
-                    })
+                    if Auth.auth().currentUser != nil{
+                        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+                            if completeGetParams{
+                                print("Successfully get params for User from batabase")
+                                self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                            }
+                        }
+                    }else{
+                        DataService.instance.registrationUserIntoDB(uid, email, completedUserRegistration: { (registration, error) in
+                            if error != nil{
+                                print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
+                            }else{
+                                self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                            }
+                        })
+                    }
                 }
             }
         }

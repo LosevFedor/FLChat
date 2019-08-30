@@ -71,12 +71,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
                     let uid = (Auth.auth().currentUser?.uid)!
-                    let email = result!.user.email
-                    
-                    DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
-                        self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
-                    })
-
+                    let email = (result!.user.email)!
+                    self.checkRegistrationUserIntoDatabase(uid, email)
                 }
             }
         }
@@ -96,11 +92,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
                         let uid = (Auth.auth().currentUser?.uid)!
-                        let email = result!.user.email
-
-                        DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
-                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
-                        })
+                        let email = (result!.user.email)!
+                        self.checkRegistrationUserIntoDatabase(uid, email)
                     }
                 }
             }
@@ -115,23 +108,33 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
                     let uid = (Auth.auth().currentUser?.uid)!
-                    let email = result!.user.email
-                    
-                    DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
-                        if error != nil{
-                            print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
-                        }else{
-                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
-                        }
-                    })
+                    let email = (result!.user.email)!
+                    self.checkRegistrationUserIntoDatabase(uid, email)
                 }
             }
         }
     }
 
+    private func checkRegistrationUserIntoDatabase(_ uid: String, _ email: String){
+        if Auth.auth().currentUser != nil{
+            DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+                if completeGetParams{
+                    print("Successfully get params for User from batabase")
+                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                }
+            }
+        }else{
+            DataService.instance.registrationUserIntoDB(uid, email, completedUserRegistration: { (registration, error) in
+                if error != nil{
+                    print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
+                }else{
+                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                }
+            })
+        }
+    }
     
-    
-    func standartErrors(_ title:String, _ message: String){
+    private func standartErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
@@ -139,7 +142,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         present(alert, animated: true, completion: nil)
     }
     
-    func customErrors(_ title:String, _ message: String){
+    private func customErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
 
@@ -161,14 +164,14 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         self.present(alert, animated: true, completion: nil)
     }
     
-    func removeObserverKeyboard(){
+     func removeObserverKeyboard(){
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
-    func addObserverKeyboard(){
+     func addObserverKeyboard(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
