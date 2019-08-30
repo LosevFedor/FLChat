@@ -21,7 +21,7 @@ class User: NSObject{
     var notificationOn: Bool = true
     var notificationSoundOn: Bool = true
     
-    func resetUserSettings(){
+    func resetUserSettingsToDefault(){
         name = "User name"
         image = "User image"
         phone = "User phone"
