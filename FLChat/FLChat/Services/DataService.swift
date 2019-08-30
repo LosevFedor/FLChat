@@ -24,7 +24,6 @@ class DataService {
     // Path to user image folder in to firebase-storage
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
     // Unique user identification
-    private var _REF_UID = Auth.auth().currentUser?.uid
     private var _REF_EMAIL = Auth.auth().currentUser?.email
     
     var REF_BASE: DatabaseReference {
@@ -45,10 +44,6 @@ class DataService {
     
     var REF_STORAGE_BASE: StorageReference {
         return _REF_STORAGE_BASE
-    }
-    
-    var REF_UID: String {
-        return _REF_UID!
     }
     
     var REF_EMAIL: String {
@@ -81,7 +76,7 @@ class DataService {
     }
     
     func getUsersWhomFriendRequestBeenSendFromDB(snapshotMyRequestintoFriend: @escaping(_ userWhomSendRequest: [Users]) -> ()){
-        let uid = REF_UID
+        let uid = (Auth.auth().currentUser?.uid)!
         var arrayUsers = [Users]()
         REF_USER_FRIEND_REQUEST.child(uid).observe(.childAdded, with: { (snapshot) in
             let requestId = snapshot.key
@@ -213,7 +208,7 @@ class DataService {
     }
     
     func createUserRequestForFriendIntoDB(_ key: String, requestSend: @escaping(_ requestSend: Bool)-> ()){
-        let uid = REF_UID
+        let uid = (Auth.auth().currentUser?.uid)!
         let ref = REF_USER_FRIEND_REQUEST.child(uid)
         let requstId = "\(key)"
         let value: Dictionary<String, Any> = ["\(requstId)": 1]

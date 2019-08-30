@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     
-                    let uid = DataService.instance.REF_UID
+                    let uid = (Auth.auth().currentUser?.uid)!
                     let email = result!.user.email
                     
                     DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in

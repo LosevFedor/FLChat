@@ -70,7 +70,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
-                    let uid = DataService.instance.REF_UID
+                    let uid = (Auth.auth().currentUser?.uid)!
                     let email = result!.user.email
                     
                     DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
@@ -95,7 +95,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
-                        let uid = DataService.instance.REF_UID
+                        let uid = (Auth.auth().currentUser?.uid)!
                         let email = result!.user.email
 
                         DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
@@ -114,7 +114,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
-                    let uid = DataService.instance.REF_UID
+                    let uid = (Auth.auth().currentUser?.uid)!
                     let email = result!.user.email
                     
                     DataService.instance.registrationUserIntoDB(uid, email!, completedUserRegistration: { (registration, error) in
