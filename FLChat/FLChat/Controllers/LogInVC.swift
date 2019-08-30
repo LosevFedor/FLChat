@@ -16,8 +16,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     
-    static let instance = LoginVC()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -120,6 +118,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
             DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
                 if completeGetParams{
                     print("Successfully get params for User from batabase")
+                    self.clearEmailAndPassFoeldsAfterLogin()
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             }
@@ -128,10 +127,16 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 if error != nil{
                     print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
                 }else{
+                    self.clearEmailAndPassFoeldsAfterLogin()
                     self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                 }
             })
         }
+    }
+    
+    private func clearEmailAndPassFoeldsAfterLogin(){
+        self.emailField.text = ""
+        self.passwordField.text = ""
     }
     
     private func standartErrors(_ title:String, _ message: String){
