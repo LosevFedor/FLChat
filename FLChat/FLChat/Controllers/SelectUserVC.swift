@@ -116,11 +116,11 @@ class SelectUserVC: UIViewController {
         return user
     }
     private func getFromIdUserParams() -> Dictionary<String,Any>{
-        let name = User.instance.name
-        let image = User.instance.image
-        let email = User.instance.email
-        let phone = User.instance.phone
-        let status = User.instance.statusOnline
+        let name = User.instance.name!
+        let image = User.instance.image!
+        let email = User.instance.email!
+        let phone = User.instance.phone!
+        let status = User.instance.online!
         let user:Dictionary<String,Any> = ["name": name, "image": image, "email": email, "phone": phone, "online": status]
         return user
     }

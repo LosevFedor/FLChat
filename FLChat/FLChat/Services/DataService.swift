@@ -73,9 +73,9 @@ class DataService {
             User.instance.email = (value?["email"] as? String)!
             User.instance.image = (value?["image"] as? String)!
 
-            User.instance.statusOnline = (value?["online"] as? Bool)!
+            User.instance.online = (value?["online"] as? Bool)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
-            User.instance.notificationSound = (value?["notificationSound"] as? Bool)!
+            User.instance.notificationSoundOn = (value?["notificationSound"] as? Bool)!
             
             completedSnapshot(true)
         }
@@ -198,7 +198,7 @@ class DataService {
                         completedUserRegistration(false,error)
                         return
                     }
-                    let userData = self.userData(email, User.instance.phone, User.instance.name, url.absoluteString, User.instance.statusOnline, User.instance.notificationOn, User.instance.notificationSound)
+                    let userData = self.userData(email, User.instance.phone!, User.instance.name!, url.absoluteString, User.instance.online!, User.instance.notificationOn!, User.instance.notificationSoundOn!)
                     self.updateUserIntoDatabaseWithUID(uid, userData)
                     completedUserRegistration(true, nil)
                 }

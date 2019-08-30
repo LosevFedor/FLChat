@@ -56,11 +56,11 @@ class SettingsVC: UIViewController {
         DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (complete) in
             if complete {
                 
-                let currentName = User.instance.name
-                let currentPhone = User.instance.phone
-                let currentImage = User.instance.image
-                let currentNotificationSound = User.instance.notificationSound
-                let currentNotificationOn = User.instance.notificationOn
+                let currentName = User.instance.name!
+                let currentPhone = User.instance.phone!
+                let currentImage = User.instance.image!
+                let currentNotificationSound = User.instance.notificationSoundOn!
+                let currentNotificationOn = User.instance.notificationOn!
                 
                 self.userNameLabel.text = currentName
                 self.userPhoneLabel.text = currentPhone
