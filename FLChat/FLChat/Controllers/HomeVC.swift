@@ -15,7 +15,17 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let uid = DataService.instance.REF_UID
+        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+            if completeGetParams{
+                print("Successfully get params for User from batabase")
+            }
+        }
     }
     
     @IBAction func addNewFriendsBtnPressed(_ sender: Any) {

@@ -33,7 +33,6 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUserSettings()
         imagePicker.delegate = self
     }
     
@@ -51,15 +50,20 @@ class SettingsVC: UIViewController {
         }).resume()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setUserSettings()
+    }
+    
+    
     func setUserSettings(){
         let uid = DataService.instance.REF_UID
-        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (complete) in
-            if complete {
-                
+        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+            if completeGetParams{
                 let currentName = User.instance.name
                 let currentPhone = User.instance.phone
                 let currentImage = User.instance.image
-                let currentNotificationSound = User.instance.notificationSound
+                let currentNotificationSound = User.instance.notificationSoundOn
                 let currentNotificationOn = User.instance.notificationOn
                 
                 self.userNameLabel.text = currentName
@@ -69,6 +73,7 @@ class SettingsVC: UIViewController {
                 
                 self.switchValueSound.isOn = currentNotificationSound
                 self.switchValueNotification.isOn = currentNotificationOn
+                print("Successfully get params for User from batabase")
             }
         }
     }
