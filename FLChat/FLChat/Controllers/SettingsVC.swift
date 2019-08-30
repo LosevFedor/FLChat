@@ -57,7 +57,7 @@ class SettingsVC: UIViewController {
     
     
     func setUserSettings(){
-        let uid = DataService.instance.REF_UID
+        let uid = (Auth.auth().currentUser?.uid)!
         DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
             if completeGetParams{
                 let currentName = User.instance.name
@@ -112,7 +112,7 @@ class SettingsVC: UIViewController {
             self.userPhoneTextField?.placeholder = "Enter your new phone number"
         }
         let okAlert = UIAlertAction(title: "OK", style: .cancel) { (okAction) in
-            let uid = DataService.instance.REF_UID
+            let uid = (Auth.auth().currentUser?.uid)!
             
             
             self.userPhoneTextField?.text = self.checkTextFieldForEpties(self.userPhoneTextField!.text!, DEFAULT_PHONE_FIELD)
@@ -143,7 +143,7 @@ class SettingsVC: UIViewController {
             self.userNameTextField?.placeholder = "Enter your new name"
         }
         let okAlert = UIAlertAction(title: "OK", style: .cancel) { (okAction) in
-            let uid = DataService.instance.REF_UID
+            let uid = (Auth.auth().currentUser?.uid)!
             
             self.userNameTextField?.text = self.checkTextFieldForEpties(self.userNameTextField!.text!, DEFAULT_NAME_FIELD)
             
@@ -166,7 +166,7 @@ class SettingsVC: UIViewController {
     @IBAction func pushNotificationSoundBtnPressed(_ sender: Any) {
         
         let soundOn = self.switchValueSound.isOn
-        let uid = DataService.instance.REF_UID
+        let uid = (Auth.auth().currentUser?.uid)!
         DataService.instance.changeUserNotificationSoundIntoDatabaseWithUID(uid, soundOn) { (changeSound, error) in
             if error != nil{
                 print("Can't change user notification in to database")
@@ -179,7 +179,7 @@ class SettingsVC: UIViewController {
     
     @IBAction func pushNotificationBtnPressed(_ sender: Any) {
         let pushNotificationOn = switchValueNotification.isOn
-        let uid = DataService.instance.REF_UID
+        let uid = (Auth.auth().currentUser?.uid)!
         DataService.instance.changeUserPushNotificationIntoDatabaseWithUID(uid, pushNotificationOn) { (changePush, error) in
             if error != nil{
                 print("Can't change user push notification in to database \(String(describing: error?.localizedDescription))")
@@ -222,7 +222,7 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     }
     
     private func uploadNewUserImageIntoDB(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ upload: Bool, _ error: Error?) -> ()){
-        let uid = DataService.instance.REF_UID
+        let uid = (Auth.auth().currentUser?.uid)!
         let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
         
         if let uploadData = image.jpegData(compressionQuality: COMPRESSION_IMAGE){

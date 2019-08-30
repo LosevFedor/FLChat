@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeVC: UIViewController {
 
@@ -20,7 +21,7 @@ class HomeVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let uid = DataService.instance.REF_UID
+        let uid = (Auth.auth().currentUser?.uid)!
         DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
             if completeGetParams{
                 print("Successfully get params for User from batabase")

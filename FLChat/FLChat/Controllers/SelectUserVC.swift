@@ -77,7 +77,7 @@ class SelectUserVC: UIViewController {
     
     @IBAction func sendFrienRequestBtnPressed(_ sender: Any){
         let toId = currentUserUID!
-        let fromId = DataService.instance.REF_UID
+        let fromId = (Auth.auth().currentUser?.uid)!
         let timeStamp = Double(NSDate().timeIntervalSince1970)
         let msg = "Hi! I want to be your friend"
         let requestConfirmed = false
