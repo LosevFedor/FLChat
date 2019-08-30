@@ -13,13 +13,13 @@ class User: NSObject{
     
     static var instance = User()
     
-    var name: String?
-    var image: String?
-    var phone: String?
-    var email: String?
-    var online: Bool?
-    var notificationOn: Bool?
-    var notificationSoundOn: Bool?
+    var name: String = "User name"
+    var image: String = "User image"
+    var phone: String = "User phone"
+    var email: String = "User email"
+    var online: Bool = true
+    var notificationOn: Bool = true
+    var notificationSoundOn: Bool = true
     
 //    private var _name = "Your name"
 //    private var _image = "User image"
