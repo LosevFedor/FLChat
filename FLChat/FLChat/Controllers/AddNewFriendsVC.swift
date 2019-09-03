@@ -12,7 +12,7 @@ import Firebase
 class AddNewFriendsVC: UIViewController{
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var emailSearchTextField: UITextField!
+    @IBOutlet weak var searchUserByEmail: UITextField!
     
     private var usersArray = [Users]()
     
@@ -20,18 +20,18 @@ class AddNewFriendsVC: UIViewController{
         super.viewDidLoad()
         collectionView?.delegate = self
         collectionView?.dataSource = self
-        emailSearchTextField.delegate = self
-        emailSearchTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+        searchUserByEmail.delegate = self
+        searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
     
     @objc func textFieldDidChanged(){
-        if emailSearchTextField.text == ""{
+        if searchUserByEmail.text == ""{
             DataService.instance.getUsersFromDatabase { (returnedAllUsersArray, error) in
                 self.usersArray = returnedAllUsersArray
                 self.collectionView?.reloadData()
             }
         }else{
-            DataService.instance.getUsersByEmailFromDatabase(forSearchQuery: emailSearchTextField.text!) { (returnedUsersArray) in
+            DataService.instance.getUsersByEmailFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnedUsersArray) in
                 self.usersArray = returnedUsersArray
                 self.collectionView?.reloadData()
             }
@@ -59,6 +59,7 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ADD_NEW_FRIENDS_CELL, for: indexPath) as? AddNewFriendsCell else { return UICollectionViewCell() }
         let user = usersArray[indexPath.row]
+        print(user.userName)
         cell.configureCell(user.userName, user.userImage, user.userStatus)
         return cell
     }
@@ -79,7 +80,6 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
             if error != nil {
                 print("Cant convert url for image: \(String(describing: error?.localizedDescription))")
             }
-            
             
             DispatchQueue.main.async {
                 guard let currentUserImage = UIImage(data: data!) else { return }

@@ -1,63 +1,51 @@
 //
-//  MyReqyestFriendsVC.swift
+//  AllRequesFriendsVC.swift
 //  FLChat
 //
-//  Created by Fedor Losev on 27/08/2019.
+//  Created by Fedor Losev on 03/09/2019.
 //  Copyright © 2019 losev.feder2711@gmail.com. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class MyRequestFriendsVC: UIViewController {
+class AllRequesFriendsVC: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchUserByEmail: UITextField!
-
+    @IBOutlet weak var searchUserByEmail: DesigneTextField!
+    @IBOutlet weak var collectionView: DesigneCollectionView!
     
-    private let requestFriend = RequestFriend()
     private var usersArray = [Users]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         searchUserByEmail.delegate = self
-        searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+        
     }
-    
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DataService.instance.getUsersWhomFriendRequestBeenSendFromDB { (reternUsers) in
-            self.usersArray = reternUsers
+        super .viewDidAppear(animated)
+        DataService.instance.getUsersWhoSetRequestToFriends { (returnUsersWhoSendRequestToFriend) in
+            self.usersArray = []
+            self.usersArray = returnUsersWhoSendRequestToFriend
             self.collectionView.reloadData()
         }
     }
     
-    @objc func textFieldDidChanged(){
-        if searchUserByEmail.text == ""{
-
-        }else{
-
-        }
-    }
-
     @IBAction func backBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
 }
 
-extension MyRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSource{
+extension AllRequesFriendsVC: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
         return usersArray.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MY_REQUEST_FRIENDS_CELL, for: indexPath) as? MyRequestFriendsCell else { return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ALL_REQUEST_FRIEND_CELL, for: indexPath) as? AllRequestFriendsCell else { return UICollectionViewCell() }
+        
         let user = usersArray[indexPath.row]
         
         cell.configureCell(user.userName, user.userImage, user.userStatus)
@@ -69,6 +57,6 @@ extension MyRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension MyRequestFriendsVC: UITextFieldDelegate {
-
+extension AllRequesFriendsVC: UITextFieldDelegate {
+    
 }

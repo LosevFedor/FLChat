@@ -40,8 +40,14 @@ class HomeVC: UIViewController {
         settingsVC.transitioningDelegate = self
         present(settingsVC, animated: true, completion: nil)
     }
+    
     @IBAction func myRequestFriendBtnPressed(_ sender: Any) {
         guard let myRequesrFriend = storyboard?.instantiateViewController(withIdentifier: GO_TO_MY_REQUEST_FRIEND) else { return }
         present(myRequesrFriend, animated: true, completion: nil)
+    }
+    
+    @IBAction func allRequestFriendBtnPressed(_ sender: Any) {
+        guard let allRequestFriend = storyboard?.instantiateViewController(withIdentifier: GO_TO_ALL_REQUEST_FRIEND) else { return }
+        present(allRequestFriend, animated: true, completion: nil)
     }
 }

@@ -100,6 +100,33 @@ class DataService {
         }, withCancel: nil)
     }
     
+    /////
+    func getUsersWhoSetRequestToFriends(snapshotCompleted: @escaping(_ usersWhoSendRequest: [Users]) -> ()){
+        let uid = (Auth.auth().currentUser?.uid)!
+        var arrayUsers = [Users]()
+        REF_USER_FRIEND_REQUEST.child(uid).observe(.childAdded, with: { (snapshot) in
+            let requestId = snapshot.key
+            let requestReferense = self.REF_FRIEND_REQUEST.child(requestId)
+            requestReferense.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let requestUser = requestReferense.child("fromIdUser")
+                requestUser.observe(.value, with: { (snapshotFromId) in
+                    guard let dictionary = snapshotFromId.value as? Dictionary<String,Any> else { return }
+                    
+                    let name = (dictionary["name"] as? String)!
+                    let image = (dictionary["image"] as? String)!
+                    let email = (dictionary["email"] as? String)!
+                    let phone = (dictionary["phone"] as? String)!
+                    let status = (dictionary["online"] as? Bool)!
+                    
+                    let user = Users(name, image, email, phone, status)
+                    arrayUsers.append(user)
+                    snapshotCompleted(arrayUsers)
+                }, withCancel: nil)
+            }, withCancel: nil)
+        }, withCancel: nil)
+    }
+    
     func getUsersFromDatabase(completedSnapshotAllUsers: @escaping (_ allUsers: [Users], _ error: Error?) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (usersSnapshot) in
             
@@ -199,7 +226,7 @@ class DataService {
         }
     }
     
-    func createRequestForFriendIntoDB(_ fromId: String, _ fromIdUser:Dictionary<String,Any>, _ toId: String, _ toIdUser:Dictionary<String,Any>, _ time: Double, _ msg: String, _ confirmReques: Bool, requestWillSend: @escaping(_ requestSend: Bool, _ autoKey: String) -> ()){
+    func friendRequestIntoDB(_ fromId: String, _ fromIdUser:Dictionary<String,Any>, _ toId: String, _ toIdUser:Dictionary<String,Any>, _ time: Double, _ msg: String, _ confirmReques: Bool, requestWillSend: @escaping(_ requestSend: Bool, _ autoKey: String) -> ()){
         let ref = REF_FRIEND_REQUEST.childByAutoId()
         let autoKeyRef = ref.key!
         let value: Dictionary<String, Any> = ["fromId": fromId, "fromIdUser": fromIdUser, "toId": toId, "toIdUser": toIdUser, "timeStamp": time, "message": msg, "confirmReques": confirmReques]
@@ -207,7 +234,19 @@ class DataService {
         requestWillSend(true, autoKeyRef)
     }
     
-    func createUserRequestForFriendIntoDB(_ key: String, requestSend: @escaping(_ requestSend: Bool)-> ()){
+    func recipientsUserFriendRequestIntoDB(_ key: String, _ recipientId: String, recipientAddedIntoDatabase: @escaping(_ complete: Bool) -> ()){
+        let uid = recipientId
+        let ref = REF_USER_FRIEND_REQUEST.child(uid)
+        let requstId = "\(key)"
+        let value: Dictionary<String, Any> = ["\(requstId)": 1]
+        ref.updateChildValues(value) { (error, ref) in
+            if error != nil{
+                print("Can't create new object in to Database: \(String(describing: error?.localizedDescription))")
+            }
+            recipientAddedIntoDatabase(true)
+        }
+    }
+    func userFriendRequestIntoDB(_ key: String, requestSend: @escaping(_ requestSend: Bool)-> ()){
         let uid = (Auth.auth().currentUser?.uid)!
         let ref = REF_USER_FRIEND_REQUEST.child(uid)
         let requstId = "\(key)"
@@ -243,16 +282,4 @@ class DataService {
         self.updateUserIntoDatabaseWithUID(uid, userPushNotification)
         completedChangeUserPushNotification(true,nil)
     }
-    
-//    func getImageURLFromDB(_ uid: String, _ image: UIImage, complete: @escaping (_ isUrl: Bool) -> ()) -> String {
-//        
-//        let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
-//        var convertedImageString = ""
-//        ref.downloadURL { (url, error) in
-//            guard let url = url else { return }
-//            convertedImageString = url.absoluteString
-//            complete(true)
-//        }
-//        return convertedImageString
-//    }
 }
