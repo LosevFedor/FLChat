@@ -16,7 +16,7 @@ class AddNewFriendsCell: UICollectionViewCell {
     
     func configureCell(_ userName: String, _ userImage: String, _ userStatus: Bool){
         self.userName.text = userName
-        self.userImage.loadImageUsingCachWithUrl(userImage)
+        self.userImage.loadImageUsingCacheWithUrlString(userImage)
         self.userStatus.text = "\(userStatus)"
     }
 }
