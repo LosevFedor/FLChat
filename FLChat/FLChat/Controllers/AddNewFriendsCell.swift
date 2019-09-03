@@ -16,17 +16,7 @@ class AddNewFriendsCell: UICollectionViewCell {
     
     func configureCell(_ userName: String, _ userImage: String, _ userStatus: Bool){
         self.userName.text = userName
-        let profileImageUrl = userImage
-        let url = URL(string: profileImageUrl)
-        
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
-            if error != nil {
-                print("Cant convert the url for image: \(String(describing: error?.localizedDescription))")
-            }
-            DispatchQueue.main.async {
-                self.userImage.image = UIImage(data: data!)
-            }
-        }).resume()
+        self.userImage.loadImageUsingCachWithUrl(userImage)
         self.userStatus.text = "\(userStatus)"
     }
 }
