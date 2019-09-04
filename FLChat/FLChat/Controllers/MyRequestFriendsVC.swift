@@ -30,7 +30,7 @@ class MyRequestFriendsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataService.instance.getUsersWhomFriendRequestBeenSendFromDB { (reternUsers) in
+        DataService.instance.getUsersWhomFriendRequestBeenSend { (reternUsers) in
             self.usersArray = reternUsers
             self.collectionView.reloadData()
         }
@@ -45,6 +45,7 @@ class MyRequestFriendsVC: UIViewController {
     }
 
     @IBAction func backBtnPressed(_ sender: Any) {
+        usersArray.removeAll()
         dismiss(animated: true, completion: nil)
     }
     

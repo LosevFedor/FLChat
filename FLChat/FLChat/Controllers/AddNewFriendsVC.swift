@@ -46,6 +46,7 @@ class AddNewFriendsVC: UIViewController{
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {
+        usersArray.removeAll()
         dismiss(animated: true, completion: nil)
     }
     
