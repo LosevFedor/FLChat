@@ -36,20 +36,6 @@ class SettingsVC: UIViewController {
         imagePicker.delegate = self
     }
     
-    fileprivate func getCurrentUserImageFromStringForSettings(_ currentImage: String) {
-        let profileImageUrl = currentImage
-        let url = URL(string: profileImageUrl)
-        
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
-            if error != nil {
-                print("Cant convert the url for image: \(String(describing: error?.localizedDescription))")
-            }
-            DispatchQueue.main.async {
-                self.userImage.image = UIImage(data: data!)
-            }
-        }).resume()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setUserSettings()
@@ -68,16 +54,13 @@ class SettingsVC: UIViewController {
                 
                 self.userNameLabel.text = currentName
                 self.userPhoneLabel.text = currentPhone
-                
-                self.getCurrentUserImageFromStringForSettings(currentImage)
-                
+                self.userImage.loadImageUsingCacheWithUrlString(currentImage)
                 self.switchValueSound.isOn = currentNotificationSound
                 self.switchValueNotification.isOn = currentNotificationOn
                 print("Successfully get params for User from batabase")
             }
         }
     }
-    
     
     @IBAction func backBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -89,6 +72,7 @@ class SettingsVC: UIViewController {
             GIDSignIn.sharedInstance()?.signOut()
             UserDefaults.standard.setIsLoggedIn(value: false)
             User.instance.resetUserSettingsToDefault()
+            
             view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }catch let error as NSError{
             print("User can't SignOut: \(error.localizedDescription)")
