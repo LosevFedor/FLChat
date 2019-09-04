@@ -27,11 +27,12 @@
 		3C0ADACD22CCF34800DE069C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */; };
 		3C0DE678230C0FF1006F00E8 /* AddNewFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */; };
 		3C0DE67A230C10CB006F00E8 /* AddNewFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */; };
-		3C104EB0230F731900461F19 /* SelectUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C104EAF230F731900461F19 /* SelectUserVC.swift */; };
+		3C104EB0230F731900461F19 /* SelectNewUserFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C104EAF230F731900461F19 /* SelectNewUserFriendVC.swift */; };
 		3C18D73922C2527B00EA7F18 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */; };
 		3C1FED23231E1A3900710A40 /* ImageView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED22231E1A3900710A40 /* ImageView+Extention.swift */; };
 		3C1FED25231E411500710A40 /* AllRequesFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED24231E411500710A40 /* AllRequesFriendsVC.swift */; };
 		3C1FED29231E422000710A40 /* AllRequestFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED28231E422000710A40 /* AllRequestFriendsCell.swift */; };
+		3C1FED2B231FA7B000710A40 /* SelectMyRequestFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED2A231FA7B000710A40 /* SelectMyRequestFriendsVC.swift */; };
 		3C2216362314EA7900A8DA0C /* DesigneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2216352314EA7900A8DA0C /* DesigneTextField.swift */; };
 		3C2216382315297A00A8DA0C /* MyRequestFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */; };
 		3C22163A231529F800A8DA0C /* MyRequestFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C221639231529F800A8DA0C /* MyRequestFriendsCell.swift */; };
@@ -93,11 +94,12 @@
 		3C0ADACC22CCF34800DE069C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendsVC.swift; sourceTree = "<group>"; };
 		3C0DE679230C10CB006F00E8 /* AddNewFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddNewFriendsCell.swift; path = ../Controllers/AddNewFriendsCell.swift; sourceTree = "<group>"; };
-		3C104EAF230F731900461F19 /* SelectUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserVC.swift; sourceTree = "<group>"; };
+		3C104EAF230F731900461F19 /* SelectNewUserFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNewUserFriendVC.swift; sourceTree = "<group>"; };
 		3C18D73822C2527B00EA7F18 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C1FED22231E1A3900710A40 /* ImageView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extention.swift"; sourceTree = "<group>"; };
 		3C1FED24231E411500710A40 /* AllRequesFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRequesFriendsVC.swift; sourceTree = "<group>"; };
 		3C1FED28231E422000710A40 /* AllRequestFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRequestFriendsCell.swift; sourceTree = "<group>"; };
+		3C1FED2A231FA7B000710A40 /* SelectMyRequestFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMyRequestFriendsVC.swift; sourceTree = "<group>"; };
 		3C2216352314EA7900A8DA0C /* DesigneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneTextField.swift; sourceTree = "<group>"; };
 		3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRequestFriendsVC.swift; sourceTree = "<group>"; };
 		3C221639231529F800A8DA0C /* MyRequestFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyRequestFriendsCell.swift; path = ../Controllers/MyRequestFriendsCell.swift; sourceTree = "<group>"; };
@@ -225,8 +227,9 @@
 				2AA3138122CB02F5000113A4 /* HomeVC.swift */,
 				3CCB33D522D45E8900EB8656 /* SettingsVC.swift */,
 				3C0DE677230C0FF1006F00E8 /* AddNewFriendsVC.swift */,
-				3C104EAF230F731900461F19 /* SelectUserVC.swift */,
+				3C104EAF230F731900461F19 /* SelectNewUserFriendVC.swift */,
 				3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */,
+				3C1FED2A231FA7B000710A40 /* SelectMyRequestFriendsVC.swift */,
 				3C1FED24231E411500710A40 /* AllRequesFriendsVC.swift */,
 			);
 			path = Controllers;
@@ -503,7 +506,7 @@
 				3C1FED23231E1A3900710A40 /* ImageView+Extention.swift in Sources */,
 				2AE20DCA22DC372300779A23 /* DataService.swift in Sources */,
 				3C1FED25231E411500710A40 /* AllRequesFriendsVC.swift in Sources */,
-				3C104EB0230F731900461F19 /* SelectUserVC.swift in Sources */,
+				3C104EB0230F731900461F19 /* SelectNewUserFriendVC.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
 				3C2216362314EA7900A8DA0C /* DesigneTextField.swift in Sources */,
 				3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */,
@@ -517,6 +520,7 @@
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
 				3C22163A231529F800A8DA0C /* MyRequestFriendsCell.swift in Sources */,
+				3C1FED2B231FA7B000710A40 /* SelectMyRequestFriendsVC.swift in Sources */,
 				2A62FDE322DD6B4200D26B16 /* User.swift in Sources */,
 				2A4661A822B9E5A300F64393 /* FLChat.xcdatamodeld in Sources */,
 				3CCB33D622D45E8900EB8656 /* SettingsVC.swift in Sources */,
