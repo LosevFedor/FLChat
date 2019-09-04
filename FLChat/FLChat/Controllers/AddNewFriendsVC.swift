@@ -71,11 +71,11 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedUser = usersArray[indexPath.row]
         
-        guard let selectUserVC = storyboard?.instantiateViewController(withIdentifier: "selectedUserVC") as? SelectUserVC else { return }
+        guard let selectNewUserFriendVC = storyboard?.instantiateViewController(withIdentifier: GO_TO_SELECT_NEW_USER_FRIEND) as? SelectNewUserFriendVC else { return }
         
-        let currentUser = Users(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+        let user = Users(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
  
-        let profileImageUrl = currentUser.userImage
+        let profileImageUrl = user.userImage
         let url = URL(string: profileImageUrl)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
             if error != nil {
@@ -84,14 +84,14 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
             
             DispatchQueue.main.async {
                 guard let currentUserImage = UIImage(data: data!) else { return }
-                let currentUserId = currentUser.userId
-                let currenUserName = currentUser.userName
-                let curentUserEmail = currentUser.userEmail
-                let curentUserPhone = currentUser.userPhone
-                let currentUserStatus = currentUser.userStatus
-                let currentUserUrlImage = currentUser.userImage
-                selectUserVC.initData(currentUserId, currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
-                self.present(selectUserVC, animated: true, completion: nil)
+                let currentUserId = user.userId
+                let currenUserName = user.userName
+                let curentUserEmail = user.userEmail
+                let curentUserPhone = user.userPhone
+                let currentUserStatus = user.userStatus
+                let currentUserUrlImage = user.userImage
+                selectNewUserFriendVC.initData(currentUserId, currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
+                self.present(selectNewUserFriendVC, animated: true, completion: nil)
             }
         }).resume()
     }
