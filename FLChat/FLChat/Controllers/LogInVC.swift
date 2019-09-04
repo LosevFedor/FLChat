@@ -42,23 +42,22 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         GIDSignIn.sharedInstance()?.signIn()
     }
     
-    
     @IBAction func facebookBtnPressed(_ sender: Any) {
         
         let facebookLogin = FBSDKLoginManager()
         
-        facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
-            if error != nil{
-                self.standartErrors(WAR, error!.localizedDescription)
-            }else if result?.isCancelled == true{
-                print("Fed: User rejected registration via facebook")
+            facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+                if error != nil{
+                    self.standartErrors(WAR, error!.localizedDescription)
+                }else if result?.isCancelled == true{
+                    print("Fed: User rejected registration via facebook")
+                }
+                else{
+                    print("Fed: Facebook needed your device token")
+                    let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current()!.tokenString)
+                    self.facebookAuth(credential)
+                }
             }
-            else{
-                print("Fed: Facebook needed your device token")
-                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current()!.tokenString)
-                self.facebookAuth(credential)
-            }
-        }
     }
     
     func facebookAuth(_ credential: AuthCredential){
@@ -70,7 +69,15 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 if UserDefaults.standard.isLoggedIn(){
                     let uid = (Auth.auth().currentUser?.uid)!
                     let email = (result!.user.email)!
-                    self.checkRegistrationUserIntoDatabase(uid, email)
+                    
+                    DataService.instance.registrationUserIntoDB(uid, email, completedUserRegistration: { (registration, error) in
+                        if error != nil{
+                            print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
+                        }else{
+                            self.clearEmailAndPassFieldsAfterLogin()
+                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                        }
+                    })
                 }
             }
         }
@@ -90,15 +97,21 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
                         let uid = (Auth.auth().currentUser?.uid)!
-                        let email = (result!.user.email)!
-                        self.checkRegistrationUserIntoDatabase(uid, email)
+                        
+                        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+                            if completeGetParams{
+                                print("Successfully get params for User from batabase")
+                                self.clearEmailAndPassFieldsAfterLogin()
+                                self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                            }
+                        }
                     }
                 }
             }
         }
     }
     
-    func logInUser(_ email: String, _ password: String){
+    func registrateUserAndLogIn(_ email: String, _ password: String){
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil{
                 self.standartErrors(WAR, error!.localizedDescription)
@@ -107,34 +120,21 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 if UserDefaults.standard.isLoggedIn(){
                     let uid = (Auth.auth().currentUser?.uid)!
                     let email = (result!.user.email)!
-                    self.checkRegistrationUserIntoDatabase(uid, email)
+                    
+                    DataService.instance.registrationUserIntoDB(uid, email, completedUserRegistration: { (registration, error) in
+                        if error != nil{
+                            print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
+                        }else{
+                            self.clearEmailAndPassFieldsAfterLogin()
+                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                        }
+                    })
                 }
             }
         }
     }
 
-    private func checkRegistrationUserIntoDatabase(_ uid: String, _ email: String){
-        if Auth.auth().currentUser != nil{
-            DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
-                if completeGetParams{
-                    print("Successfully get params for User from batabase")
-                    self.clearEmailAndPassFoeldsAfterLogin()
-                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
-                }
-            }
-        }else{
-            DataService.instance.registrationUserIntoDB(uid, email, completedUserRegistration: { (registration, error) in
-                if error != nil{
-                    print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
-                }else{
-                    self.clearEmailAndPassFoeldsAfterLogin()
-                    self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
-                }
-            })
-        }
-    }
-    
-    private func clearEmailAndPassFoeldsAfterLogin(){
+    private func clearEmailAndPassFieldsAfterLogin(){
         self.emailField.text = ""
         self.passwordField.text = ""
     }
@@ -159,7 +159,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 self.standartErrors(WAR, EMAIL_LESS)
                 return
             }
-           self.logInUser(email, password)
+           self.registrateUserAndLogIn(email, password)
             alert.dismiss(animated: true, completion: nil)
         }))
 

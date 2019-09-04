@@ -26,7 +26,6 @@ class MyRequestFriendsVC: UIViewController {
         
         emailSearchTextField.delegate = self
         emailSearchTextField.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +62,7 @@ extension MyRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MY_REQUEST_FRIENDS_CELL, for: indexPath) as? MyRequestFriendsCell else { return UICollectionViewCell()}
         let user = usersArrayFriendRequest[indexPath.row]
+        
         cell.configureCell(user.userName, user.userImage, user.userStatus)
         return cell
     }
