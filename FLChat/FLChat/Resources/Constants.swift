@@ -35,6 +35,8 @@ let ALL_REQUEST_FRIEND_CELL = "allRequestFriendsCell"
 let GO_TO_ADD_NEW_FRIENDS = "goToAddNewFriends"
 let GO_TO_SELECT_NEW_USER_FRIEND = "selectNewUserFriendVC"
 let GO_TO_SELECT_MY_REQUEST_FRIENDS = "selectMyRequestFriendsVC"
+let GO_TO_SELECT_ALL_REQUEST_FRIENDS = "selectAllRequestFriendsVC"
+
 // Settings view
 let SHOW_PART_SETTINGS: CGFloat = 0.78
 let SHOW_ALPHA: CGFloat = 0.5
