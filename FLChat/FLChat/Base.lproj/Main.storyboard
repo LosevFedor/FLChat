@@ -238,6 +238,17 @@
                                     <constraint firstItem="KWe-T7-wM0" firstAttribute="top" secondItem="U2A-gw-bDU" secondAttribute="top" constant="30" id="dX1-Et-8Pe"/>
                                     <constraint firstAttribute="height" constant="138" id="r4L-L2-F7v"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uJ-jb-gvl">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
@@ -286,7 +297,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRd-AX-jFu">
                                 <rect key="frame" x="0.0" y="138" width="375" height="469"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="46x-CU-7dk">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="46x-CU-7dk" customClass="DesigneCollectionView" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="18" y="18" width="339" height="433"/>
                                         <color key="backgroundColor" red="0.94902604818344116" green="0.9490082859992981" blue="0.94902020692825317" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="R1l-y8-9o3">
@@ -354,6 +365,17 @@
                                                 <size key="customSize" width="101" height="111"/>
                                             </collectionViewCell>
                                         </cells>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusCollectionView">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColorCollectionView">
+                                                <color key="value" red="0.95294767618179321" green="0.9529297947883606" blue="0.95294183492660522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidthCollectionView">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -473,6 +495,17 @@
                                     <constraint firstAttribute="trailing" secondItem="5F5-ZY-YQs" secondAttribute="trailing" constant="20" id="wd5-dF-GpQ"/>
                                     <constraint firstItem="5F5-ZY-YQs" firstAttribute="centerX" secondItem="5o8-XV-xMW" secondAttribute="centerX" id="wyq-ar-eBS"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oH6-cB-dfC">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
@@ -607,7 +640,7 @@
         <scene sceneID="QJ1-ky-K1C">
             <objects>
                 <viewController storyboardIdentifier="goToMyRequestFriend" id="SAb-gV-O3r" customClass="MyRequestFriendsVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Mft-Ix-Mgo">
+                    <view key="view" contentMode="scaleToFill" id="Mft-Ix-Mgo" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -805,6 +838,17 @@
                             <constraint firstItem="7t8-Zy-Jfe" firstAttribute="leading" secondItem="idG-zJ-a56" secondAttribute="leading" id="zVC-ZQ-N3f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="idG-zJ-a56"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                <size key="value" width="0.0" height="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="DOs-92-mTl" id="v0q-aB-STg"/>
@@ -868,6 +912,17 @@
                                     <constraint firstAttribute="height" constant="110" id="eBP-CU-u7t"/>
                                     <constraint firstAttribute="bottom" secondItem="QiR-pd-lrR" secondAttribute="bottom" constant="6" id="kIx-Sd-lL2"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="jnV-cJ-uFn">
                                 <rect key="frame" x="20" y="20" width="335" height="39"/>
@@ -1041,7 +1096,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRF-b4-fvR">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XE4-jl-KVT">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XE4-jl-KVT" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi6-HC-n8b">
@@ -1095,6 +1150,17 @@
                                     <constraint firstItem="hi6-HC-n8b" firstAttribute="top" secondItem="Sfi-yy-EU5" secondAttribute="bottom" id="gb5-7g-fFB"/>
                                     <constraint firstItem="0ol-qn-KYh" firstAttribute="top" secondItem="XE4-jl-KVT" secondAttribute="top" id="lfw-9v-cUx"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTB-HX-d8h">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
@@ -1557,7 +1623,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L6Z-DT-EXP">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-Ay-DO6">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-Ay-DO6" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWn-a9-J5O">
@@ -1611,6 +1677,17 @@
                                     <constraint firstItem="o6R-by-gBI" firstAttribute="top" secondItem="ud1-Ay-DO6" secondAttribute="top" id="ntN-H7-oid"/>
                                     <constraint firstAttribute="trailing" secondItem="JzQ-Jk-07P" secondAttribute="trailing" constant="20" id="rB7-Qm-q2Q"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEG-YT-ibW">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
@@ -1711,7 +1788,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fqf-uV-Bg9">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVn-qc-As7">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVn-qc-As7" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hx-zc-NGg">
@@ -1765,6 +1842,17 @@
                                     <constraint firstAttribute="height" constant="90" id="zS2-Tg-w4A"/>
                                     <constraint firstAttribute="trailing" secondItem="OMB-zx-pSV" secondAttribute="trailing" constant="20" id="zcj-a3-nhA"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9f-e3-E96">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
