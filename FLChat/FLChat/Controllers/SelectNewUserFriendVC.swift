@@ -1,5 +1,5 @@
 //
-//  SelectedUserVC.swift
+//  SelectNewUserFriendVC.swift
 //  FLChat
 //
 //  Created by Fedor Losev on 23/08/2019.
@@ -9,18 +9,16 @@
 import UIKit
 import Firebase
 
-class SelectUserVC: UIViewController {
+class SelectNewUserFriendVC: UIViewController {
 
-    @IBOutlet weak var selectedUserNameLabel: UILabel!
-    @IBOutlet weak var selectedUserEmailLabel: UILabel!
-    @IBOutlet weak var selectedUserStatusLabel: UILabel!
-    @IBOutlet weak var selectedUserWhatYouCanToDoLabel: UILabel!
-    @IBOutlet weak var selectedUserPhoneLabel: UILabel!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userEmail: UILabel!
+    @IBOutlet weak var userStatus: UILabel!
+    @IBOutlet weak var userDescriptionText: UILabel!
+    @IBOutlet weak var userPhone: UILabel!
     
-    @IBOutlet weak var selectedBackgroundUserImg: UIImageView!
-    @IBOutlet weak var selectedUserImg: DesigneImage!
-
-    @IBOutlet weak var doSomthingButton: UIButton!
+    @IBOutlet weak var backgroundUserImg: UIImageView!
+    @IBOutlet weak var userImg: DesigneImage!
     
     private var currentBackgroundUserImg:UIImage!
     private var currentUserUID: String!
@@ -35,27 +33,27 @@ class SelectUserVC: UIViewController {
     
     
 
-    fileprivate func addBlureEffeckForselectedBackgroundUserUmg() {
+    fileprivate func addBlureEffeckForBackgroundUserImg() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = selectedBackgroundUserImg.bounds
-        selectedBackgroundUserImg.addSubview(blurView)
+        blurView.frame = backgroundUserImg.bounds
+        backgroundUserImg.addSubview(blurView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedUserNameLabel.text = currentUserName
-        selectedUserImg.image = currentUserImage
-        selectedUserEmailLabel.text = "Email: \(currentUserEmail!)"
-        selectedUserPhoneLabel.text = "Phone: \(currentUserPhone!)"
+        userName.text = currentUserName
+        userImg.image = currentUserImage
+        userEmail.text = "Email: \(currentUserEmail!)"
+        userPhone.text = "Phone: \(currentUserPhone!)"
         
         let status = convertUserStatusToString(currentUserStatus)
       
-        selectedUserStatusLabel.text = status
-        selectedUserWhatYouCanToDoLabel.text = currentUserWhatYouCanToDo
-        selectedBackgroundUserImg.image = currentBackgroundUserImg
+        userStatus.text = status
+        userDescriptionText.text = currentUserWhatYouCanToDo
+        backgroundUserImg.image = currentBackgroundUserImg
         
-        addBlureEffeckForselectedBackgroundUserUmg()
+        addBlureEffeckForBackgroundUserImg()
     }
     
     func initData(_ id: String, _ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool, _ urlImage: String){

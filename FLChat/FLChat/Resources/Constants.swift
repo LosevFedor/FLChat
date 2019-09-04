@@ -22,7 +22,7 @@ let DO_YOU_NEED_NEW_ACCOUNT = "Do you want to create a new account?"
 // Perform segue
 let GO_TO_HOME = "goToHome"
 let GO_TO_SETTINGS = "goToSettings"
-let GO_TO_ADD_NEW_FRIENDS = "goToAddNewFriends"
+
 let GO_TO_MY_REQUEST_FRIEND = "goToMyRequestFriend"
 let GO_TO_ALL_REQUEST_FRIEND = "goToAllRequestFriend"
 
@@ -30,6 +30,11 @@ let GO_TO_ALL_REQUEST_FRIEND = "goToAllRequestFriend"
 let ADD_NEW_FRIENDS_CELL = "addNewFriendsCell"
 let MY_REQUEST_FRIENDS_CELL = "myRequestFriendsCell"
 let ALL_REQUEST_FRIEND_CELL = "allRequestFriendsCell"
+
+// Storyboard Id
+let GO_TO_ADD_NEW_FRIENDS = "goToAddNewFriends"
+let GO_TO_SELECT_NEW_USER_FRIEND = "selectNewUserFriendVC"
+let GO_TO_SELECT_MY_REQUEST_FRIENDS = "selectMyRequestFriendsVC"
 // Settings view
 let SHOW_PART_SETTINGS: CGFloat = 0.78
 let SHOW_ALPHA: CGFloat = 0.5

@@ -68,6 +68,33 @@ extension MyRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSour
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedUser = usersArray[indexPath.row]
+        
+        guard let selectMyRequestFriendsVC = storyboard?.instantiateViewController(withIdentifier: GO_TO_SELECT_MY_REQUEST_FRIENDS) as? SelectMyRequestFriendsVC else { return  }
+        
+        let user = Users(selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+        
+        let profileImageUrl = user.userImage
+        let url = URL(string: profileImageUrl)
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+            if error != nil {
+                print("Cant convert url for image: \(String(describing: error?.localizedDescription))")
+            }
+            
+            DispatchQueue.main.async {
+                guard let currentUserImage = UIImage(data: data!) else { return }
+                let currenUserName = user.userName
+                let curentUserEmail = user.userEmail
+                let curentUserPhone = user.userPhone
+                let currentUserStatus = user.userStatus
+                let currentUserUrlImage = user.userImage
+                selectMyRequestFriendsVC.initData(currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
+                self.present(selectMyRequestFriendsVC, animated: true, completion: nil)
+            }
+        }).resume()
+    }
 }
 
 extension MyRequestFriendsVC: UITextFieldDelegate {
