@@ -69,7 +69,7 @@ extension AllRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSou
         let selectedUser = usersArray[indexPath.row]
         guard let selectAllRequestFriendsVC = storyboard?.instantiateViewController(withIdentifier: GO_TO_SELECT_ALL_REQUEST_FRIENDS) as? SelectAllRequestFriendsVC else { return }
         
-        let user = Users(selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+        let user = Users(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
         let profileImageUrl = user.userImage
         let url = URL(string: profileImageUrl)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
@@ -79,12 +79,13 @@ extension AllRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSou
             
             DispatchQueue.main.async {
                 guard let currentUserImage = UIImage(data: data!) else { return }
+                let currentUserId = user.userId
                 let currenUserName = user.userName
                 let curentUserEmail = user.userEmail
                 let curentUserPhone = user.userPhone
                 let currentUserStatus = user.userStatus
                 let currentUserUrlImage = user.userImage
-                selectAllRequestFriendsVC.initData(currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
+                selectAllRequestFriendsVC.initData(currentUserId,currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
                 self.present(selectAllRequestFriendsVC, animated: true, completion: nil)
             }
         }).resume()
