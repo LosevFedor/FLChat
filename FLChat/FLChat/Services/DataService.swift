@@ -68,8 +68,8 @@ class DataService {
             completeResponce(true)
         }
     }
-    
-    func getUsersWhomFriendRequestBeenSend(snapshotCompleted: @escaping(_ userWhomSendRequest: [Users]) -> ()){
+   
+    func getUsersWhomFriendRequestBeenSend(forSearchQuery query: String, completedSearching: @escaping (_ returnUsers: [Users]) -> ()){
         let uid = (Auth.auth().currentUser?.uid)!
         var arrayUsers = [Users]()
         REF_USER_FRIEND_REQUEST.child(uid).observe(.childAdded, with: { (snapshot) in
@@ -89,16 +89,26 @@ class DataService {
                         let email = (dictionary["email"] as? String)!
                         let phone = (dictionary["phone"] as? String)!
                         let status = (dictionary["online"] as? Bool)!
-                        let user = Users(name, image, email, phone, status)
-                        arrayUsers.append(user)
-                        snapshotCompleted(arrayUsers)
+                        
+                        if query == ""{
+                            if email != Auth.auth().currentUser?.email {
+                                let searchUserByEmail = Users(name, image, email, phone, status)
+                                arrayUsers.append(searchUserByEmail)
+                                completedSearching(arrayUsers)
+                            }
+                        }else{
+                            if email.contains(query) && email != Auth.auth().currentUser?.email {
+                                let searchUserByEmail = Users(name, image, email, phone, status)
+                                arrayUsers.append(searchUserByEmail)
+                                completedSearching(arrayUsers)
+                            }
+                        }
                     }
                 }, withCancel: nil)
             }, withCancel: nil)
         }, withCancel: nil)
     }
     
-    /////
     func getUsersWhoSendRequestToFriends(snapshotCompleted: @escaping(_ usersWhoSendRequest: [Users]) -> ()){
         let uid = (Auth.auth().currentUser?.uid)!
         var arrayUsers = [Users]()
@@ -108,51 +118,52 @@ class DataService {
             requestReferense.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 let fromIdUserEmail = Auth.auth().currentUser?.email
-                    let requestUser = requestReferense.child("fromIdUser")
-                    requestUser.observe(.value, with: { (snapshotFromId) in
-                        guard let dictionary = snapshotFromId.value as? Dictionary<String,Any> else { return }
+                let requestUser = requestReferense.child("fromIdUser")
+                requestUser.observe(.value, with: { (snapshotFromId) in
+                    guard let dictionary = snapshotFromId.value as? Dictionary<String,Any> else { return }
+                    
+                    if fromIdUserEmail != (dictionary["email"] as? String)!{
+                        let name = (dictionary["name"] as? String)!
+                        let image = (dictionary["image"] as? String)!
+                        let email = (dictionary["email"] as? String)!
+                        let phone = (dictionary["phone"] as? String)!
+                        let status = (dictionary["online"] as? Bool)!
                         
-                        if fromIdUserEmail != (dictionary["email"] as? String)!{
-                            let name = (dictionary["name"] as? String)!
-                            let image = (dictionary["image"] as? String)!
-                            let email = (dictionary["email"] as? String)!
-                            let phone = (dictionary["phone"] as? String)!
-                            let status = (dictionary["online"] as? Bool)!
-                            
+                        if email != Auth.auth().currentUser?.email {
                             let user = Users(name, image, email, phone, status)
                             arrayUsers.append(user)
                             snapshotCompleted(arrayUsers)
                         }
-                        
-                    }, withCancel: nil)
+                    }
+                }, withCancel: nil)
             }, withCancel: nil)
         }, withCancel: nil)
     }
     
-    func getUsersFromDatabase(completedSnapshotAllUsers: @escaping (_ allUsers: [Users], _ error: Error?) -> ()){
-        REF_USERS.observeSingleEvent(of: .value) { (usersSnapshot) in
-            
-            var usersArray = [Users]()
-            guard let allUsersSnapshot = usersSnapshot.children.allObjects as? [DataSnapshot] else { return }
-            
-            for user in allUsersSnapshot{
-                    let userId = user.key
-                    let userName = user.childSnapshot(forPath: "name").value as! String
-                    let userImage = user.childSnapshot(forPath: "image").value as! String
-                    let userEmail = user.childSnapshot(forPath: "email").value as! String
-                    let userPhone = user.childSnapshot(forPath: "phone").value as! String
-                    let userStatus = user.childSnapshot(forPath: "online").value as! Bool
-                
-                if userEmail != Auth.auth().currentUser?.email {
-                    let user = Users(userId, userName, userImage, userEmail, userPhone, userStatus)
-                    usersArray.append(user)
-                }
-            }
-            completedSnapshotAllUsers(usersArray, nil)
-        }
-    }
+//    func getUsersFromDatabase(completedSnapshotAllUsers: @escaping (_ allUsers: [Users], _ error: Error?) -> ()){
+//        REF_USERS.observeSingleEvent(of: .value) { (usersSnapshot) in
+//
+//            var usersArray = [Users]()
+//            guard let allUsersSnapshot = usersSnapshot.children.allObjects as? [DataSnapshot] else { return }
+//
+//            for user in allUsersSnapshot{
+//                    let userId = user.key
+//                    let userName = user.childSnapshot(forPath: "name").value as! String
+//                    let userImage = user.childSnapshot(forPath: "image").value as! String
+//                    let userEmail = user.childSnapshot(forPath: "email").value as! String
+//                    let userPhone = user.childSnapshot(forPath: "phone").value as! String
+//                    let userStatus = user.childSnapshot(forPath: "online").value as! Bool
+//
+//                if userEmail != Auth.auth().currentUser?.email {
+//                    let user = Users(userId, userName, userImage, userEmail, userPhone, userStatus)
+//                    usersArray.append(user)
+//                }
+//            }
+//            completedSnapshotAllUsers(usersArray, nil)
+//        }
+//    }
     
-    func getUsersByEmailFromDatabase(forSearchQuery query: String, completedSearching: @escaping (_ userParametersArray: [Users]) -> ()){
+    func getUsersFromDatabase(forSearchQuery query: String, completedSearching: @escaping (_ userParametersArray: [Users]) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (allUserSnapshot) in
             
             var searchUser = [Users]()
@@ -166,15 +177,22 @@ class DataService {
                 let userPhone = user.childSnapshot(forPath: "phone").value as! String
                 let userStatus = user.childSnapshot(forPath: "online").value as! Bool
                 
-                if userEmail.contains(query) && userEmail != Auth.auth().currentUser?.email {
-                    let searchUserByEmail = Users(userId, userName, userImage, userEmail, userPhone, userStatus)
-                    searchUser.append(searchUserByEmail)
+                if query == ""{
+                    if userEmail != Auth.auth().currentUser?.email {
+                        let searchUserByEmail = Users(userId, userName, userImage, userEmail, userPhone, userStatus)
+                        searchUser.append(searchUserByEmail)
+                    }
+                }else{
+                    if userEmail.contains(query) && userEmail != Auth.auth().currentUser?.email {
+                        let searchUserByEmail = Users(userId, userName, userImage, userEmail, userPhone, userStatus)
+                        searchUser.append(searchUserByEmail)
+                    }
                 }
             }
             completedSearching(searchUser)
         }
     }
-
+    
     func changeUserImage(_ userImage: String) -> Dictionary<String,Any>{
         let dictUserImage = ["image": userImage]
         return dictUserImage

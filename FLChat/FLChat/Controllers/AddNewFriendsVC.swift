@@ -25,22 +25,16 @@ class AddNewFriendsVC: UIViewController{
     }
     
     @objc func textFieldDidChanged(){
-        if searchUserByEmail.text == ""{
-            DataService.instance.getUsersFromDatabase { (returnedAllUsersArray, error) in
-                self.usersArray = returnedAllUsersArray
-                self.collectionView?.reloadData()
-            }
-        }else{
-            DataService.instance.getUsersByEmailFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnedUsersArray) in
-                self.usersArray = returnedUsersArray
-                self.collectionView?.reloadData()
-            }
+        
+        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnedUsers) in
+            self.usersArray = returnedUsers
+            self.collectionView?.reloadData()
         }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataService.instance.getUsersFromDatabase { (returnedAllUsersArray, error) in
-            self.usersArray = returnedAllUsersArray
+        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnedUsers) in
+            self.usersArray = returnedUsers
             self.collectionView?.reloadData()
         }
     }

@@ -14,33 +14,29 @@ class MyRequestFriendsVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchUserByEmail: UITextField!
 
-    
     private let requestFriend = RequestFriend()
     private var usersArray = [Users]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         searchUserByEmail.delegate = self
         searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataService.instance.getUsersWhomFriendRequestBeenSend { (reternUsers) in
+        DataService.instance.getUsersWhomFriendRequestBeenSend(forSearchQuery: searchUserByEmail.text!) { (reternUsers) in
             self.usersArray = reternUsers
             self.collectionView.reloadData()
         }
     }
     
     @objc func textFieldDidChanged(){
-        if searchUserByEmail.text == ""{
-
-        }else{
-
+        DataService.instance.getUsersWhomFriendRequestBeenSend(forSearchQuery: searchUserByEmail.text!) { (reternedUsers) in
+            self.usersArray = reternedUsers
+            self.collectionView.reloadData()
         }
     }
 
