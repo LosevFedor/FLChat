@@ -14,7 +14,6 @@ class SelectAllRequestFriendsVC: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userStatus: UILabel!
-    @IBOutlet weak var descriptionText: UILabel!
     @IBOutlet weak var userPhone: UILabel!
     
     @IBOutlet weak var backgroundUserImg: UIImageView!
@@ -26,7 +25,6 @@ class SelectAllRequestFriendsVC: UIViewController {
     private var currentUserEmail:String!
     private var currentUserPhone:String!
     private var currentUserStatus: Bool!
-    private var currentDescriptionText: String!
     private var currentUserUrlImage: String!
     
     fileprivate func addBlureEffeckForBackgroundUserImg() {
@@ -46,7 +44,6 @@ class SelectAllRequestFriendsVC: UIViewController {
         let status = convertUserStatusToString(currentUserStatus)
         
         userStatus.text = status
-        descriptionText.text = currentDescriptionText
         backgroundUserImg.image = currentBackgroundUserImg
         
         addBlureEffeckForBackgroundUserImg()
@@ -59,9 +56,7 @@ class SelectAllRequestFriendsVC: UIViewController {
         currentUserEmail = email
         currentUserPhone = phone
         currentUserStatus = status
-        
         currentUserUrlImage = urlImage
-        currentDescriptionText = "This user has not added you as a friend yet."
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {

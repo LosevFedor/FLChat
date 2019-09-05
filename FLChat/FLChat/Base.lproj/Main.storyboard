@@ -1792,20 +1792,20 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hx-zc-NGg">
-                                        <rect key="frame" x="50" y="68" width="305" height="21.5"/>
+                                        <rect key="frame" x="50" y="67" width="305" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <size key="shadowOffset" width="1" height="1"/>
+                                        <size key="shadowOffset" width="1" height="0.0"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMB-zx-pSV">
-                                        <rect key="frame" x="50" y="42" width="305" height="26"/>
+                                        <rect key="frame" x="50" y="42" width="305" height="25"/>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <size key="shadowOffset" width="1" height="1"/>
+                                        <size key="shadowOffset" width="1" height="0.0"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHP-75-vph">
                                         <rect key="frame" x="20" y="0.0" width="30" height="39"/>
@@ -1858,7 +1858,7 @@
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="dpE-W0-4Ic" customClass="DesigneImage" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="62.5" y="53.5" width="250" height="250"/>
+                                        <rect key="frame" x="62.5" y="28.5" width="250" height="250"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="Edq-Ia-8Tq"/>
                                             <constraint firstAttribute="width" constant="250" id="I29-1h-3Fx"/>
@@ -1881,34 +1881,116 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What you can to do?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4E-ep-42R">
-                                        <rect key="frame" x="20" y="358.5" width="335" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you want, add this user to your friends list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4E-ep-42R">
+                                        <rect key="frame" x="20" y="322.5" width="335" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <size key="shadowOffset" width="1" height="1"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you do not like them, send the user to the black list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ik-vV-28F">
+                                        <rect key="frame" x="20" y="437.5" width="335" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.5294155478" green="0.52940511700000004" blue="0.52941221000000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-zt-Eqc">
-                                        <rect key="frame" x="20" y="318.5" width="335" height="25"/>
+                                        <rect key="frame" x="20" y="288.5" width="335" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" red="0.48778480289999998" green="0.87946885819999998" blue="0.76468688250000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" red="0.34566086530685425" green="0.7128029465675354" blue="0.28217911720275879" alpha="0.68525256849315064" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
-                                        <color key="shadowColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <size key="shadowOffset" width="1" height="1"/>
+                                        <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5W-0E-Ob3" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="347.5" width="335" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="0.51811322773972601" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="NCP-Rq-PSX"/>
+                                        </constraints>
+                                        <state key="normal" title="Add user to friends">
+                                            <color key="titleColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vj-0F-8Dp">
+                                        <rect key="frame" x="172.5" y="407.5" width="30" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="6Fq-GW-TvM"/>
+                                            <constraint firstAttribute="height" constant="20" id="OkV-YG-z43"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSI-kr-mhd" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="480.5" width="335" height="50"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="KZB-YU-eVw"/>
+                                        </constraints>
+                                        <state key="normal" title="Add user to Blacklist">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="0.84393728595890416" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="R4E-ep-42R" firstAttribute="leading" secondItem="g9f-e3-E96" secondAttribute="leading" constant="20" id="3BT-y2-tnN"/>
                                     <constraint firstItem="R4E-ep-42R" firstAttribute="centerX" secondItem="g9f-e3-E96" secondAttribute="centerX" id="AKB-74-Kdt"/>
-                                    <constraint firstItem="dpE-W0-4Ic" firstAttribute="centerY" secondItem="g9f-e3-E96" secondAttribute="centerY" constant="-100" id="BL1-dX-9Gc"/>
+                                    <constraint firstItem="dpE-W0-4Ic" firstAttribute="centerY" secondItem="g9f-e3-E96" secondAttribute="centerY" constant="-125" id="BL1-dX-9Gc"/>
                                     <constraint firstItem="dpE-W0-4Ic" firstAttribute="centerX" secondItem="g9f-e3-E96" secondAttribute="centerX" id="F6M-RV-2K3"/>
-                                    <constraint firstItem="R4E-ep-42R" firstAttribute="top" secondItem="9uo-zt-Eqc" secondAttribute="bottom" constant="15" id="H2K-rq-Hlu"/>
+                                    <constraint firstItem="0Ik-vV-28F" firstAttribute="centerX" secondItem="7vj-0F-8Dp" secondAttribute="centerX" id="FBy-kj-KbE"/>
+                                    <constraint firstItem="sSI-kr-mhd" firstAttribute="leading" secondItem="g9f-e3-E96" secondAttribute="leading" constant="20" id="FUl-lS-SrV"/>
+                                    <constraint firstItem="R4E-ep-42R" firstAttribute="top" secondItem="9uo-zt-Eqc" secondAttribute="bottom" constant="10" id="H2K-rq-Hlu"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Ik-vV-28F" secondAttribute="trailing" constant="20" id="J0v-wc-67R"/>
+                                    <constraint firstItem="0Ik-vV-28F" firstAttribute="leading" secondItem="g9f-e3-E96" secondAttribute="leading" constant="20" id="NQz-Bh-dGA"/>
+                                    <constraint firstItem="sSI-kr-mhd" firstAttribute="centerX" secondItem="7vj-0F-8Dp" secondAttribute="centerX" id="QwA-9K-Bkd"/>
                                     <constraint firstAttribute="trailing" secondItem="9uo-zt-Eqc" secondAttribute="trailing" constant="20" id="Ual-yd-bLx"/>
+                                    <constraint firstAttribute="trailing" secondItem="m5W-0E-Ob3" secondAttribute="trailing" constant="20" id="VHa-2l-JTz"/>
+                                    <constraint firstItem="m5W-0E-Ob3" firstAttribute="leading" secondItem="g9f-e3-E96" secondAttribute="leading" constant="20" id="Va3-Jg-Tt0"/>
                                     <constraint firstItem="9uo-zt-Eqc" firstAttribute="leading" secondItem="g9f-e3-E96" secondAttribute="leading" constant="20" id="XFz-1V-Biy"/>
+                                    <constraint firstItem="7vj-0F-8Dp" firstAttribute="top" secondItem="m5W-0E-Ob3" secondAttribute="bottom" constant="10" id="ZEo-Ve-UYp"/>
+                                    <constraint firstItem="0Ik-vV-28F" firstAttribute="top" secondItem="7vj-0F-8Dp" secondAttribute="bottom" constant="10" id="aYm-0b-Oii"/>
+                                    <constraint firstItem="7vj-0F-8Dp" firstAttribute="centerX" secondItem="m5W-0E-Ob3" secondAttribute="centerX" id="alM-yM-eaU"/>
+                                    <constraint firstAttribute="trailing" secondItem="sSI-kr-mhd" secondAttribute="trailing" constant="20" id="djK-IU-wK4"/>
                                     <constraint firstItem="9uo-zt-Eqc" firstAttribute="centerX" secondItem="g9f-e3-E96" secondAttribute="centerX" id="f0y-qT-TK9"/>
                                     <constraint firstAttribute="trailing" secondItem="R4E-ep-42R" secondAttribute="trailing" constant="20" id="fgf-Ap-nOV"/>
-                                    <constraint firstItem="9uo-zt-Eqc" firstAttribute="top" secondItem="dpE-W0-4Ic" secondAttribute="bottom" constant="15" id="x5x-zR-b4n"/>
+                                    <constraint firstItem="sSI-kr-mhd" firstAttribute="top" secondItem="0Ik-vV-28F" secondAttribute="bottom" constant="7" id="iVj-iJ-HxW"/>
+                                    <constraint firstItem="m5W-0E-Ob3" firstAttribute="centerX" secondItem="R4E-ep-42R" secondAttribute="centerX" id="kq5-zq-og4"/>
+                                    <constraint firstItem="m5W-0E-Ob3" firstAttribute="top" secondItem="R4E-ep-42R" secondAttribute="bottom" constant="7" id="nVg-74-95E"/>
+                                    <constraint firstItem="9uo-zt-Eqc" firstAttribute="top" secondItem="dpE-W0-4Ic" secondAttribute="bottom" constant="10" id="x5x-zR-b4n"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1930,7 +2012,6 @@
                     </view>
                     <connections>
                         <outlet property="backgroundUserImg" destination="fqf-uV-Bg9" id="4D7-RT-Gax"/>
-                        <outlet property="descriptionText" destination="R4E-ep-42R" id="Fou-QS-p4Q"/>
                         <outlet property="userEmail" destination="OMB-zx-pSV" id="LqV-uO-csn"/>
                         <outlet property="userImg" destination="dpE-W0-4Ic" id="7Bd-UU-Q6u"/>
                         <outlet property="userName" destination="BPx-P6-6oF" id="TiO-6j-0xp"/>
@@ -1940,7 +2021,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEE-ya-Ymr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-250" y="1092"/>
+            <point key="canvasLocation" x="-250.40000000000001" y="1091.6041979010495"/>
         </scene>
     </scenes>
     <resources>
