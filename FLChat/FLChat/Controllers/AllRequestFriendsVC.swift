@@ -21,11 +21,20 @@ class AllRequestFriendsVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         searchUserByEmail.delegate = self
+        searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
         
     }
+    
+    @objc func textFieldDidChanged(){
+        DataService.instance.getUsersWhoSendRequestToFriends(forSearchQuery: searchUserByEmail.text!) { (returnUsers) in
+            self.usersArray = returnUsers
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super .viewDidAppear(animated)
-        DataService.instance.getUsersWhoSendRequestToFriends { (returnUsers) in
+        DataService.instance.getUsersWhoSendRequestToFriends(forSearchQuery: searchUserByEmail.text!) { (returnUsers) in
             self.usersArray = returnUsers
             self.collectionView.reloadData()
         }
