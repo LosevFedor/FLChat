@@ -54,7 +54,6 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ADD_NEW_FRIENDS_CELL, for: indexPath) as? AddNewFriendsCell else { return UICollectionViewCell() }
         let user = usersArray[indexPath.row]
-        print(user.userName)
         cell.configureCell(user.userName, user.userImage, user.userStatus)
         return cell
     }

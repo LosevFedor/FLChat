@@ -33,8 +33,8 @@
 		3C1FED25231E411500710A40 /* AllRequestFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED24231E411500710A40 /* AllRequestFriendsVC.swift */; };
 		3C1FED29231E422000710A40 /* AllRequestFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED28231E422000710A40 /* AllRequestFriendsCell.swift */; };
 		3C1FED2B231FA7B000710A40 /* SelectMyRequestFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED2A231FA7B000710A40 /* SelectMyRequestFriendsVC.swift */; };
-		3C1FED2D231FC0F800710A40 /* SelectAllRequestFriendsVC.temp_caseinsensitive_rename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED2C231FC0F800710A40 /* SelectAllRequestFriendsVC.temp_caseinsensitive_rename.swift */; };
 		3C1FED2F231FC5E500710A40 /* DesigneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED2E231FC5E500710A40 /* DesigneView.swift */; };
+		3C1FED332321161100710A40 /* SelectAllRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FED322321161100710A40 /* SelectAllRequestVC.swift */; };
 		3C2216362314EA7900A8DA0C /* DesigneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2216352314EA7900A8DA0C /* DesigneTextField.swift */; };
 		3C2216382315297A00A8DA0C /* MyRequestFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */; };
 		3C22163A231529F800A8DA0C /* MyRequestFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C221639231529F800A8DA0C /* MyRequestFriendsCell.swift */; };
@@ -102,8 +102,8 @@
 		3C1FED24231E411500710A40 /* AllRequestFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRequestFriendsVC.swift; sourceTree = "<group>"; };
 		3C1FED28231E422000710A40 /* AllRequestFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRequestFriendsCell.swift; sourceTree = "<group>"; };
 		3C1FED2A231FA7B000710A40 /* SelectMyRequestFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMyRequestFriendsVC.swift; sourceTree = "<group>"; };
-		3C1FED2C231FC0F800710A40 /* SelectAllRequestFriendsVC.temp_caseinsensitive_rename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAllRequestFriendsVC.temp_caseinsensitive_rename.swift; sourceTree = "<group>"; };
 		3C1FED2E231FC5E500710A40 /* DesigneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneView.swift; sourceTree = "<group>"; };
+		3C1FED322321161100710A40 /* SelectAllRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAllRequestVC.swift; sourceTree = "<group>"; };
 		3C2216352314EA7900A8DA0C /* DesigneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesigneTextField.swift; sourceTree = "<group>"; };
 		3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRequestFriendsVC.swift; sourceTree = "<group>"; };
 		3C221639231529F800A8DA0C /* MyRequestFriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyRequestFriendsCell.swift; path = ../Controllers/MyRequestFriendsCell.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				3C2216372315297A00A8DA0C /* MyRequestFriendsVC.swift */,
 				3C1FED2A231FA7B000710A40 /* SelectMyRequestFriendsVC.swift */,
 				3C1FED24231E411500710A40 /* AllRequestFriendsVC.swift */,
-				3C1FED2C231FC0F800710A40 /* SelectAllRequestFriendsVC.temp_caseinsensitive_rename.swift */,
+				3C1FED322321161100710A40 /* SelectAllRequestVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -515,7 +515,6 @@
 				3C104EB0230F731900461F19 /* SelectNewUserFriendVC.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
 				3C2216362314EA7900A8DA0C /* DesigneTextField.swift in Sources */,
-				3C1FED2D231FC0F800710A40 /* SelectAllRequestFriendsVC.temp_caseinsensitive_rename.swift in Sources */,
 				3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */,
 				3C2216382315297A00A8DA0C /* MyRequestFriendsVC.swift in Sources */,
 				3C0DE678230C0FF1006F00E8 /* AddNewFriendsVC.swift in Sources */,
@@ -527,6 +526,7 @@
 				2A4661A222B9E5A300F64393 /* LogInVC.swift in Sources */,
 				2A4661A022B9E5A300F64393 /* AppDelegate.swift in Sources */,
 				3C1FED2F231FC5E500710A40 /* DesigneView.swift in Sources */,
+				3C1FED332321161100710A40 /* SelectAllRequestVC.swift in Sources */,
 				3C22163A231529F800A8DA0C /* MyRequestFriendsCell.swift in Sources */,
 				3C1FED2B231FA7B000710A40 /* SelectMyRequestFriendsVC.swift in Sources */,
 				2A62FDE322DD6B4200D26B16 /* User.swift in Sources */,

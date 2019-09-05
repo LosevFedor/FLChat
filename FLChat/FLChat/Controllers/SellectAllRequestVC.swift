@@ -1,3 +1,4 @@
+
 //
 //  SelectAllRequestFriendsVC.swift
 //  FLChat
@@ -20,6 +21,7 @@ class SelectAllRequestFriendsVC: UIViewController {
     @IBOutlet weak var userImg: DesigneImage!
     
     private var currentBackgroundUserImg:UIImage!
+    private var currentUID: String!
     private var currentUserName:String!
     private var currentUserImage: UIImage!
     private var currentUserEmail:String!
@@ -49,7 +51,8 @@ class SelectAllRequestFriendsVC: UIViewController {
         addBlureEffeckForBackgroundUserImg()
     }
     
-    func initData(_ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool, _ urlImage: String){
+    func initData(_ id: String, _ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool, _ urlImage: String){
+        currentUID = id
         currentUserName = name
         currentUserImage = image
         currentBackgroundUserImg = image
@@ -71,5 +74,14 @@ class SelectAllRequestFriendsVC: UIViewController {
             status = "ofline"
         }
         return status
+    }
+    @IBAction func addUsertoFriendsBtnPressed(_ sender: Any) {
+        let fromId = Auth.auth().currentUser?.uid
+        let toId = currentUID!
+        let time = Double(NSDate().timeIntervalSince1970)
+        //let userFrom =
+        //let userTo =
+        //let ref = DataService.instance.REF_FRIEND.child(<#T##pathString: String##String#>)
+        
     }
 }
