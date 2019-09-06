@@ -82,21 +82,25 @@ class SelectNewUserFriendVC: UIViewController {
         let userTo = getParamsUserTo()
         let userFrom = getParamsUserFrom()
         
+        //SaveUID.instance.toUID = toId
+        
         DataService.instance.friendRequestIntoDB(fromId, userFrom, toId, userTo, timeStamp, msg, requestConfirmed) { (createRequest, autoKey) in
             if createRequest{
-                DataService.instance.userFriendRequestIntoDB(autoKey, requestSend: { (createUserRequrst) in
-                    if createUserRequrst{
+                
+                DataService.instance.userFriendRequestIntoDB(autoKey, toId, { (complete) in
+                    if complete {
+                        DataService.instance.recipientsUserFriendRequestIntoDB(autoKey, toId, recipientAddedIntoDatabase: { (recipientAdded) in
+                            if recipientAdded{
+                                print("Recipient added in to database")
+                            }
+                        })
+                        
                         let alertController = UIAlertController(title: "Your friend request was successfully sent to the \"\(self.currentUserName!)\"", message: nil, preferredStyle: .alert)
                         let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
                             self.dismiss(animated: true, completion: nil)
                         })
                         alertController.addAction(okAlert)
                         self.present(alertController, animated: true, completion: nil)
-                    }
-                })
-                DataService.instance.recipientsUserFriendRequestIntoDB(autoKey, toId, recipientAddedIntoDatabase: { (recipientAdded) in
-                    if recipientAdded{
-                        print("Recipient added in to database")
                     }
                 })
             }
