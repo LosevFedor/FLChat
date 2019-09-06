@@ -106,22 +106,6 @@ class SelectAllRequestFriendsVC: UIViewController {
         }
     }
     
-    private func addRecipienceIntoDb(_ key: String, _ fromId: String){
-        //var updateDb = false
-        DataService.instance.recipientsUserFriendIntoDB(key, fromId, refSend: { (created) in
-            if created{
-                let alertController = UIAlertController(title: "You have successfully added the user: \"\(self.currentUserName!)\" to your friends list.", message: nil, preferredStyle: .alert)
-                let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
-                    self.dismiss(animated: true, completion: nil)
-                })
-                alertController.addAction(okAlert)
-                self.present(alertController, animated: true, completion: nil)
-                //updateDb = true
-            }
-        })
-        //return updateDb
-    }
-    
     private func getParamsUserTo() -> Dictionary<String,Any>{
         let uid = (Auth.auth().currentUser?.uid)!
         let name = User.instance.name
