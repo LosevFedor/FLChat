@@ -271,18 +271,6 @@ class DataService {
         }
     }
     
-    
-    
-    
-    
-    ////////////////////
-    ////////////////////
-    ////////////////////
-    ////////////////////
-
-    
-    
-    
     func friendIntoDB(_ fromId: String, _ userFromId:Dictionary<String,Any>, _ toId: String, _ userToId:Dictionary<String,Any>, _ time: Double, _ confirmReques: Bool, requestWillSend: @escaping(_ requestSend: Bool, _ autoKey: String) -> ()){
         let ref = REF_FRIENDS.childByAutoId()
         let refAutoKey = ref.key!
@@ -317,16 +305,6 @@ class DataService {
             refSend(true)
         }
     }
-    
-    
-    ////////////////////
-    ////////////////////
-    ////////////////////
-
-    
-    
-    
-    
     
     func changeUserNameIntoDatabaseWithUID(_ uid: String, _ newUserName: String, copletedChangeUserName: @escaping(_ changed:Bool, _ error:Error?) -> ()){
         let userData = changeUserName(newUserName)
