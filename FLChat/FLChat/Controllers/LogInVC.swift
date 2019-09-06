@@ -96,9 +96,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
-                        let uid = (Auth.auth().currentUser?.uid)!
-                        
-                        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+                        DataService.instance.getUserCredentialsFromDatabase { (completeGetParams) in
                             if completeGetParams{
                                 print("Successfully get params for User from batabase")
                                 self.clearEmailAndPassFieldsAfterLogin()

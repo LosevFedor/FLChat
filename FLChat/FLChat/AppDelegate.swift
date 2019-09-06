@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     let email = (result!.user.email)!
                     
                     if Auth.auth().currentUser != nil{
-                        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+                        DataService.instance.getUserCredentialsFromDatabase { (completeGetParams) in
                             if completeGetParams{
                                 print("Successfully get params for User from batabase")
                                 self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)

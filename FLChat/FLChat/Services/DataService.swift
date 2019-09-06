@@ -61,8 +61,48 @@ class DataService {
         REF_USERS.child(uid).updateChildValues(userImage)
     }
     
+    func getAllFrinds(forSearchQuery query: String, _ completedSearching: @escaping (_ returnUsers: [Users]) -> ()){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        var arrayUsers = [Users]()
+        
+        REF_USER_FRIENDS.child(uid).observe(.childAdded, with: { (snapshot) in
+            
+            let keyId = snapshot.key
+            let requestReferense = self.REF_FRIENDS.child(keyId)
+            requestReferense.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let requestUser = requestReferense.child("fromIdUser")
+                requestUser.observe(.value, with: { (snapshotToId) in
+                    guard let dictionary = snapshotToId.value as? Dictionary<String,Any> else { return }
+                    
+                    let name = (dictionary["name"] as? String)!
+                    let image = (dictionary["image"] as? String)!
+                    let email = (dictionary["email"] as? String)!
+                    let phone = (dictionary["phone"] as? String)!
+                    let status = (dictionary["online"] as? Bool)!
+                    
+                    if query == ""{
+                        if email != Auth.auth().currentUser?.email {
+                            let searchUserByEmail = Users(name, image, email, phone, status)
+                            arrayUsers.append(searchUserByEmail)
+                            completedSearching(arrayUsers)
+                        }
+                    }else{
+                        if email.contains(query) && email != Auth.auth().currentUser?.email {
+                            let searchUserByEmail = Users(name, image, email, phone, status)
+                            arrayUsers.append(searchUserByEmail)
+                            completedSearching(arrayUsers)
+                        }
+                    }
+                }, withCancel: nil)
+            }, withCancel: nil)
+        }, withCancel: nil)
+    }
     
-    func getUserCredentialsFromDatabase(uid: String, completeResponce: @escaping (_ getCredentials: Bool) -> ()){
+    func getUserCredentialsFromDatabase(_ completeResponce: @escaping (_ getCredentials: Bool) -> ()){
+       
+        guard let uid = Auth.auth().currentUser?.uid else { return}
+        
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as? Dictionary<String,Any>
 

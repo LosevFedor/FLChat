@@ -190,7 +190,7 @@
         <!--HomeVC-->
         <scene sceneID="VR2-eH-FAo">
             <objects>
-                <viewController id="LvA-Zy-2O7" customClass="HomeVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LvA-Zy-2O7" customClass="HomeVC" customModule="FLChat" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IPt-aM-W1R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,6 +218,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ar0-r3-Czf">
                                                 <rect key="frame" x="246" y="0.0" width="59" height="52"/>
                                                 <state key="normal" image="Add users to Black List"/>
+                                                <connections>
+                                                    <action selector="blacklistBtnPressed:" destination="LvA-Zy-2O7" eventType="touchUpInside" id="bl5-8t-Ibx"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -252,7 +255,7 @@
                                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addNewFriendsCell" id="64M-5I-pcc" customClass="AddNewFriendsCell" customModule="FLChat" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCell" id="64M-5I-pcc" customClass="HomeCell" customModule="FLChat" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="10" width="87" height="119"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -323,9 +326,9 @@
                                                     <constraint firstItem="6rR-Fe-QL9" firstAttribute="top" secondItem="64M-5I-pcc" secondAttribute="top" id="dib-1A-xcC"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="userImage" destination="xPp-4N-x3X" id="JPG-te-l9N"/>
-                                                    <outlet property="userName" destination="hvA-9a-TTu" id="r1M-mF-gPv"/>
-                                                    <outlet property="userStatus" destination="aWL-hz-xdu" id="yPS-S6-hyz"/>
+                                                    <outlet property="userImage" destination="xPp-4N-x3X" id="2xW-xa-jTS"/>
+                                                    <outlet property="userName" destination="hvA-9a-TTu" id="Rsr-YY-7IQ"/>
+                                                    <outlet property="userStatus" destination="aWL-hz-xdu" id="QuP-0q-7ob"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -463,6 +466,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="sc0-pd-dcu"/>
                     <connections>
+                        <outlet property="collectionView" destination="g9Y-Tf-Gzw" id="E6e-NC-15L"/>
+                        <outlet property="searchUserByEmail" destination="AEB-3b-4su" id="chL-s6-kGO"/>
                         <segue destination="mFu-o1-pOT" kind="show" identifier="" id="2bg-4O-EHW"/>
                         <segue destination="1T7-GW-Fnc" kind="show" id="T2W-y6-AGi"/>
                         <segue destination="SAb-gV-O3r" kind="show" identifier="goToMyRequestFriend" id="NjO-1O-ybI"/>

@@ -13,20 +13,31 @@ class HomeVC: UIViewController {
 
     let transition = SlideInTransiotion()
     
+    @IBOutlet weak var collectionView: DesigneCollectionView!
+    @IBOutlet weak var searchUserByEmail: DesigneTextField!
+    
+    var usersArray = [Users]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        searchUserByEmail.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let uid = (Auth.auth().currentUser?.uid)!
-        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+        DataService.instance.getUserCredentialsFromDatabase() { (completeGetParams) in
             if completeGetParams{
                 print("Successfully get params for User from batabase")
             }
         }
+        DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { (friends) in
+            self.usersArray = friends
+            self.collectionView.reloadData()
+        }
+        
     }
     
     @IBAction func addNewFriendsBtnPressed(_ sender: Any) {
@@ -50,4 +61,27 @@ class HomeVC: UIViewController {
         guard let allRequestFriend = storyboard?.instantiateViewController(withIdentifier: GO_TO_ALL_REQUEST_FRIEND) else { return }
         present(allRequestFriend, animated: true, completion: nil)
     }
+    
+    @IBAction func blacklistBtnPressed(_ sender: Any) {
+        print("Blacklist Btn Pressed")
+    }
+}
+
+extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return usersArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HOME_CELL, for: indexPath) as? HomeCell else { return UICollectionViewCell() }
+        let user = usersArray[indexPath.row]
+        cell.configureCell(user.userName, user.userImage, user.userStatus)
+        return cell
+    }
+    
+    
+}
+
+extension HomeVC : UITextFieldDelegate {
+    
 }
