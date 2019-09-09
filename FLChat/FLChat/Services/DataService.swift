@@ -71,7 +71,17 @@ class DataService {
             let requestReferense = self.REF_FRIENDS.child(keyId)
             requestReferense.observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                let requestUser = requestReferense.child("fromIdUser")
+                // Switch around recipient users
+                let switchUserRecipient: String!
+                guard let dict = snapshot.value as? Dictionary<String,Any> else {return}
+                let userUID = Auth.auth().currentUser?.uid
+                if userUID == dict["fromId"] as? String {
+                    switchUserRecipient = "toIdUser"
+                }else{
+                    switchUserRecipient = "fromIdUser"
+                }
+               
+                let requestUser = requestReferense.child(switchUserRecipient)
                 requestUser.observe(.value, with: { (snapshotToId) in
                     guard let dictionary = snapshotToId.value as? Dictionary<String,Any> else { return }
                     
