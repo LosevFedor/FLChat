@@ -33,8 +33,8 @@ class AddNewFriendsVC: UIViewController{
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnedUsers) in
-            self.usersArray = returnedUsers
+        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnUsers) in
+            self.usersArray = returnUsers
             self.collectionView?.reloadData()
         }
     }
