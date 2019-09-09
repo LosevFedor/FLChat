@@ -43,8 +43,7 @@ class SettingsVC: UIViewController {
     
     
     func setUserSettings(){
-        let uid = (Auth.auth().currentUser?.uid)!
-        DataService.instance.getUserCredentialsFromDatabase(uid: uid) { (completeGetParams) in
+        DataService.instance.getUserCredentialsFromDatabase{ (completeGetParams) in
             if completeGetParams{
                 let currentName = User.instance.name
                 let currentPhone = User.instance.phone
