@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class User: NSObject{
-    
     static var instance = User()
     
     var name: String = "User name"

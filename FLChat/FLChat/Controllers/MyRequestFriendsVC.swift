@@ -27,6 +27,7 @@ class MyRequestFriendsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         DataService.instance.getUsersWhomFriendRequestBeenSend(forSearchQuery: searchUserByEmail.text!) { (reternUsers) in
             self.usersArray = reternUsers
             self.collectionView.reloadData()

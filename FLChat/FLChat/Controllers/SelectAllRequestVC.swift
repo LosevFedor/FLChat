@@ -81,32 +81,45 @@ class SelectAllRequestFriendsVC: UIViewController {
         let userTo = getParamsUserTo()
         let userFrom = getParamsUserFrom()
         let confirmReques = true
-//        print("toId current user who get request:\(toId)")
-//        print("toId dictionary:\(userTo)")
-//        print("fromId user who send request:\(fromId)")
-//        print("fromId dictionary:\(userFrom)")
-
+        
         DataService.instance.friendIntoDB(fromId, userFrom, toId, userTo, timeStamp, confirmReques) { (addedToFriends, autoKey) in
             if addedToFriends{
                 DataService.instance.userFriendIntoDB(autoKey, refSend: { (created) in
                     if created {
-                        let alertController = UIAlertController(title: "You have successfully added the user: \"\(self.currentUserName!)\" to your friends list.", message: nil, preferredStyle: .alert)
-                        let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
-                            self.dismiss(animated: true, completion: nil)
+                        DataService.instance.recipientsUserFriendIntoDB(autoKey, fromId, refSend: { (created) in
+                            if created {
+                                DataService.instance.removeFriendRequestsFromDatabase(toId, fromId, { (coplete) in
+                                    if coplete {
+                                        let alertController = UIAlertController(title: "You have successfully added the user: \"\(self.currentUserName!)\" to your friends list.", message: nil, preferredStyle: .alert)
+                                        let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
+                                            self.dismiss(animated: true, completion: nil)
+                                        })
+                                        alertController.addAction(okAlert)
+                                        self.present(alertController, animated: true, completion: nil)
+                                    }
+                                })
+                            }
                         })
-                        alertController.addAction(okAlert)
-                        self.present(alertController, animated: true, completion: nil)
-                    }
-                })
-                DataService.instance.recipientsUserFriendIntoDB(autoKey, fromId, refSend: { (created) in
-                    if created{
-                        print("Recipient added in to database")
                     }
                 })
             }
         }
-        
-        
+    }
+    
+    private func addRecipienceIntoDb(_ key: String, _ fromId: String){
+        //var updateDb = false
+        DataService.instance.recipientsUserFriendIntoDB(key, fromId, refSend: { (created) in
+            if created{
+                let alertController = UIAlertController(title: "You have successfully added the user: \"\(self.currentUserName!)\" to your friends list.", message: nil, preferredStyle: .alert)
+                let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alertController.addAction(okAlert)
+                self.present(alertController, animated: true, completion: nil)
+                //updateDb = true
+            }
+        })
+        //return updateDb
     }
     
     private func getParamsUserTo() -> Dictionary<String,Any>{
