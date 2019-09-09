@@ -24,10 +24,19 @@ class HomeVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         searchUserByEmail.delegate = self
+        searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+    }
+    
+    @objc func textFieldDidChanged() {
+        DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { (friends) in
+            self.usersArray = friends
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        searchUserByEmail.delegate = self
         DataService.instance.getUserCredentialsFromDatabase() { (completeGetParams) in
             if completeGetParams{
                 print("Successfully get params for User from batabase")
