@@ -85,6 +85,7 @@ class DataService {
                 requestUser.observe(.value, with: { (snapshotToId) in
                     guard let dictionary = snapshotToId.value as? Dictionary<String,Any> else { return }
                     
+                    let id = (dictionary["uid"] as? String)!
                     let name = (dictionary["name"] as? String)!
                     let image = (dictionary["image"] as? String)!
                     let email = (dictionary["email"] as? String)!
@@ -93,13 +94,13 @@ class DataService {
                     
                     if query == ""{
                         if email != Auth.auth().currentUser?.email {
-                            let searchUserByEmail = Users(name, image, email, phone, status)
+                            let searchUserByEmail = Users(id, name, image, email, phone, status)
                             arrayUsers.append(searchUserByEmail)
                             completedSearching(arrayUsers)
                         }
                     }else{
                         if email.contains(query) && email != Auth.auth().currentUser?.email {
-                            let searchUserByEmail = Users(name, image, email, phone, status)
+                            let searchUserByEmail = Users(id, name, image, email, phone, status)
                             arrayUsers.append(searchUserByEmail)
                             completedSearching(arrayUsers)
                         }

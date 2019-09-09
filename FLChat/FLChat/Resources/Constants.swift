@@ -31,6 +31,7 @@ let ADD_NEW_FRIENDS_CELL = "addNewFriendsCell"
 let MY_REQUEST_FRIENDS_CELL = "myRequestFriendsCell"
 let ALL_REQUEST_FRIEND_CELL = "allRequestFriendsCell"
 let HOME_CELL = "homeCell"
+let MESSAGE_VC = "messageVC"
 
 // Storyboard Id
 let GO_TO_ADD_NEW_FRIENDS = "goToAddNewFriends"
