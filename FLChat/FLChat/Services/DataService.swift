@@ -21,10 +21,13 @@ class DataService {
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_FRIEND_REQUEST = DB_BASE.child("friend_request")
     private var _REF_USER_FRIEND_REQUEST = DB_BASE.child("user_friend_request")
+    
     // Path to user image folder in to firebase-storage
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
     private var _REF_FRIENDS = DB_BASE.child("friends")
     private var _REF_USER_FRIENDS = DB_BASE.child("user_friends")
+    private var _REF_MESSAGE = DB_BASE.child("messages")
+    private var _REF_USER_MESSAGE = DB_BASE.child("users_messages")
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -47,6 +50,14 @@ class DataService {
     
     var REF_USER_FRIENDS: DatabaseReference {
         return _REF_USER_FRIENDS
+    }
+    
+    var REF_MESSAGE: DatabaseReference {
+        return _REF_MESSAGE
+    }
+    
+    var REF_USER_MESSAGE: DatabaseReference {
+        return _REF_USER_MESSAGE
     }
     
     var REF_STORAGE_BASE: StorageReference {
