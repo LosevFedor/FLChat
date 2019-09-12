@@ -49,6 +49,50 @@ class MessageVC: UIViewController {
         userTextMessage.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
         self.sendBtn.isEnabled = false
         
+        collectionView?.keyboardDismissMode = .interactive
+        setupKeyboardObservers()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setupKeyboardObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func handleKeyboardWillShow(_ notification: Notification){
+        
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let keyboardDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double  else { return }
+        
+        view.frame.origin.y = -keyboardRect.height
+        UIView.animate(withDuration: keyboardDuration) {
+            self.view.layoutIfNeeded()
+        }
+        
+    }
+    
+    @objc func handleKeyboardWillHide(_ notification: Notification){
+        guard let keyboardDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double  else { return }
+        
+        view.frame.origin.y = 0
+        UIView.animate(withDuration: keyboardDuration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func hiddenKeyboard(){
+        userTextMessage.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hiddenKeyboard()
+        return true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -186,9 +230,6 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         cell.textView.text = message.message
         cell.bubbleWidthAnchor?.constant = estimateFromeForText(message.message).width + moreSizeWight
-
-        //cell.configureCell(user.fromId!, user.toId!, user.timeStamp!, _urlImage!, user.message!)
-
         return cell
     }
     private func setupCell(_ cell: MessageCell, _ message: Message){
