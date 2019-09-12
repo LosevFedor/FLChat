@@ -147,14 +147,23 @@ class MessageVC: UIViewController {
                 if message.chatPartnerId() == self._uid!{
                     self.messages.append(message)
                     complete(self.messages)
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
+                    
+                    self.timer?.invalidate()
+                    self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadCollection), userInfo: nil, repeats: false)
+                    
                 }
             }, withCancel: nil)
         }, withCancel: nil)
     }
     
+    var timer: Timer?
+    
+    @objc func handleReloadCollection(){
+        DispatchQueue.main.async {
+            print("we reloaded Message")
+            self.collectionView.reloadData()
+        }
+    }
     func clearTextField(){
         userTextMessage.text = ""
     }
@@ -170,17 +179,34 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MESSAGE_CELL, for: indexPath) as? MessageCell else { return UICollectionViewCell()}
         
-        let user = messagesArray[indexPath.row]
+        let message = messagesArray[indexPath.row]
         let moreSizeWight: CGFloat = 32
         
-        cell.textView.text = user.message
-        cell.bubleWidthAnchor?.constant = estimateFromeForText(user.message).width + moreSizeWight
+       setupCell(cell, message)
+        
+        cell.textView.text = message.message
+        cell.bubbleWidthAnchor?.constant = estimateFromeForText(message.message).width + moreSizeWight
 
         //cell.configureCell(user.fromId!, user.toId!, user.timeStamp!, _urlImage!, user.message!)
 
         return cell
     }
-    
+    private func setupCell(_ cell: MessageCell, _ message: Message){
+        
+        guard let profileUserUrl = _urlImage else {return}
+        cell.userImage.loadImageUsingCacheWithUrlString(profileUserUrl)
+        if message.fromId == Auth.auth().currentUser?.uid{
+            cell.bubbleView.backgroundColor = #colorLiteral(red: 0.6287381053, green: 0.938175261, blue: 0.8685600162, alpha: 1)
+            cell.userImage.isHidden = true
+            cell.bubbleViewRightAnchor?.isActive = true
+            cell.bubbleViewLeftAnchor?.isActive = false
+        }else{
+            cell.bubbleView.backgroundColor = #colorLiteral(red: 0.829066813, green: 0.8015608191, blue: 0.9317680597, alpha: 1)
+            cell.userImage.isHidden = false
+            cell.bubbleViewRightAnchor?.isActive = false
+            cell.bubbleViewLeftAnchor?.isActive = true
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var height: CGFloat = 60

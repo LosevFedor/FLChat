@@ -17,17 +17,6 @@ class MyRequestFriendsCell: UICollectionViewCell {
     func configureCell(_ userName: String, _ userImage: String, _ userStatus: Bool){
         self.userName.text = userName
         self.userImage.loadImageUsingCacheWithUrlString(userImage)
-        
-//        let profileImage = userImage
-//        let url = URL(string: profileImage)
-//        URLSession.shared.dataTask(with: url!) { (data, responce, error) in
-//            if error != nil{
-//                print(error)
-//            }
-//            DispatchQueue.main.async {
-//                self.userImage.image = UIImage(data: data!)
-//            }
-//        }).resume()
         self.userStatus.text = "\(userStatus)"
     }
 }

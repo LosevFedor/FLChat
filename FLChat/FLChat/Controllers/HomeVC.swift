@@ -21,11 +21,13 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.alwaysBounceVertical = true
         collectionView.delegate = self
         collectionView.dataSource = self
         searchUserByEmail.delegate = self
         searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
+    
     
     @objc func textFieldDidChanged() {
         DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { (friends) in
