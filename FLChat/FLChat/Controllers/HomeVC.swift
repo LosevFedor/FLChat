@@ -21,11 +21,13 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.alwaysBounceVertical = true
         collectionView.delegate = self
         collectionView.dataSource = self
         searchUserByEmail.delegate = self
         searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
+    
     
     @objc func textFieldDidChanged() {
         DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { (friends) in
@@ -88,6 +90,31 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedUser = usersArray[indexPath.row]
+        
+        guard let selectUserMessage = storyboard?.instantiateViewController(withIdentifier: MESSAGE_VC) as? MessageVC else { return }
+        let user = Users(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+        let profileImageUrl = user.userImage
+        let url = URL(string: profileImageUrl)
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+            if error != nil {
+                print("Cant convert url for image: \(String(describing: error?.localizedDescription))")
+            }
+
+            DispatchQueue.main.async {
+                guard let currentUserImage = UIImage(data: data!) else { return }
+                let currentUserId = user.userId
+                let currenUserName = user.userName
+                let curentUserEmail = user.userEmail
+                let curentUserPhone = user.userPhone
+                let currentUserStatus = user.userStatus
+                let currentUserUrlImage = user.userImage
+                selectUserMessage.initData(currentUserId, currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
+                self.present(selectUserMessage, animated: true, completion: nil)
+            }
+        }).resume()
+    }
     
 }
 

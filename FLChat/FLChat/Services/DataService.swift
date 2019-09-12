@@ -21,10 +21,13 @@ class DataService {
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_FRIEND_REQUEST = DB_BASE.child("friend_request")
     private var _REF_USER_FRIEND_REQUEST = DB_BASE.child("user_friend_request")
+    
     // Path to user image folder in to firebase-storage
     private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
     private var _REF_FRIENDS = DB_BASE.child("friends")
     private var _REF_USER_FRIENDS = DB_BASE.child("user_friends")
+    private var _REF_MESSAGE = DB_BASE.child("messages")
+    private var _REF_USER_MESSAGE = DB_BASE.child("users_messages")
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -47,6 +50,14 @@ class DataService {
     
     var REF_USER_FRIENDS: DatabaseReference {
         return _REF_USER_FRIENDS
+    }
+    
+    var REF_MESSAGE: DatabaseReference {
+        return _REF_MESSAGE
+    }
+    
+    var REF_USER_MESSAGE: DatabaseReference {
+        return _REF_USER_MESSAGE
     }
     
     var REF_STORAGE_BASE: StorageReference {
@@ -85,6 +96,7 @@ class DataService {
                 requestUser.observe(.value, with: { (snapshotToId) in
                     guard let dictionary = snapshotToId.value as? Dictionary<String,Any> else { return }
                     
+                    let id = (dictionary["uid"] as? String)!
                     let name = (dictionary["name"] as? String)!
                     let image = (dictionary["image"] as? String)!
                     let email = (dictionary["email"] as? String)!
@@ -93,13 +105,13 @@ class DataService {
                     
                     if query == ""{
                         if email != Auth.auth().currentUser?.email {
-                            let searchUserByEmail = Users(name, image, email, phone, status)
+                            let searchUserByEmail = Users(id, name, image, email, phone, status)
                             arrayUsers.append(searchUserByEmail)
                             completedSearching(arrayUsers)
                         }
                     }else{
                         if email.contains(query) && email != Auth.auth().currentUser?.email {
-                            let searchUserByEmail = Users(name, image, email, phone, status)
+                            let searchUserByEmail = Users(id, name, image, email, phone, status)
                             arrayUsers.append(searchUserByEmail)
                             completedSearching(arrayUsers)
                         }

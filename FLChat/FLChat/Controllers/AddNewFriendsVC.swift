@@ -18,6 +18,8 @@ class AddNewFriendsVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.alwaysBounceVertical = true
         collectionView?.delegate = self
         collectionView?.dataSource = self
         searchUserByEmail.delegate = self
