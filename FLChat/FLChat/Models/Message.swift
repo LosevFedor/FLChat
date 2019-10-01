@@ -14,10 +14,10 @@ class Message: NSObject {
     var toId: String!
     var timeStamp: Double!
     var message: String!
-    var image: UIImage!
+    var image: String!
     
-    func chatPartnerId() -> String{
-        return fromId == Auth.auth().currentUser?.uid ? toId! : fromId!
-    }
+//    func chatPartnerId() -> String{
+//        return fromId == Auth.auth().currentUser?.uid ? toId! : fromId!
+//    }
     
 }

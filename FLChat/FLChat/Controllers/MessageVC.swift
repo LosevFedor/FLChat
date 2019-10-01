@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MessageVC: UIViewController {
+class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var userImage: DesigneImage!
     @IBOutlet weak var userName: UILabel!
@@ -21,7 +21,7 @@ class MessageVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var messagesArray = [Message]()
-    var messages = [Message]()
+    //var messages = [Message]()
     
     var _name: String!
     var _image: UIImage!
@@ -43,11 +43,7 @@ class MessageVC: UIViewController {
         collectionView.dataSource = self
         userTextMessage.delegate = self
         
-        self.sendBtn.isEnabled = false
-        
-        setupUserFields()
-        userTextMessage.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
-        self.sendBtn.isEnabled = false
+        setUserFields()
         
         collectionView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
         
@@ -56,7 +52,6 @@ class MessageVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -102,9 +97,15 @@ class MessageVC: UIViewController {
             self.messagesArray = returnedMessageArray
         }
         
+        
+        self.sendBtn.isEnabled = false
+        userTextMessage.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+        
+        
     }
     
     @objc func textFieldDidChanged(){
+        
         if userTextMessage.text != ""{
             self.sendBtn.isEnabled = true
         }else{
@@ -122,7 +123,7 @@ class MessageVC: UIViewController {
         _urlImage = urlImage
     }
     
-    private func setupUserFields(){
+    private func setUserFields(){
         self.userImage.image = _image
         self.userName.text = _name
         self.userStatus.text = convertUserStatus(_status)
@@ -145,11 +146,58 @@ class MessageVC: UIViewController {
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        handleSend()
+        handleSend(nil)
         clearTextField()
     }
     
-    func handleSend(){
+    
+    @IBAction func sendPictureBtnPressed(_ sender: Any) {
+        let imagepickerController = UIImagePickerController()
+        
+        imagepickerController.delegate = self
+        imagepickerController.allowsEditing = true
+        present(imagepickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        var selectedImageFromPicker:UIImage?
+        
+        if let editedImage = info[.editedImage] as? UIImage{
+            selectedImageFromPicker = editedImage
+        }else if let originalImage = info[.originalImage] as? UIImage{
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker{
+           uploadToStorageUsingImage(selectedImage)
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func uploadToStorageUsingImage(_ image: UIImage){
+        
+        let uid = (Auth.auth().currentUser?.uid)!
+        let ref = DataService.instance.REF_STORAGE_USER_PICTURES.child(uid)
+        
+        if let uploadData = image.jpegData(compressionQuality: COMPRESSION_IMAGE){
+            ref.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil{
+                    print("Failed to upload image:\(String(describing: error?.localizedDescription))")
+                }
+                ref.downloadURL { (url, error) in
+                    guard let url = url else{ return }
+                    self.handleSend(url.absoluteString)
+                }
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func handleSend(_ imageUrl: String?){
         let ref = DataService.instance.REF_MESSAGE
         let childRef = ref.childByAutoId()
         
@@ -158,7 +206,13 @@ class MessageVC: UIViewController {
         let timeStamp = Double(NSDate().timeIntervalSince1970)
         let message = userTextMessage.text!
         
-        let value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": message] as [String : Any]
+        var value: Dictionary<String,Any> = [:]
+        
+        if let image = imageUrl {
+            value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "imageUrl": image] as [String : Any]
+        }else{
+            value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": message] as [String : Any]
+        }
         
         childRef.updateChildValues(value) { (error, ref) in
             if error != nil{
@@ -172,11 +226,15 @@ class MessageVC: UIViewController {
         
             let recipientUserMessagesRef = DataService.instance.REF_USER_MESSAGE.child(toId).child(fromId)
             recipientUserMessagesRef.updateChildValues([messageId:1])
+            
         }
     }
     
     func observUserMessages(complete: @escaping(_ arrayMessage: [Message]) -> ()){
         guard let uid = Auth.auth().currentUser?.uid, let toId = _uid else { return }
+        
+        var messages = [Message]()
+        
         let ref = DataService.instance.REF_USER_MESSAGE.child(uid).child(toId)
         ref.observe(.childAdded, with: { (snapshot) in
             let messageId = snapshot.key
@@ -187,30 +245,38 @@ class MessageVC: UIViewController {
                 let message = Message()
                 message.fromId = (dict["fromId"] as? String)!
                 message.toId = (dict["toId"] as? String)!
-                message.message = (dict["message"] as? String)!
+                
+                if let text = dict["message"] as? String{
+                    message.message = text
+                }
+                if let image = dict["imageUrl"] as? String {
+                    message.image = image
+                }
+                
                 message.timeStamp = (dict["timeStamp"] as? Double)!
-                if message.chatPartnerId() == self._uid!{
-                    self.messages.append(message)
-                    complete(self.messages)
+                if toId == self._uid!{
+                    messages.append(message)
+                    complete(messages)
                     
-                    self.timer?.invalidate()
-                    self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadCollection), userInfo: nil, repeats: false)
-                    
+                    self.attemptReloadOfCollection()
                 }
             }, withCancel: nil)
         }, withCancel: nil)
     }
     
     var timer: Timer?
+    private func attemptReloadOfCollection(){
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadCollection), userInfo: nil, repeats: false)
+    }
     
     @objc func handleReloadCollection(){
         DispatchQueue.main.async {
-            print("we reloaded Message")
             self.collectionView.reloadData()
         }
     }
     func clearTextField(){
-        userTextMessage.text = ""
+        userTextMessage.text = nil
     }
 
 }
@@ -227,10 +293,13 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         let message = messagesArray[indexPath.row]
         let moreSizeWight: CGFloat = 32
         
-       setupCell(cell, message)
-        print("we fetched a message from firebase")
+        setupCell(cell, message)
         cell.textView.text = message.message
-        cell.bubbleWidthAnchor?.constant = estimateFromeForText(message.message).width + moreSizeWight
+        
+        if let text = message.message{
+            cell.bubbleWidthAnchor?.constant = estimateFromeForText(text).width + moreSizeWight
+        }
+        
         return cell
     }
     
@@ -238,6 +307,7 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         guard let profileUserUrl = _urlImage else {return}
         cell.userImage.loadImageUsingCacheWithUrlString(profileUserUrl)
+        
         if message.fromId == Auth.auth().currentUser?.uid{
             cell.bubbleView.backgroundColor = #colorLiteral(red: 0.6287381053, green: 0.938175261, blue: 0.8685600162, alpha: 1)
             cell.userImage.isHidden = true
@@ -249,11 +319,20 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             cell.bubbleViewRightAnchor?.isActive = false
             cell.bubbleViewLeftAnchor?.isActive = true
         }
+        
+        if let messageImageUrl = message.image {
+            cell.messageImageView.loadImageUsingCacheWithUrlString(messageImageUrl)
+            cell.messageImageView.isHidden = false
+            cell.bubbleView.backgroundColor = .clear
+        }else{
+            cell.messageImageView.isHidden = true
+        }
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var height: CGFloat = 60
-        if let text = messages[indexPath.item].message{
+        if let text = messagesArray[indexPath.item].message{
             let moreSizeHeight: CGFloat = 30
             height = estimateFromeForText(text).height + moreSizeHeight
         }

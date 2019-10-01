@@ -76,7 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     if Auth.auth().currentUser != nil{
                         DataService.instance.getUserCredentialsFromDatabase { (completeGetParams) in
                             if completeGetParams{
-                                print("Successfully get params for User from batabase")
                                 self.window?.rootViewController?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                             }
                         }
@@ -92,9 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 }
             }
         }
-        
     }
-    // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
         /*

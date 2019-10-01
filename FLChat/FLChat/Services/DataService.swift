@@ -23,7 +23,8 @@ class DataService {
     private var _REF_USER_FRIEND_REQUEST = DB_BASE.child("user_friend_request")
     
     // Path to user image folder in to firebase-storage
-    private var _REF_STORAGE_BASE = STORAGE_BASE.child("profile_images")
+    private var _REF_STORAGE_PROFILE_IMAGES = STORAGE_BASE.child("profile_images")
+    private var _REF_STORAGE_USER_PICTURES = STORAGE_BASE.child("user_pictures")
     private var _REF_FRIENDS = DB_BASE.child("friends")
     private var _REF_USER_FRIENDS = DB_BASE.child("user_friends")
     private var _REF_MESSAGE = DB_BASE.child("messages")
@@ -60,8 +61,12 @@ class DataService {
         return _REF_USER_MESSAGE
     }
     
-    var REF_STORAGE_BASE: StorageReference {
-        return _REF_STORAGE_BASE
+    var REF_STORAGE_PROFILE_IMAGES: StorageReference {
+        return _REF_STORAGE_PROFILE_IMAGES
+    }
+    
+    var REF_STORAGE_USER_PICTURES: StorageReference {
+        return _REF_STORAGE_USER_PICTURES
     }
     
     func updateUserIntoDatabaseWithUID(_ uid: String, _ userData: Dictionary<String, Any>){
@@ -297,7 +302,7 @@ class DataService {
     }
     
     func registrationUserIntoDB(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error:Error?) -> ()){
-        let ref = REF_STORAGE_BASE.child(uid)
+        let ref = REF_STORAGE_PROFILE_IMAGES.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
         
         if let uploadImage = defaultUserImage?.jpegData(compressionQuality: COMPRESSION_IMAGE){
