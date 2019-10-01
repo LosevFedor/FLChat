@@ -146,7 +146,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        handleSend(nil)
+        handleSend(nil, nil)
         clearTextField()
     }
     
@@ -187,7 +187,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 }
                 ref.downloadURL { (url, error) in
                     guard let url = url else{ return }
-                    self.handleSend(url.absoluteString)
+                    self.handleSend(url.absoluteString, image)
                 }
             }
         }
@@ -197,7 +197,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         dismiss(animated: true, completion: nil)
     }
     
-    func handleSend(_ imageUrl: String?){
+    func handleSend(_ imageUrl: String?, _ img: UIImage?){
         let ref = DataService.instance.REF_MESSAGE
         let childRef = ref.childByAutoId()
         
@@ -209,7 +209,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         var value: Dictionary<String,Any> = [:]
         
         if let image = imageUrl {
-            value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "imageUrl": image] as [String : Any]
+            value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "imageUrl": image, "imageWidth": (img?.size.width)!, "imageHeight": (img?.size.height)!  ] as [String : Any]
         }else{
             value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": message] as [String : Any]
         }
@@ -249,8 +249,11 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 if let text = dict["message"] as? String{
                     message.message = text
                 }
+                
                 if let image = dict["imageUrl"] as? String {
                     message.image = image
+                    message.imageWidth = dict["imageWidth"] as? NSNumber
+                    message.imageHeight = dict["imageHeight"] as? NSNumber
                 }
                 
                 message.timeStamp = (dict["timeStamp"] as? Double)!
@@ -291,13 +294,17 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MESSAGE_CELL, for: indexPath) as? MessageCell else { return UICollectionViewCell()}
         
         let message = messagesArray[indexPath.row]
-        let moreSizeWight: CGFloat = 32
+       
         
         setupCell(cell, message)
         cell.textView.text = message.message
         
         if let text = message.message{
-            cell.bubbleWidthAnchor?.constant = estimateFromeForText(text).width + moreSizeWight
+             let addTextSizeWight: CGFloat = 32
+            cell.bubbleWidthAnchor?.constant = estimateFromeForText(text).width + addTextSizeWight
+        }else if message.image != nil {
+            let addImageSizeWight: CGFloat = 200
+            cell.bubbleWidthAnchor?.constant = addImageSizeWight
         }
         
         return cell
@@ -331,12 +338,18 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        var height: CGFloat = 60
-        if let text = messagesArray[indexPath.item].message{
-            let moreSizeHeight: CGFloat = 30
-            height = estimateFromeForText(text).height + moreSizeHeight
+        var height: CGFloat = 80
+        
+        let message = messagesArray[indexPath.item]
+        if let text = message.message{
+            let addTextSizeWight: CGFloat = 32
+            height = estimateFromeForText(text).height + addTextSizeWight
+        }else if let imageWidth = message.imageWidth?.floatValue, let imageHeight = message.imageHeight?.floatValue{
+            
+            height = CGFloat(imageHeight/imageWidth * 200)
         }
-        return CGSize(width: view.frame.width, height: height)
+        let width = UIScreen.main.bounds.width
+        return CGSize(width: width, height: height)
     }
     
     private func estimateFromeForText(_ text: String) -> CGRect{
