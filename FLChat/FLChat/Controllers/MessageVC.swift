@@ -148,6 +148,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBAction func sendBtnPressed(_ sender: Any) {
         handleSend(nil, nil)
         clearTextField()
+        sendBtn.isEnabled = false
     }
     
     
@@ -262,6 +263,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     complete(messages)
                     
                     self.attemptReloadOfCollection()
+                    
                 }
             }, withCancel: nil)
         }, withCancel: nil)
@@ -276,9 +278,16 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @objc func handleReloadCollection(){
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.scrollMessage()
         }
     }
-    func clearTextField(){
+    
+    private func scrollMessage(){
+        let indexPath = NSIndexPath(item: self.messagesArray.count - 1, section: 0)
+        self.collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: true)
+    }
+    
+    private func clearTextField(){
         userTextMessage.text = nil
     }
 

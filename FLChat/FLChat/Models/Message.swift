@@ -20,9 +20,4 @@ class Message: NSObject {
     
     var imageWidth: NSNumber?
     var imageHeight: NSNumber?
-    
-//    func chatPartnerId() -> String{
-//        return fromId == Auth.auth().currentUser?.uid ? toId! : fromId!
-//    }
-    
 }
