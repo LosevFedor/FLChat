@@ -21,7 +21,6 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var collectionView: UICollectionView!
     
     var messagesArray = [Message]()
-    //var messages = [Message]()
     
     var _name: String!
     var _image: UIImage!
@@ -46,8 +45,6 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         setUserFields()
         
         collectionView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
-        
-        setupKeyboardObservers()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -58,7 +55,6 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func setupKeyboardObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
     
     @objc func handleKeyboardWillShow(_ notification: Notification){
@@ -82,13 +78,13 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
-    func hiddenKeyboard(){
-        userTextMessage.resignFirstResponder()
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hiddenKeyboard()
         return true
+    }
+    
+    func hiddenKeyboard(){
+        userTextMessage.resignFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,7 +97,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         self.sendBtn.isEnabled = false
         userTextMessage.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
         
-        
+        setupKeyboardObservers()
     }
     
     @objc func textFieldDidChanged(){
