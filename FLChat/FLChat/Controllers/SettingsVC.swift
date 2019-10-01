@@ -56,7 +56,6 @@ class SettingsVC: UIViewController {
                 self.userImage.loadImageUsingCacheWithUrlString(currentImage)
                 self.switchValueSound.isOn = currentNotificationSound
                 self.switchValueNotification.isOn = currentNotificationOn
-                print("Successfully get params for User from batabase")
             }
         }
     }
@@ -206,7 +205,7 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     
     private func uploadNewUserImageIntoDB(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ upload: Bool, _ error: Error?) -> ()){
         let uid = (Auth.auth().currentUser?.uid)!
-        let ref = DataService.instance.REF_STORAGE_BASE.child(uid)
+        let ref = DataService.instance.REF_STORAGE_PROFILE_IMAGES.child(uid)
         
         if let uploadData = image.jpegData(compressionQuality: COMPRESSION_IMAGE){
             ref.putData(uploadData, metadata: nil) { (metadata, error) in

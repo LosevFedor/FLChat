@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "User A send message Copy.png",
+      "filename" : "send_message.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "User A send message Copy@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "User A send message Copy@3x.png",
       "scale" : "3x"
     }
   ],

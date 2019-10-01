@@ -38,6 +38,15 @@ class MessageCell: UICollectionViewCell {
         return image
     }()
     
+    let messageImageView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 16
+        image.layer.masksToBounds = true
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
     var bubbleWidthAnchor: NSLayoutConstraint?
     var bubbleViewRightAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
@@ -49,13 +58,23 @@ class MessageCell: UICollectionViewCell {
         addSubview(textView)
         addSubview(userImage)
         
-        setBubbleSettings()
-        setTextViewSettings()
-        setUserImageSettings()
+        bubbleView.addSubview(messageImageView)
+        
+        setBubbleConctrains()
+        setTextViewConctrains()
+        setUserImageConctrains()
+        setMessageImageViewConctrains()
         
     }
     
-    private func setBubbleSettings(){
+    private func setMessageImageViewConctrains(){
+        messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
+        messageImageView.topAnchor.constraint(equalTo: bubbleView.topAnchor).isActive = true
+        messageImageView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor).isActive = true
+        messageImageView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor).isActive = true
+    }
+    
+    private func setBubbleConctrains(){
         bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
         bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: userImage.rightAnchor, constant: 8)
         
@@ -65,14 +84,14 @@ class MessageCell: UICollectionViewCell {
         bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
-    private func setTextViewSettings(){
+    private func setTextViewConctrains(){
         textView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textView.rightAnchor.constraint(equalTo: bubbleView.rightAnchor).isActive = true
         textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
-    private func setUserImageSettings(){
+    private func setUserImageConctrains(){
         userImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         userImage.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         userImage.widthAnchor.constraint(equalToConstant: 32).isActive = true

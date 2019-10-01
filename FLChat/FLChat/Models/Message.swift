@@ -9,15 +9,15 @@ import UIKit
 import Firebase
 
 class Message: NSObject {
-    var id: String!
-    var fromId: String!
-    var toId: String!
-    var timeStamp: Double!
-    var message: String!
-    var image: UIImage!
+    var id: String?
     
-    func chatPartnerId() -> String{
-        return fromId == Auth.auth().currentUser?.uid ? toId! : fromId!
-    }
+    var fromId: String?
+    var toId: String?
+    var timeStamp: Double?
+    var message: String?
     
+    var image: String?
+    
+    var imageWidth: NSNumber?
+    var imageHeight: NSNumber?
 }

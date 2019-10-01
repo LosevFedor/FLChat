@@ -1384,27 +1384,55 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbe-gB-akk" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xF5-Po-gTC">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xF5-Po-gTC" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="323" y="3" width="44" height="44"/>
+                                        <color key="backgroundColor" red="0.91578382253646851" green="0.66975468397140503" blue="0.27038872241973877" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Tuq-1C-EPD"/>
                                             <constraint firstAttribute="height" constant="44" id="jQO-zn-hzf"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="18"/>
-                                        <state key="normal" title="Send">
+                                        <state key="normal" image="send_message">
                                             <color key="titleColor" red="0.95294767619999998" green="0.95292979479999995" blue="0.95294183489999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="sendBtnPressed:" destination="HYw-b7-lUM" eventType="touchUpInside" id="LX4-sj-a7X"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-hK-E9v">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-hK-E9v" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="8" y="3" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="EP3-XQ-4sV"/>
                                             <constraint firstAttribute="height" constant="44" id="WJc-Uj-tEk"/>
                                         </constraints>
+                                        <state key="normal" image="Select photo"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="sendPictureBtnPressed:" destination="HYw-b7-lUM" eventType="touchUpInside" id="iDs-n1-f55"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your message..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mOr-f7-pzS" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="57" y="5" width="261" height="40"/>
@@ -1495,7 +1523,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColorImage">
-                                                <color key="value" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
@@ -2322,7 +2350,9 @@
         <image name="Friend requests" width="58" height="53"/>
         <image name="Log in" width="285" height="60"/>
         <image name="Logo" width="287" height="259"/>
+        <image name="Select photo" width="560" height="436"/>
         <image name="Settings" width="62" height="60"/>
         <image name="defaultImage" width="256" height="256"/>
+        <image name="send_message" width="64" height="64"/>
     </resources>
 </document>

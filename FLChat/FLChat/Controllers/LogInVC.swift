@@ -98,7 +98,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
                     if UserDefaults.standard.isLoggedIn(){
                         DataService.instance.getUserCredentialsFromDatabase { (completeGetParams) in
                             if completeGetParams{
-                                print("Successfully get params for User from batabase")
                                 self.clearEmailAndPassFieldsAfterLogin()
                                 self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                             }
