@@ -31,6 +31,11 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     var _urlImage: String?
     var _uid: String?
     
+    var startFrame: CGRect?
+    var lightGrayBackgroundView: UIView?
+    var tappedImage: UIImageView?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -298,6 +303,7 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MESSAGE_CELL, for: indexPath) as? MessageCell else { return UICollectionViewCell()}
         
+        cell.MessageVC = self
         let message = messagesArray[indexPath.row]
        
         
@@ -307,13 +313,65 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         if let text = message.message{
              let addTextSizeWight: CGFloat = 32
             cell.bubbleWidthAnchor?.constant = estimateFromeForText(text).width + addTextSizeWight
+            cell.textView.isHidden = false
         }else if message.image != nil {
             let addImageSizeWight: CGFloat = 200
             cell.bubbleWidthAnchor?.constant = addImageSizeWight
+            cell.textView.isHidden = true
         }
         
         return cell
     }
+    
+    func performZoomInImageView(_ tappedImage: UIImageView){
+        
+        self.tappedImage = tappedImage
+        self.tappedImage?.isHidden = true
+        
+        startFrame = tappedImage.superview?.convert(tappedImage.frame, to: nil)
+        
+        let zoomingImage = UIImageView(frame: startFrame!)
+        zoomingImage.image = tappedImage.image
+        zoomingImage.isUserInteractionEnabled = true
+        zoomingImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+        
+        if let keyWindow = UIApplication.shared.keyWindow{
+            
+            lightGrayBackgroundView = UIView(frame: keyWindow.frame)
+            lightGrayBackgroundView?.backgroundColor = #colorLiteral(red: 0.8511615396, green: 0.9766409993, blue: 0.9483792186, alpha: 1)
+            lightGrayBackgroundView?.alpha = 0
+            keyWindow.addSubview(lightGrayBackgroundView!)
+            
+            keyWindow.addSubview(zoomingImage)
+            
+            let height = self.startFrame!.height / self.startFrame!.width * keyWindow.frame.width
+            
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.lightGrayBackgroundView?.alpha = 1
+                zoomingImage.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
+                
+                zoomingImage.center = keyWindow.center
+            }, completion: nil)
+        }
+    }
+    
+    @objc func handleZoomOut(_ tapGesture: UITapGestureRecognizer){
+        if let zoomOutImage = tapGesture.view{
+            
+            zoomOutImage.layer.cornerRadius = 16
+            zoomOutImage.clipsToBounds = true
+            
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                zoomOutImage.frame = self.startFrame!
+                self.lightGrayBackgroundView?.alpha = 0
+            }) { (completion) in
+                zoomOutImage.removeFromSuperview()
+                self.tappedImage?.isHidden = false
+            }
+        }
+    }
+    
+    
     
     private func setupCell(_ cell: MessageCell, _ message: Message){
         
