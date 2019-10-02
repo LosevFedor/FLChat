@@ -10,6 +10,8 @@ import UIKit
 
 class MessageCell: UICollectionViewCell {
     
+    var MessageVC: MessageVC?
+    
     let textView: UITextView = {
         let tv = UITextView()
         tv.text = "userMessageText"
@@ -17,6 +19,7 @@ class MessageCell: UICollectionViewCell {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.backgroundColor = UIColor.clear
         tv.textColor = #colorLiteral(red: 0.3798769116, green: 0.4695134759, blue: 0.4463024735, alpha: 1)
+        tv.isEditable = false
         return tv
     }()
     
@@ -38,14 +41,22 @@ class MessageCell: UICollectionViewCell {
         return image
     }()
     
-    let messageImageView: UIImageView = {
+    lazy var messageImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 16
         image.layer.masksToBounds = true
         image.contentMode = .scaleAspectFill
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
         return image
     }()
+    
+    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer){
+        if let tappedImage = tapGesture.view as? UIImageView {
+            self.MessageVC?.performZoomInImageView(tappedImage)
+        }
+    }
     
     var bubbleWidthAnchor: NSLayoutConstraint?
     var bubbleViewRightAnchor: NSLayoutConstraint?
