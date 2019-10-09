@@ -21,10 +21,15 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchUserByEmail.setLeftPaddingPoints(PADDING_POINTS)
+        searchUserByEmail.setRightPaddingPoints(PADDING_POINTS)
+        
         collectionView.alwaysBounceVertical = true
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         searchUserByEmail.delegate = self
+        
         searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
     

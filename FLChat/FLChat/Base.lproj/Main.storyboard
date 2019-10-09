@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGR-f7-IJ8">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="b0z-Xs-Q6C">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Nj9-gX-oXR">
-                                                <rect key="frame" x="35" y="0.0" width="305" height="275"/>
+                                                <rect key="frame" x="35" y="0.0" width="305" height="295"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="GjN-jU-ltu">
-                                                <rect key="frame" x="35" y="289" width="305" height="114"/>
+                                                <rect key="frame" x="35" y="309" width="305" height="114"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fyh-tE-p1l">
                                                         <rect key="frame" x="0.0" y="0.0" width="305" height="50"/>
@@ -75,7 +73,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7z7-kK-1Ut">
-                                                <rect key="frame" x="35" y="417" width="305" height="60"/>
+                                                <rect key="frame" x="35" y="437" width="305" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="8mx-oe-XTV"/>
                                                 </constraints>
@@ -86,7 +84,7 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jeA-eW-jFF">
-                                                <rect key="frame" x="70" y="491" width="235" height="82"/>
+                                                <rect key="frame" x="70" y="511" width="235" height="82"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85f-Tk-DWF">
                                                         <rect key="frame" x="0.0" y="0.0" width="235" height="37"/>
@@ -129,7 +127,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By using FL.Chat, you agree to the Terms, Cookie Policy, and Privacy Policy." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKK-iD-PQi" customClass="LablePolicy" customModule="FLChat" customModuleProvider="target">
-                                                <rect key="frame" x="35" y="587" width="305" height="60"/>
+                                                <rect key="frame" x="35" y="607" width="305" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="IBD-hF-9oi"/>
                                                 </constraints>
@@ -192,11 +190,11 @@
             <objects>
                 <viewController id="LvA-Zy-2O7" customClass="HomeVC" customModule="FLChat" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IPt-aM-W1R">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uJ-jb-gvl">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="587" width="375" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="bCB-Ee-z9C">
                                         <rect key="frame" x="20" y="4" width="335" height="52"/>
@@ -243,7 +241,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRd-AX-jFu">
-                                <rect key="frame" x="0.0" y="130" width="375" height="477"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="477"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.89999997615814209" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g9Y-Tf-Gzw" customClass="DesigneCollectionView" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="335" height="437"/>
@@ -354,7 +352,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2A-gw-bDU">
-                                <rect key="frame" x="0.0" y="20" width="375" height="110"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJf-Di-7PH">
                                         <rect key="frame" x="297" y="0.0" width="58" height="60"/>
@@ -381,7 +379,7 @@
                                             <action selector="settingsBtnPressed:" destination="LvA-Zy-2O7" eventType="touchUpInside" id="Z10-p7-aXh"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AEB-3b-4su" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AEB-3b-4su" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="61" width="335" height="45"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -389,7 +387,7 @@
                                             <constraint firstAttribute="height" constant="45" id="o77-9H-NV2"/>
                                         </constraints>
                                         <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -483,11 +481,11 @@
             <objects>
                 <viewController storyboardIdentifier="goToAllRequestFriend" id="jqM-0d-fs2" customClass="AllRequestFriendsVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eLG-yR-kBy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5o8-XV-xMW">
-                                <rect key="frame" x="0.0" y="20" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="geF-27-btd">
                                         <rect key="frame" x="20" y="0.0" width="335" height="39"/>
@@ -513,7 +511,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5F5-ZY-YQs" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5F5-ZY-YQs" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="39" width="335" height="45"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -572,11 +570,11 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oH6-cB-dfC">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.89999997615814209" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="raW-Ii-hFV" customClass="DesigneCollectionView" customModule="FLChat" customModuleProvider="target">
-                                <rect key="frame" x="20" y="122" width="335" height="525"/>
+                                <rect key="frame" x="20" y="102" width="335" height="525"/>
                                 <color key="backgroundColor" red="0.94902604820000003" green="0.94900828599999998" blue="0.9490202069" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="s0T-ne-7A1">
                                     <size key="itemSize" width="87" height="119"/>
@@ -705,11 +703,11 @@
             <objects>
                 <viewController storyboardIdentifier="goToMyRequestFriend" id="SAb-gV-O3r" customClass="MyRequestFriendsVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mft-Ix-Mgo" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJY-Vr-u1v">
-                                <rect key="frame" x="0.0" y="20" width="375" height="82"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="KCm-nv-npu">
                                         <rect key="frame" x="20" y="0.0" width="335" height="39"/>
@@ -735,7 +733,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7VL-Jq-lXZ" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7VL-Jq-lXZ" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="39" width="335" height="45"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -784,11 +782,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7t8-Zy-Jfe">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.89999997615814209" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DOs-92-mTl" customClass="DesigneCollectionView" customModule="FLChat" customModuleProvider="target">
-                                <rect key="frame" x="20" y="122" width="335" height="525"/>
+                                <rect key="frame" x="20" y="102" width="335" height="525"/>
                                 <color key="backgroundColor" red="0.94902604820000003" green="0.94900828599999998" blue="0.9490202069" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XkI-Co-YLE">
                                     <size key="itemSize" width="87" height="119"/>
@@ -928,13 +926,13 @@
             <objects>
                 <viewController storyboardIdentifier="goToAddNewFriends" id="1T7-GW-Fnc" customClass="AddNewFriendsVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g80-JS-YyI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXe-60-kJ3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-pd-lrR" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" placeholder="Find user by email.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-pd-lrR" customClass="DesigneTextField" customModule="FLChat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="59" width="335" height="45"/>
                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -989,7 +987,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="jnV-cJ-uFn">
-                                <rect key="frame" x="20" y="20" width="335" height="39"/>
+                                <rect key="frame" x="20" y="0.0" width="335" height="39"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNV-Kk-3Of">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="39"/>
@@ -1013,10 +1011,10 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5e-0b-9N6">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="537"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EmI-ia-zWq" customClass="DesigneCollectionView" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="335" height="517"/>
+                                        <rect key="frame" x="20" y="20" width="335" height="497"/>
                                         <color key="backgroundColor" red="0.94902604818344116" green="0.9490082859992981" blue="0.94902020692825317" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eli-hz-QgT">
                                             <size key="itemSize" width="87" height="119"/>
@@ -1158,10 +1156,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRF-b4-fvR">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XE4-jl-KVT" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi6-HC-n8b">
                                         <rect key="frame" x="50" y="68" width="305" height="21.5"/>
@@ -1227,10 +1225,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTB-HX-d8h">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="7Cg-g9-2yY" customClass="DesigneImage" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="62.5" y="53.5" width="250" height="250"/>
+                                        <rect key="frame" x="62.5" y="63.5" width="250" height="250"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="Grn-DP-HgL"/>
                                             <constraint firstAttribute="height" constant="250" id="bgw-ui-Gh6"/>
@@ -1254,7 +1252,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What you can to do?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sB7-yr-VhB">
-                                        <rect key="frame" x="20" y="358.5" width="335" height="24"/>
+                                        <rect key="frame" x="20" y="368.5" width="335" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" red="0.65363675355911255" green="0.7948877215385437" blue="0.46264183521270752" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -1262,7 +1260,7 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wkg-xq-Wji" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="402.5" width="315" height="60"/>
+                                        <rect key="frame" x="30" y="412.5" width="315" height="60"/>
                                         <color key="backgroundColor" red="0.65363675355911255" green="0.7948877215385437" blue="0.46264183521270752" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="vpi-DD-N2y"/>
@@ -1297,7 +1295,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXM-d4-RDb">
-                                        <rect key="frame" x="20" y="318.5" width="335" height="25"/>
+                                        <rect key="frame" x="20" y="328.5" width="335" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.48778480291366577" green="0.87946885824203491" blue="0.76468688249588013" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -1362,7 +1360,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uSi-yQ-9Yc">
-                                <rect key="frame" x="0.0" y="75" width="375" height="542"/>
+                                <rect key="frame" x="0.0" y="55" width="375" height="562"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EAT-2u-XOd">
                                     <size key="itemSize" width="50" height="50"/>
@@ -1496,7 +1494,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cc-KO-78k" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="55"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRu-cp-qWM">
                                         <rect key="frame" x="20" y="8" width="30" height="39"/>
@@ -1609,11 +1607,11 @@
             <objects>
                 <viewController storyboardIdentifier="goToSettings" id="mFu-o1-pOT" customClass="SettingsVC" customModule="FLChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IDy-YM-2qU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZA-72-F6X">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="ZDw-ap-63v">
                                         <rect key="frame" x="20" y="0.0" width="335" height="39"/>
@@ -1936,10 +1934,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L6Z-DT-EXP">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-Ay-DO6" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWn-a9-J5O">
                                         <rect key="frame" x="50" y="68" width="305" height="21.5"/>
@@ -2005,10 +2003,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEG-YT-ibW">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="qWR-gY-wiY" customClass="DesigneImage" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="62.5" y="53.5" width="250" height="250"/>
+                                        <rect key="frame" x="62.5" y="63.5" width="250" height="250"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="Pe6-XR-0tH"/>
                                             <constraint firstAttribute="width" constant="250" id="cpi-ut-hjo"/>
@@ -2032,7 +2030,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What you can to do?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXG-Yz-LVp">
-                                        <rect key="frame" x="20" y="358.5" width="335" height="24"/>
+                                        <rect key="frame" x="20" y="368.5" width="335" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2040,7 +2038,7 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klj-rO-LMi">
-                                        <rect key="frame" x="20" y="318.5" width="335" height="25"/>
+                                        <rect key="frame" x="20" y="328.5" width="335" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.48778480289999998" green="0.87946885819999998" blue="0.76468688250000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -2101,10 +2099,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fqf-uV-Bg9">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVn-qc-As7" customClass="DesigneView" customModule="FLChat" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hx-zc-NGg">
                                         <rect key="frame" x="50" y="67" width="305" height="20.5"/>
@@ -2170,10 +2168,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9f-e3-E96">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="dpE-W0-4Ic" customClass="DesigneImage" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="62.5" y="28.5" width="250" height="250"/>
+                                        <rect key="frame" x="62.5" y="38.5" width="250" height="250"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="Edq-Ia-8Tq"/>
                                             <constraint firstAttribute="width" constant="250" id="I29-1h-3Fx"/>
@@ -2197,7 +2195,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you want, add this user to your friends list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4E-ep-42R">
-                                        <rect key="frame" x="20" y="322.5" width="335" height="18"/>
+                                        <rect key="frame" x="20" y="332.5" width="335" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2205,7 +2203,7 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you do not like them, send the user to the black list." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ik-vV-28F">
-                                        <rect key="frame" x="20" y="437.5" width="335" height="36"/>
+                                        <rect key="frame" x="20" y="447.5" width="335" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -2213,7 +2211,7 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uo-zt-Eqc">
-                                        <rect key="frame" x="20" y="288.5" width="335" height="24"/>
+                                        <rect key="frame" x="20" y="298.5" width="335" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" red="0.34566086530685425" green="0.7128029465675354" blue="0.28217911720275879" alpha="0.68525256849315064" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -2221,7 +2219,7 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5W-0E-Ob3" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="347.5" width="335" height="50"/>
+                                        <rect key="frame" x="20" y="357.5" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="0.51811322773972601" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="NCP-Rq-PSX"/>
@@ -2248,7 +2246,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vj-0F-8Dp">
-                                        <rect key="frame" x="172.5" y="407.5" width="30" height="20"/>
+                                        <rect key="frame" x="172.5" y="417.5" width="30" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="6Fq-GW-TvM"/>
                                             <constraint firstAttribute="height" constant="20" id="OkV-YG-z43"/>
@@ -2260,7 +2258,7 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSI-kr-mhd" customClass="DesigneButtons" customModule="FLChat" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="480.5" width="335" height="50"/>
+                                        <rect key="frame" x="20" y="490.5" width="335" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="KZB-YU-eVw"/>

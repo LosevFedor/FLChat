@@ -18,6 +18,8 @@ let PASSWORD_LESS = "The password must be 6 characters long or more."
 let EMAIL_LESS = "The email must be 6 characters long or more."
 let DO_YOU_NEED_NEW_ACCOUNT = "Do you want to create a new account?"
 
+// Set padding points for search into text field
+let PADDING_POINTS: CGFloat = 16
 
 // Perform segue
 let GO_TO_HOME = "goToHome"
@@ -46,7 +48,7 @@ let SHOW_ALPHA: CGFloat = 0.5
 let HIDE_ALPHA: CGFloat = 0.0
 let dimingBackgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
-let COMPRESSION_IMAGE: CGFloat = 0.001
+let COMPRESSION_IMAGE: CGFloat = 0.01
 
 let DEFAULT_PHONE_FIELD = "User phone number"
 let DEFAULT_NAME_FIELD = "User name"

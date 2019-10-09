@@ -51,6 +51,7 @@
 		3CCB33DC22D4976600EB8656 /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */; };
 		3CCB33DE22D4BEA800EB8656 /* SlideInTransiotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */; };
 		3CCB33E022D4C94400EB8656 /* HomeVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB33DF22D4C94400EB8656 /* HomeVC+Extension.swift */; };
+		3CD8B37F234DBEAA00AB3B0B /* TextField+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD8B37E234DBEAA00AB3B0B /* TextField+Extention.swift */; };
 		FCD5D807F31715E274DA4906 /* libPods-FLChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BA00983289252FB128A1B6 /* libPods-FLChat.a */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		3CCB33DD22D4BEA800EB8656 /* SlideInTransiotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransiotion.swift; sourceTree = "<group>"; };
 		3CCB33DF22D4C94400EB8656 /* HomeVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeVC+Extension.swift"; sourceTree = "<group>"; };
+		3CD8B37E234DBEAA00AB3B0B /* TextField+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extention.swift"; sourceTree = "<group>"; };
 		589ECA32C45250B69E1326C7 /* Pods-FLChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.release.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.release.xcconfig"; sourceTree = "<group>"; };
 		E0221BF3073E557728DF9AD1 /* Pods-FLChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLChat.debug.xcconfig"; path = "Target Support Files/Pods-FLChat/Pods-FLChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,6 +319,7 @@
 				3CCB33DB22D4976600EB8656 /* UserDefault+Extension.swift */,
 				3CCB33DF22D4C94400EB8656 /* HomeVC+Extension.swift */,
 				3C1FED22231E1A3900710A40 /* ImageView+Extention.swift */,
+				3CD8B37E234DBEAA00AB3B0B /* TextField+Extention.swift */,
 			);
 			name = Extentions;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				2AE20DCA22DC372300779A23 /* DataService.swift in Sources */,
 				3C1FED25231E411500710A40 /* AllRequestFriendsVC.swift in Sources */,
 				3C104EB0230F731900461F19 /* SelectNewUserFriendVC.swift in Sources */,
+				3CD8B37F234DBEAA00AB3B0B /* TextField+Extention.swift in Sources */,
 				2AA3138222CB02F5000113A4 /* HomeVC.swift in Sources */,
 				3C2216362314EA7900A8DA0C /* DesigneTextField.swift in Sources */,
 				3CAD6FBD230D293700F6F464 /* DesigneCollectionView.swift in Sources */,
@@ -731,6 +735,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FLChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -755,6 +760,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FLChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

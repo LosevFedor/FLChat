@@ -18,7 +18,7 @@ extension UIImageView {
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
             if error != nil {
-                print("Cant convert the url for image: \(String(describing: error?.localizedDescription))")
+                print("Can not convert the url for image: \(String(describing: error?.localizedDescription))")
             }
             DispatchQueue.main.async {
                 if let downloadedImage = UIImage(data: data!){
