@@ -17,7 +17,10 @@ class Message: NSObject {
     var message: String?
     
     var image: String?
-    
     var imageWidth: NSNumber?
     var imageHeight: NSNumber?
+    
+    var video: String?
+    var videoWidth: NSNumber?
+    var videoHeight: NSNumber?
 }

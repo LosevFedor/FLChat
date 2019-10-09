@@ -22,13 +22,15 @@ class DataService {
     private var _REF_FRIEND_REQUEST = DB_BASE.child("friend_request")
     private var _REF_USER_FRIEND_REQUEST = DB_BASE.child("user_friend_request")
     
-    // Path to user image folder in to firebase-storage
-    private var _REF_STORAGE_PROFILE_IMAGES = STORAGE_BASE.child("profile_images")
-    private var _REF_STORAGE_USER_PICTURES = STORAGE_BASE.child("user_pictures")
     private var _REF_FRIENDS = DB_BASE.child("friends")
     private var _REF_USER_FRIENDS = DB_BASE.child("user_friends")
+    
     private var _REF_MESSAGE = DB_BASE.child("messages")
     private var _REF_USER_MESSAGE = DB_BASE.child("users_messages")
+    
+    private var _REF_STORAGE_PROFILE_IMAGES = STORAGE_BASE.child("profile_images")
+    private var _REF_STORAGE_USER_PICTURES = STORAGE_BASE.child("user_pictures")
+    private var _REF_STORAGE_USER_VIDEOS = STORAGE_BASE.child("user_movies")
     
     var REF_BASE: DatabaseReference {
         return _REF_BASE
@@ -67,6 +69,10 @@ class DataService {
     
     var REF_STORAGE_USER_PICTURES: StorageReference {
         return _REF_STORAGE_USER_PICTURES
+    }
+    
+    var REF_STORAGE_USER_VIDEOS: StorageReference {
+        return _REF_STORAGE_USER_VIDEOS
     }
     
     func updateUserIntoDatabaseWithUID(_ uid: String, _ userData: Dictionary<String, Any>){

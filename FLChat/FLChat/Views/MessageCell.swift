@@ -52,6 +52,17 @@ class MessageCell: UICollectionViewCell {
         return image
     }()
     
+    lazy var messageVideoView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 16
+        image.layer.masksToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
+        return image
+    }()
+    
     @objc func handleZoomTap(tapGesture: UITapGestureRecognizer){
         if let tappedImage = tapGesture.view as? UIImageView {
             self.MessageVC?.performZoomInImageView(tappedImage)
@@ -70,22 +81,32 @@ class MessageCell: UICollectionViewCell {
         addSubview(userImage)
         
         bubbleView.addSubview(messageImageView)
+        bubbleView.addSubview(messageVideoView)
         
-        setBubbleConctrains()
-        setTextViewConctrains()
-        setUserImageConctrains()
-        setMessageImageViewConctrains()
+        setBubbleConstrains()
+        setTextViewConstrains()
+        setUserImageConstrains()
+        
+        setMessageImageViewConstrains()
+        setMessageVideoViewConstrains()
         
     }
     
-    private func setMessageImageViewConctrains(){
+    private func setMessageVideoViewConstrains(){
+        messageVideoView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
+        messageVideoView.topAnchor.constraint(equalTo: bubbleView.topAnchor).isActive = true
+        messageVideoView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor).isActive = true
+        messageVideoView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor).isActive = true
+    }
+    
+    private func setMessageImageViewConstrains(){
         messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
         messageImageView.topAnchor.constraint(equalTo: bubbleView.topAnchor).isActive = true
         messageImageView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor).isActive = true
         messageImageView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor).isActive = true
     }
     
-    private func setBubbleConctrains(){
+    private func setBubbleConstrains(){
         bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
         bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: userImage.rightAnchor, constant: 8)
         
@@ -95,14 +116,14 @@ class MessageCell: UICollectionViewCell {
         bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
-    private func setTextViewConctrains(){
+    private func setTextViewConstrains(){
         textView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textView.rightAnchor.constraint(equalTo: bubbleView.rightAnchor).isActive = true
         textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
-    private func setUserImageConctrains(){
+    private func setUserImageConstrains(){
         userImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         userImage.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         userImage.widthAnchor.constraint(equalToConstant: 32).isActive = true
