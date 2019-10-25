@@ -16,6 +16,11 @@ class Users{
     private var _userPhone: String?
     private var _userStatus: Bool?
     
+    
+    deinit {
+        print("UserSS: all referenses was remove")
+    }
+    
     var userId: String {
         get{
             return _userId!

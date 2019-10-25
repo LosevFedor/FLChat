@@ -7,10 +7,57 @@
 //
 
 import UIKit
+//import AVFoundation
 
 class MessageCell: UICollectionViewCell {
     
     var MessageVC: MessageVC?
+    var message: Message?
+    
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .whiteLarge)
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        activity.hidesWhenStopped = true
+        return activity
+    }()
+    
+//   lazy var playButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//
+//        let image = UIImage(named: "playButton")
+//        button.setImage(image, for: .normal)
+//        button.tintColor  = #colorLiteral(red: 1, green: 0.6632423401, blue: 0, alpha: 1)
+//
+//        button.addTarget(self, action: #selector(handlePlay), for: .touchUpInside)
+//
+//        return button
+//    }()
+    
+//    var playerLayer: AVPlayerLayer?
+//    var player: AVPlayer?
+    
+//    @objc func handlePlay(){
+//        print("1")
+//        if let videoUrlString = message?.video, let url = URL(string: videoUrlString){
+//            player = AVPlayer(url: url)
+//             print("2")
+//            playerLayer = AVPlayerLayer(player: player)
+//            playerLayer?.frame = bubbleView.bounds
+//            bubbleView.layer.addSublayer(playerLayer!)
+//            player?.play()
+//            activityIndicatorView.startAnimating()
+//            playButton.isHidden = true
+//
+//        }
+//    }
+    
+//    override func prepareForReuse(){
+//        super.prepareForReuse()
+//        playerLayer?.removeFromSuperlayer()
+//        player?.pause()
+//        activityIndicatorView.startAnimating()
+//    }
     
     let textView: UITextView = {
         let tv = UITextView()
@@ -52,18 +99,21 @@ class MessageCell: UICollectionViewCell {
         return image
     }()
     
-    lazy var messageVideoView: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.layer.cornerRadius = 16
-        image.layer.masksToBounds = true
-        image.contentMode = .scaleAspectFill
-        image.isUserInteractionEnabled = true
-        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
-        return image
-    }()
+//    lazy var messageVideoView: UIImageView = {
+//        let videoImage = UIImageView()
+//        videoImage.translatesAutoresizingMaskIntoConstraints = false
+//        videoImage.layer.cornerRadius = 16
+//        videoImage.layer.masksToBounds = true
+//        videoImage.contentMode = .scaleAspectFill
+//        videoImage.isUserInteractionEnabled = true
+//        videoImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
+//        return videoImage
+//    }()
     
     @objc func handleZoomTap(tapGesture: UITapGestureRecognizer){
+//        if message?.video != nil {
+//            return
+//        }
         if let tappedImage = tapGesture.view as? UIImageView {
             self.MessageVC?.performZoomInImageView(tappedImage)
         }
@@ -81,23 +131,41 @@ class MessageCell: UICollectionViewCell {
         addSubview(userImage)
         
         bubbleView.addSubview(messageImageView)
-        bubbleView.addSubview(messageVideoView)
+//        bubbleView.addSubview(messageVideoView)
+//        bubbleView.addSubview(playButton)
+//        bubbleView.addSubview(activityIndicatorView)
         
         setBubbleConstrains()
         setTextViewConstrains()
         setUserImageConstrains()
         
         setMessageImageViewConstrains()
-        setMessageVideoViewConstrains()
+//        setMessageVideoViewConstrains()
+//        setPlayButtonViewConstrains()
+//        setActivityIndicatorViewConstrains()
         
     }
     
-    private func setMessageVideoViewConstrains(){
-        messageVideoView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
-        messageVideoView.topAnchor.constraint(equalTo: bubbleView.topAnchor).isActive = true
-        messageVideoView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor).isActive = true
-        messageVideoView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor).isActive = true
-    }
+//    private func setActivityIndicatorViewConstrains(){
+//        activityIndicatorView.centerXAnchor.constraint(equalTo: bubbleView.centerXAnchor).isActive = true
+//        activityIndicatorView.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor).isActive = true
+//        activityIndicatorView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+//        activityIndicatorView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
+    
+//    private func setPlayButtonViewConstrains(){
+//        playButton.centerXAnchor.constraint(equalTo: bubbleView.centerXAnchor).isActive = true
+//        playButton.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor).isActive = true
+//        playButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+//        playButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
+    
+//    private func setMessageVideoViewConstrains(){
+//        messageVideoView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
+//        messageVideoView.topAnchor.constraint(equalTo: bubbleView.topAnchor).isActive = true
+//        messageVideoView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor).isActive = true
+//        messageVideoView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor).isActive = true
+//    }
     
     private func setMessageImageViewConstrains(){
         messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true

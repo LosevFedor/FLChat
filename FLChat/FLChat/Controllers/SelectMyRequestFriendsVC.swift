@@ -29,8 +29,6 @@ class SelectMyRequestFriendsVC: UIViewController {
     private var currentDescriptionText: String!
     private var currentUserUrlImage: String!
     
-    
-    
     fileprivate func addBlureEffeckForBackgroundUserImg() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -52,6 +50,10 @@ class SelectMyRequestFriendsVC: UIViewController {
         backgroundUserImg.image = currentBackgroundUserImg
         
         addBlureEffeckForBackgroundUserImg()
+    }
+    
+    deinit {
+        print("SelectMyRequestFriendsVC: all referenses was remove")
     }
     
     func initData(_ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool, _ urlImage: String){

@@ -20,6 +20,10 @@ class User: NSObject{
     var notificationOn: Bool = true
     var notificationSoundOn: Bool = true
     
+    deinit {
+        print("User: all referenses was remove")
+    }
+    
     func resetUserSettingsToDefault(){
         name = "User name"
         image = "User image"

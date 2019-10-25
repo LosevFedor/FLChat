@@ -8,8 +8,8 @@
 
 import UIKit
 import Firebase
-import AVFoundation
-import MobileCoreServices
+//import AVFoundation
+//import MobileCoreServices
 
 class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -52,6 +52,10 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         collectionView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
     }
     
+    deinit {
+        print("MessageVC: all referenses was remove")
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self)
@@ -63,7 +67,6 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     @objc func handleKeyboardWillShow(_ notification: Notification){
-        
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         guard let keyboardDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double  else { return }
         
@@ -71,7 +74,6 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         UIView.animate(withDuration: keyboardDuration) {
             self.view.layoutIfNeeded()
         }
-        
     }
     
     @objc func handleKeyboardWillHide(_ notification: Notification){
@@ -94,10 +96,9 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        observUserMessages { (returnedMessageArray) in
-            self.messagesArray = returnedMessageArray
+        observUserMessages { [weak self] (returnedMessageArray) in
+            self?.messagesArray = returnedMessageArray
         }
-        
         
         self.sendBtn.isEnabled = false
         userTextMessage.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
@@ -147,7 +148,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        handleSend(nil, nil, nil, nil)
+        handleSend(nil, nil/*, nil, nil*/)
         clearTextField()
         sendBtn.isEnabled = false
     }
@@ -158,65 +159,67 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         imagepickerController.delegate = self
         imagepickerController.allowsEditing = true
-        imagepickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+//        imagepickerController.mediaTypes = [kUTTypeImage as String/*, kUTTypeMovie as String*/]
         present(imagepickerController, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let videoUrl = info[.mediaURL] as? URL {
-            handleVideoSelectedForInfo(videoUrl)
-        }else{
+//        if let videoUrl = info[.mediaURL] as? URL {
+//            handleVideoSelectedForInfo(videoUrl) { (url, image) in
+//                self.handleSend(nil, nil, url, image)
+//            }
+//        }else{
             handleImageSlectedForInfo(info)
-        }
+//        }
         
         dismiss(animated: true, completion: nil)
     }
     
-    private func handleVideoSelectedForInfo(_ videoUrl: URL){
-        
-        let uid = (Auth.auth().currentUser?.uid)!
-        let timeSend = NSDate().timeIntervalSince1970
-        let fileName = "\(uid):\(timeSend).mov"
-        
-        let ref = DataService.instance.REF_STORAGE_USER_VIDEOS.child(fileName)
-        
-        let image = self.thumbnailImageForFileUrl(fileUrl: videoUrl)
-        
-        if let uploadData = image?.jpegData(compressionQuality: 0.2){
-            let uploadTask = ref.putData(uploadData, metadata: nil) { (metadata, error) in
-                if error != nil{
-                    print("Failed to upload image:\(String(describing: error?.localizedDescription))")
-                }
-                ref.downloadURL { (url, error) in
-                    guard let url = url else{ return }
-                    self.handleSend(nil, nil, url.absoluteString, image)
-                }
-            }
-            
-            uploadTask.observe(.progress) { (snapshot) in
-                if (snapshot.progress?.completedUnitCount) != nil {
-                    //add sinner
-                }
-            }
-            uploadTask.observe(.success) { (snapshot) in
-                //delet spiner
-            }
-        }
-    }
+//    private func handleVideoSelectedForInfo(_ videoUrl: URL, completion: @escaping (_ url: String, _ image: UIImage) -> ()){
+//
+//        let uid = (Auth.auth().currentUser?.uid)!
+//        let timeSend = NSDate().timeIntervalSince1970
+//        let fileName = "\(uid):\(timeSend).mov"
+//
+//        let ref = DataService.instance.REF_STORAGE_USER_VIDEOS.child(fileName)
+//
+//        let image = self.thumbnailImageForFileUrl(fileUrl: videoUrl)
+//
+//        if let uploadData = image?.jpegData(compressionQuality: 0.2){
+//            let uploadTask = ref.putData(uploadData, metadata: nil) { (metadata, error) in
+//                if error != nil{
+//                    print("Failed to upload image:\(String(describing: error?.localizedDescription))")
+//                }
+//                ref.downloadURL { (url, error) in
+//                    guard let url = url else{ return }
+//                    completion(url.absoluteString, image!)
+//                }
+//            }
+//
+//            uploadTask.observe(.progress) { (snapshot) in
+//                if (snapshot.progress?.completedUnitCount) != nil {
+//                    //add sinner
+//                }
+//            }
+//            uploadTask.observe(.success) { (snapshot) in
+//                //delet spiner
+//            }
+//        }
+//    }
     
-    private func thumbnailImageForFileUrl(fileUrl: URL) -> UIImage?{
-        let asset = AVAsset(url: fileUrl)
-        let imageGenerator = AVAssetImageGenerator(asset: asset)
-        
-        do{
-            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60), actualTime: nil)
-            return UIImage(cgImage: thumbnailCGImage)
-        }catch let error{
-            print("Can not did try/cetch block in thumbnailCGImage: \(error)")
-        }
-        return nil
-    }
+//    private func thumbnailImageForFileUrl(fileUrl: URL) -> UIImage?{
+//        let asset = AVAsset(url: fileUrl)
+//        let imageGenerator = AVAssetImageGenerator(asset: asset)
+//        
+//        do{
+//            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60), actualTime: nil)
+//            return UIImage(cgImage: thumbnailCGImage)
+//        }catch let error{
+//            print("Can not did try/cetch block in thumbnailCGImage: \(error)")
+//        }
+//        return nil
+//    }
     
     private func handleImageSlectedForInfo(_ info: [UIImagePickerController.InfoKey : Any]){
         var selectedImageFromPicker:UIImage?
@@ -230,6 +233,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             uploadToStorageUsingImage(selectedImage)
         }
     }
+    
     private func uploadToStorageUsingImage(_ image: UIImage){
         
         let timeSend = NSDate().timeIntervalSince1970
@@ -239,13 +243,13 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let ref = DataService.instance.REF_STORAGE_USER_PICTURES.child(fileName)
         
         if let uploadData = image.jpegData(compressionQuality: COMPRESSION_IMAGE){
-            ref.putData(uploadData, metadata: nil) { (metadata, error) in
+            ref.putData(uploadData, metadata: nil) { [weak self] (metadata, error) in
                 if error != nil{
                     print("Failed to upload image:\(String(describing: error?.localizedDescription))")
                 }
-                ref.downloadURL { (url, error) in
+                ref.downloadURL { [weak self] (url, error) in
                     guard let url = url else{ return }
-                    self.handleSend(url.absoluteString, image, nil, nil)
+                    self?.handleSend(url.absoluteString, image/*, nil, nil*/)
                 }
             }
         }
@@ -255,7 +259,7 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         dismiss(animated: true, completion: nil)
     }
     
-    func handleSend(_ imageUrl: String?, _ img: UIImage?, _ videoUrl: String?, _ videoImage: UIImage?){
+    func handleSend(_ imageUrl: String?, _ img: UIImage?/*, _ videoUrl: String?, _ videoImage: UIImage?*/){
         let ref = DataService.instance.REF_MESSAGE
         let childRef = ref.childByAutoId()
         
@@ -268,9 +272,11 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         if let image = imageUrl {
             value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "imageUrl": image, "imageWidth": (img?.size.width)!, "imageHeight": (img?.size.height)!] as [String : Any]
-        }else if let video = videoUrl{
-            value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "videoUrl": video, "videoWidth": (videoImage?.size.width)!, "videoHeight": (videoImage?.size.height)!] as [String : Any]
-        }else{
+        }
+//        else if let video = videoUrl{
+//            value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "videoUrl": video, "videoWidth": (videoImage?.size.width)!, "videoHeight": (videoImage?.size.height)!] as [String : Any]
+//        }
+        else{
             value = ["fromId": fromId, "toId": toId, "timeStamp": timeStamp, "message": message] as [String : Any]
         }
         
@@ -296,13 +302,16 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         var messages = [Message]()
         
         let ref = DataService.instance.REF_USER_MESSAGE.child(uid).child(toId)
-        ref.observe(.childAdded, with: { (snapshot) in
+        ref.observe(.childAdded, with: { [weak self] (snapshot) in
+            
             let messageId = snapshot.key
             let messageReference = DataService.instance.REF_MESSAGE.child(messageId)
             
-            messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            messageReference.observeSingleEvent(of: .value, with: { [weak self] (snapshot) in
                 guard let dict = snapshot.value as? Dictionary<String,Any> else { return }
+                
                 let message = Message()
+                
                 message.fromId = (dict["fromId"] as? String)!
                 message.toId = (dict["toId"] as? String)!
                 
@@ -316,17 +325,18 @@ class MessageVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     message.imageHeight = dict["imageHeight"] as? NSNumber
                 }
                 
-                if let video = dict["videoUrl"] as? String{
-                    message.video = video
-                    message.videoWidth = dict["imageWidth"] as? NSNumber
-                    message.videoHeight = dict["imageHeight"] as? NSNumber
-                }
+//                if let video = dict["videoUrl"] as? String{
+//                    message.video = video
+//                    message.videoWidth = dict["imageWidth"] as? NSNumber
+//                    message.videoHeight = dict["imageHeight"] as? NSNumber
+//                }
                 message.timeStamp = (dict["timeStamp"] as? Double)!
                 
-                if toId == self._uid!{
+                if toId == self?._uid!{
                     messages.append(message)
+                    
                     complete(messages)
-                    self.attemptReloadOfCollection()
+                    self?.attemptReloadOfCollection()
                 }
             }, withCancel: nil)
         }, withCancel: nil)
@@ -371,20 +381,23 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         setupCell(cell, message)
         cell.textView.text = message.message
+        cell.message = message
         
         if let text = message.message{
              let addTextSizeWight: CGFloat = 32
             cell.bubbleWidthAnchor?.constant = estimateFromeForText(text).width + addTextSizeWight
-            cell.textView.isHidden = false
+            
         }else if message.image != nil {
             let addImageSizeWight: CGFloat = 200
             cell.bubbleWidthAnchor?.constant = addImageSizeWight
-            cell.textView.isHidden = true
-        }else if message.video != nil {
-            let addVideoSizeWight: CGFloat = 200
-            cell.bubbleWidthAnchor?.constant = addVideoSizeWight
-            cell.textView.isHidden = true
+            
         }
+//        else if message.video != nil {
+//            let addVideoSizeWight: CGFloat = 200
+//            cell.bubbleWidthAnchor?.constant = addVideoSizeWight
+//        }
+        cell.textView.isHidden = message.message == nil
+//        cell.playButton.isHidden = message.video == nil
         
         return cell
     }
@@ -430,9 +443,9 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 zoomOutImage.frame = self.startFrame!
                 self.lightGreenBackgroundView?.alpha = 0
-            }) { (completion) in
+            }) { [weak self] (completion) in
                 zoomOutImage.removeFromSuperview()
-                self.tappedImage?.isHidden = false
+                self?.tappedImage?.isHidden = false
             }
         }
     }
@@ -460,13 +473,15 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             cell.messageImageView.loadImageUsingCacheWithUrlString(messageImageUrl)
             cell.messageImageView.isHidden = false
             cell.bubbleView.backgroundColor = .clear
-        }else if let messageVideoImageUrl = message.video {
-            cell.messageVideoView.loadImageUsingCacheWithUrlString(messageVideoImageUrl)
-            cell.messageVideoView.isHidden = false
-            cell.bubbleView.backgroundColor = .clear
-        }else{
+        }
+//        else if let messageVideoImageUrl = message.video {
+//            cell.messageVideoView.loadImageUsingCacheWithUrlString(messageVideoImageUrl)
+//            cell.messageVideoView.isHidden = false
+//            cell.bubbleView.backgroundColor = .clear
+//        }
+        else{
             cell.messageImageView.isHidden = true
-            cell.messageVideoView.isHidden = true
+//            cell.messageVideoView.isHidden = true
         }
     }
     
@@ -480,9 +495,10 @@ extension MessageVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             height = estimateFromeForText(text).height + addTextSizeWight
         }else if let imageWidth = message.imageWidth?.floatValue, let imageHeight = message.imageHeight?.floatValue{
             height = CGFloat(imageHeight/imageWidth * 200)
-        }else if let videoWidth = message.videoWidth?.floatValue, let videoHeight = message.videoHeight?.floatValue{
-            height = CGFloat(videoHeight/videoWidth * 200)
         }
+//        else if let videoWidth = message.videoWidth?.floatValue, let videoHeight = message.videoHeight?.floatValue{
+//            height = CGFloat(videoHeight/videoWidth * 200)
+//        }
         let width = UIScreen.main.bounds.width
         return CGSize(width: width, height: height)
     }

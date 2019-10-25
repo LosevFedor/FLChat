@@ -20,7 +20,11 @@ class Message: NSObject {
     var imageWidth: NSNumber?
     var imageHeight: NSNumber?
     
-    var video: String?
-    var videoWidth: NSNumber?
-    var videoHeight: NSNumber?
+    deinit {
+        print("Message: all referenses was remove")
+    }
+    
+//    var video: String?
+//    var videoWidth: NSNumber?
+//    var videoHeight: NSNumber?
 }

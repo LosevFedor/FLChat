@@ -10,7 +10,7 @@ import UIKit
 import GoogleSignIn
 import Firebase
 import FBSDKLoginKit
-import AVFoundation
+//import AVFoundation
 
 
 class SettingsVC: UIViewController {
@@ -41,21 +41,24 @@ class SettingsVC: UIViewController {
         setUserSettings()
     }
     
+    deinit {
+        print("SettingsView: all referenses was remove")
+    }
     
     func setUserSettings(){
-        DataService.instance.getUserCredentialsFromDatabase{ (completeGetParams) in
-            if completeGetParams{
+        DataService.instance.getUserCredentialsFromDatabase{ [weak self] (userParams) in
+            if userParams{
                 let currentName = User.instance.name
                 let currentPhone = User.instance.phone
                 let currentImage = User.instance.image
                 let currentNotificationSound = User.instance.notificationSoundOn
                 let currentNotificationOn = User.instance.notificationOn
                 
-                self.userNameLabel.text = currentName
-                self.userPhoneLabel.text = currentPhone
-                self.userImage.loadImageUsingCacheWithUrlString(currentImage)
-                self.switchValueSound.isOn = currentNotificationSound
-                self.switchValueNotification.isOn = currentNotificationOn
+                self?.userNameLabel.text = currentName
+                self?.userPhoneLabel.text = currentPhone
+                self?.userImage.loadImageUsingCacheWithUrlString(currentImage)
+                self?.switchValueSound.isOn = currentNotificationSound
+                self?.switchValueNotification.isOn = currentNotificationOn
             }
         }
     }
@@ -78,33 +81,35 @@ class SettingsVC: UIViewController {
         
     }
     
-    fileprivate func checkTextFieldForEpties(_ textField: String, _ defaultTitle: String) -> String {
-        
+    fileprivate func textFieldIsEmpty(_ textField: String, _ defaultTitle: String) -> String {
         var usertextFieldParam = textField
+        
         if usertextFieldParam == ""{
             usertextFieldParam = defaultTitle
         }
+        
         return usertextFieldParam
     }
     
     @IBAction func changePhoneBtnPressed(_ sender: Any) {
         let alertController: UIAlertController = UIAlertController(title: "Change your phone number", message: nil, preferredStyle: .alert)
-        alertController.addTextField { (textField) in
-            self.userPhoneTextField = textField
-            self.userPhoneTextField?.placeholder = "Enter your new phone number"
+        
+        alertController.addTextField { [weak self] (textField) in
+            self?.userPhoneTextField = textField
+            self?.userPhoneTextField?.placeholder = "Enter your new phone number"
         }
-        let okAlert = UIAlertAction(title: "OK", style: .cancel) { (okAction) in
+        
+        let okAlert = UIAlertAction(title: "OK", style: .cancel) { [weak self] (okAction) in
             let uid = (Auth.auth().currentUser?.uid)!
             
+            self?.userPhoneTextField?.text = self?.textFieldIsEmpty((self?.userPhoneTextField!.text)!, DEFAULT_PHONE_FIELD)
             
-            self.userPhoneTextField?.text = self.checkTextFieldForEpties(self.userPhoneTextField!.text!, DEFAULT_PHONE_FIELD)
-            
-            DataService.instance.changeUserPhoneIntoDBWithUID(uid, (self.userPhoneTextField?.text)!) { (changed, error) in
+            DataService.instance.changeUserPhoneIntoDBWithUID(uid, (self?.userPhoneTextField?.text)!) { [weak self] (changed, error) in
                 if error != nil {
                     print("Can't change user phone: \(String(describing: error?.localizedDescription))")
                 }
                 if changed{
-                    self.setUserSettings()
+                    self?.setUserSettings()
                 }
             }
         }
@@ -120,24 +125,27 @@ class SettingsVC: UIViewController {
     @IBAction func changeNameBtnPressed(_ sender: Any) {
         
         let alertController: UIAlertController = UIAlertController(title: "Change your name", message: nil, preferredStyle: .alert)
-        alertController.addTextField { (textField) in
-            self.userNameTextField = textField
-            self.userNameTextField?.placeholder = "Enter your new name"
+        
+        alertController.addTextField { [weak self] (textField) in
+            self?.userNameTextField = textField
+            self?.userNameTextField?.placeholder = "Enter your new name"
         }
-        let okAlert = UIAlertAction(title: "OK", style: .cancel) { (okAction) in
+        
+        let okAlert = UIAlertAction(title: "OK", style: .cancel) { [weak self] (okAction) in
             let uid = (Auth.auth().currentUser?.uid)!
             
-            self.userNameTextField?.text = self.checkTextFieldForEpties(self.userNameTextField!.text!, DEFAULT_NAME_FIELD)
+            self?.userNameTextField?.text = self?.textFieldIsEmpty((self?.userNameTextField!.text!)!, DEFAULT_NAME_FIELD)
             
-            DataService.instance.changeUserNameIntoDatabaseWithUID(uid, (self.userNameTextField?.text)!) { (changed, error) in
+            DataService.instance.changeUserNameIntoDatabaseWithUID(uid, (self?.userNameTextField?.text)!) { [weak self] (changed, error) in
                 if error != nil {
                     print("Can't change user name: \(String(describing: error?.localizedDescription))")
                 }
                 if changed{
-                    self.setUserSettings()
+                    self?.setUserSettings()
                 }
             }
         }
+        
         let cancelAlert = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alertController.addAction(okAlert)
         alertController.addAction(cancelAlert)
@@ -146,15 +154,14 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func pushNotificationSoundBtnPressed(_ sender: Any) {
-        
         let soundOn = self.switchValueSound.isOn
         let uid = (Auth.auth().currentUser?.uid)!
-        DataService.instance.changeUserNotificationSoundIntoDatabaseWithUID(uid, soundOn) { (changeSound, error) in
+        DataService.instance.changeUserNotificationSoundIntoDatabaseWithUID(uid, soundOn) { [weak self] (changeSound, error) in
             if error != nil{
                 print("Can't change user notification in to database")
             }
             if changeSound{
-                self.setUserSettings()
+                self?.setUserSettings()
             }
         }
     }
@@ -162,12 +169,12 @@ class SettingsVC: UIViewController {
     @IBAction func pushNotificationBtnPressed(_ sender: Any) {
         let pushNotificationOn = switchValueNotification.isOn
         let uid = (Auth.auth().currentUser?.uid)!
-        DataService.instance.changeUserPushNotificationIntoDatabaseWithUID(uid, pushNotificationOn) { (changePush, error) in
+        DataService.instance.changeUserPushNotificationIntoDatabaseWithUID(uid, pushNotificationOn) { [weak self] (changePush, error) in
             if error != nil{
                 print("Can't change user push notification in to database \(String(describing: error?.localizedDescription))")
             }
             if changePush{
-                self.setUserSettings()
+                self?.setUserSettings()
             }
         }
     }
@@ -192,9 +199,9 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         }
         
         if let selectedImage = selectedImageFromPicker{
-            uploadNewUserImageIntoDB(selectedImage) { (updated, error) in
-                if updated{
-                    self.setUserSettings()
+            uploadNewUserImageToDB(selectedImage) { [weak self] (uploadedUserImage) in
+                if uploadedUserImage{
+                    self?.setUserSettings()
                 }
             }
         }
@@ -203,7 +210,7 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         
     }
     
-    private func uploadNewUserImageIntoDB(_ image: UIImage, copletedUpdateURLIntoDatabase: @escaping(_ upload: Bool, _ error: Error?) -> ()){
+    private func uploadNewUserImageToDB(_ image: UIImage, completion: @escaping(_ upload: Bool) -> ()){
         let uid = (Auth.auth().currentUser?.uid)!
         let ref = DataService.instance.REF_STORAGE_PROFILE_IMAGES.child(uid)
         
@@ -215,12 +222,12 @@ extension SettingsVC: UIImagePickerControllerDelegate, UINavigationControllerDel
                 
                 ref.downloadURL { (url, error) in
                     guard let url = url else{
-                        copletedUpdateURLIntoDatabase(false, error)
+                        completion(false)
                         return
                     }
                     let newUserImage = DataService.instance.changeUserImage(url.absoluteString)
                     DataService.instance.updateUserIntoDatabaseWithUID(uid, newUserImage)
-                    copletedUpdateURLIntoDatabase(true, nil)
+                    completion(true)
                 }
             }
         }

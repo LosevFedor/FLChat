@@ -30,18 +30,22 @@ class AllRequestFriendsVC: UIViewController {
         
     }
     
+    deinit {
+        print("AllRequestFriendsVC: all referenses was remove")
+    }
+    
     @objc func textFieldDidChanged(){
-        DataService.instance.getUsersWhoSendRequestToFriends(forSearchQuery: searchUserByEmail.text!) { (returnUsers) in
-            self.usersArray = returnUsers
-            self.collectionView.reloadData()
+        DataService.instance.getUsersWhoSendRequestToFriends(forSearchQuery: searchUserByEmail.text!) { [weak self] (returnUsers) in
+            self?.usersArray = returnUsers
+            self?.collectionView.reloadData()
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super .viewDidAppear(animated)
-        DataService.instance.getUsersWhoSendRequestToFriends(forSearchQuery: searchUserByEmail.text!) { (returnUsers) in
-            self.usersArray = returnUsers
-            self.collectionView.reloadData()
+        DataService.instance.getUsersWhoSendRequestToFriends(forSearchQuery: searchUserByEmail.text!) { [weak self] (returnUsers) in
+            self?.usersArray = returnUsers
+            self?.collectionView.reloadData()
         }
     }
     
@@ -72,12 +76,15 @@ extension AllRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedUser = usersArray[indexPath.row]
+        
         guard let selectAllRequestFriendsVC = storyboard?.instantiateViewController(withIdentifier: GO_TO_SELECT_ALL_REQUEST_FRIENDS) as? SelectAllRequestFriendsVC else { return }
         
         let user = Users(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+        
         let profileImageUrl = user.userImage
         let url = URL(string: profileImageUrl)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: { [weak self] (data, responce, error) in
             if error != nil {
                 print("Cant convert url for image: \(String(describing: error?.localizedDescription))")
             }
@@ -90,8 +97,10 @@ extension AllRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSou
                 let curentUserPhone = user.userPhone
                 let currentUserStatus = user.userStatus
                 let currentUserUrlImage = user.userImage
+                
                 selectAllRequestFriendsVC.initData(currentUserId,currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
-                self.present(selectAllRequestFriendsVC, animated: true, completion: nil)
+                
+                self?.present(selectAllRequestFriendsVC, animated: true, completion: nil)
             }
         }).resume()
     }

@@ -17,6 +17,10 @@ class SlideInTransiotion: NSObject, UIViewControllerAnimatedTransitioning {
         return 0.3
     }
     
+    deinit {
+        print("SlideInTransiotion: all referenses was remove")
+    }
+    
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let toViewController = transitionContext.viewController(forKey: .to) else { return }
         guard let fromViewController = transitionContext.viewController(forKey: .from) else { return }

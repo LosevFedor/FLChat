@@ -83,7 +83,7 @@ class DataService {
         REF_USERS.child(uid).updateChildValues(userImage)
     }
     
-    func getAllFrinds(forSearchQuery query: String, _ completedSearching: @escaping (_ returnUsers: [Users]) -> ()){
+    func getAllFrinds(forSearchQuery query: String, _ completion: @escaping (_ returnUsers: [Users]) -> ()){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var arrayUsers = [Users]()
         
@@ -118,13 +118,13 @@ class DataService {
                         if email != Auth.auth().currentUser?.email {
                             let searchUserByEmail = Users(id, name, image, email, phone, status)
                             arrayUsers.append(searchUserByEmail)
-                            completedSearching(arrayUsers)
+                            completion(arrayUsers)
                         }
                     }else{
                         if email.contains(query) && email != Auth.auth().currentUser?.email {
                             let searchUserByEmail = Users(id, name, image, email, phone, status)
                             arrayUsers.append(searchUserByEmail)
-                            completedSearching(arrayUsers)
+                            completion(arrayUsers)
                         }
                     }
                 }, withCancel: nil)
@@ -132,7 +132,7 @@ class DataService {
         }, withCancel: nil)
     }
     
-    func getUserCredentialsFromDatabase(_ completeResponce: @escaping (_ getCredentials: Bool) -> ()){
+    func getUserCredentialsFromDatabase(_ completion: @escaping (_ userParams: Bool) -> ()){
        
         guard let uid = Auth.auth().currentUser?.uid else { return}
         
@@ -147,11 +147,12 @@ class DataService {
             User.instance.online = (value?["online"] as? Bool)!
             User.instance.notificationOn = (value?["notificationOn"] as? Bool)!
             User.instance.notificationSoundOn = (value?["notificationSound"] as? Bool)!
-            completeResponce(true)
+            
+            completion(true)
         }
     }
    
-    func getUsersWhomFriendRequestBeenSend(forSearchQuery query: String, completedSearching: @escaping (_ returnUsers: [Users]) -> ()){
+    func getUsersWhomFriendRequestBeenSend(forSearchQuery query: String, completion: @escaping (_ returnUsers: [Users]) -> ()){
         guard let fromId = Auth.auth().currentUser?.uid else { return }
         var arrayUsers = [Users]()
         REF_USER_FRIEND_REQUEST.child(fromId).observe(.childAdded, with: { (snapshot) in
@@ -177,13 +178,13 @@ class DataService {
                             if email != Auth.auth().currentUser?.email {
                                 let searchUserByEmail = Users(name, image, email, phone, status)
                                 arrayUsers.append(searchUserByEmail)
-                                completedSearching(arrayUsers)
+                                completion(arrayUsers)
                             }
                         }else{
                             if email.contains(query) && email != Auth.auth().currentUser?.email {
                                 let searchUserByEmail = Users(name, image, email, phone, status)
                                 arrayUsers.append(searchUserByEmail)
-                                completedSearching(arrayUsers)
+                                completion(arrayUsers)
                             }
                         }
                     }, withCancel: nil)
@@ -192,7 +193,7 @@ class DataService {
         }, withCancel: nil)
     }
     
-    func getUsersWhoSendRequestToFriends(forSearchQuery query: String, snapshotCompleted: @escaping(_ usersWhoSendRequest: [Users]) -> ()){
+    func getUsersWhoSendRequestToFriends(forSearchQuery query: String, completion: @escaping(_ usersWhoSendRequest: [Users]) -> ()){
         let toId = (Auth.auth().currentUser?.uid)!
         var arrayUsers = [Users]()
         
@@ -218,13 +219,13 @@ class DataService {
                             if email != Auth.auth().currentUser?.email {
                                 let user = Users(uid, name, image, email, phone, status)
                                 arrayUsers.append(user)
-                                snapshotCompleted(arrayUsers)
+                                completion(arrayUsers)
                             }
                         }else{
                             if email.contains(query) && email != Auth.auth().currentUser?.email {
                                 let user = Users(uid, name, image, email, phone, status)
                                 arrayUsers.append(user)
-                                snapshotCompleted(arrayUsers)
+                                completion(arrayUsers)
                             }
                         }
                     }, withCancel: nil)
@@ -233,7 +234,7 @@ class DataService {
         }, withCancel: nil)
     }
     
-    func getUsersFromDatabase(forSearchQuery query: String, completedSearching: @escaping (_ userParametersArray: [Users]) -> ()){
+    func getUsersFromDatabase(forSearchQuery query: String, completion: @escaping (_ userParametersArray: [Users]) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (allUserSnapshot) in
             
             var searchUser = [Users]()
@@ -259,11 +260,11 @@ class DataService {
                     }
                 }
             }
-            completedSearching(searchUser)
+            completion(searchUser)
         }
     }
     
-    func removeFriendRequestsFromDatabase(_ toId: String, _ fromId: String, _ removeCompleted: @escaping (_ complete: Bool) -> ()){
+    func removeFriendRequestsFromDatabase(_ toId: String, _ fromId: String, _ completion: @escaping (_ complete: Bool) -> ()){
         let refUFR = DataService.instance.REF_USER_FRIEND_REQUEST
         refUFR.child(toId).child(fromId).observe(.childAdded, with: { (snapshot) in
             refUFR.child(fromId).child(toId).observe(.childAdded, with: { (snapshot) in
@@ -272,7 +273,7 @@ class DataService {
                 refFR.removeValue()
                 refUFR.child(toId).child(fromId).removeValue()
                 refUFR.child(fromId).child(toId).removeValue()
-                removeCompleted(true)
+                completion(true)
             }, withCancel: nil)
         }, withCancel: nil)
     }
@@ -307,7 +308,7 @@ class DataService {
         return dictUserPushNotification
     }
     
-    func registrationUserIntoDB(_ uid: String, _ email: String, completedUserRegistration: @escaping (_ registration:Bool, _ error:Error?) -> ()){
+    func registrationUserIntoDB(_ uid: String, _ email: String, completion: @escaping (_ registration:Bool, _ error:Error?) -> ()){
         let ref = REF_STORAGE_PROFILE_IMAGES.child(uid)
         let defaultUserImage = UIImage(named:  "defaultImage")
         
@@ -319,12 +320,12 @@ class DataService {
                 
                 ref.downloadURL { (url, error) in
                     guard let url = url else{
-                        completedUserRegistration(false,error)
+                        completion(false,error)
                         return
                     }
                     let userData = self.userData(email, User.instance.phone, User.instance.name, url.absoluteString, User.instance.online, User.instance.notificationOn, User.instance.notificationSoundOn)
                     self.updateUserIntoDatabaseWithUID(uid, userData)
-                    completedUserRegistration(true, nil)
+                    completion(true, nil)
                 }
             }
         }
@@ -338,7 +339,7 @@ class DataService {
         requestWillSend(true, refAutoKey)
     }
     
-    func recipientsUserFriendRequestIntoDB(_ key: String, _ recipientId: String, recipientAddedIntoDatabase: @escaping(_ complete: Bool) -> ()){
+    func recipientsUserFriendRequestIntoDB(_ key: String, _ recipientId: String, completion: @escaping(_ complete: Bool) -> ()){
         let toId = recipientId
         let fromId = (Auth.auth().currentUser?.uid)!
         let ref = REF_USER_FRIEND_REQUEST.child(toId).child(fromId)
@@ -348,10 +349,10 @@ class DataService {
             if error != nil{
                 print("Can't create new object in to Database: \(String(describing: error?.localizedDescription))")
             }
-            recipientAddedIntoDatabase(true)
+            completion(true)
         }
     }
-    func userFriendRequestIntoDB(_ key: String, _ recipientId: String, _ requestSend: @escaping(_ requestSend: Bool)-> ()){
+    func userFriendRequestIntoDB(_ key: String, _ recipientId: String, _ completion: @escaping(_ requestSend: Bool)-> ()){
         let fromId = (Auth.auth().currentUser?.uid)!
         let toId = recipientId
         let ref = REF_USER_FRIEND_REQUEST.child(fromId).child(toId)
@@ -361,7 +362,7 @@ class DataService {
             if error != nil{
                 print("Can't create new object in to Database: \(String(describing: error?.localizedDescription))")
             }
-            requestSend(true)
+            completion(true)
         }
     }
     
@@ -374,7 +375,7 @@ class DataService {
     }
     
    
-    func recipientsUserFriendIntoDB(_ key: String, _ recipientId: String, refSend: @escaping(_ complete: Bool) -> ()){
+    func recipientsUserFriendIntoDB(_ key: String, _ recipientId: String, completion: @escaping(_ complete: Bool) -> ()){
         let uid = recipientId
         let ref = REF_USER_FRIENDS.child(uid)
         let requstId = "\(key)"
@@ -383,11 +384,11 @@ class DataService {
             if error != nil{
                 print("Can't create new object in to Database: \(String(describing: error?.localizedDescription))")
             }
-            refSend(true)
+            completion(true)
         }
     }
     
-    func userFriendIntoDB(_ key: String, refSend: @escaping(_ completed: Bool)-> ()){
+    func userFriendIntoDB(_ key: String, completion: @escaping(_ completed: Bool)-> ()){
         let uid = (Auth.auth().currentUser?.uid)!
         let ref = REF_USER_FRIENDS.child(uid)
         let friendId = "\(key)"
@@ -396,31 +397,31 @@ class DataService {
             if error != nil{
                 print("Can't create new object in to Database: \(String(describing: error?.localizedDescription))")
             }
-            refSend(true)
+            completion(true)
         }
     }
     
-    func changeUserNameIntoDatabaseWithUID(_ uid: String, _ newUserName: String, copletedChangeUserName: @escaping(_ changed:Bool, _ error:Error?) -> ()){
+    func changeUserNameIntoDatabaseWithUID(_ uid: String, _ newUserName: String, completion: @escaping(_ changed:Bool, _ error:Error?) -> ()){
         let userData = changeUserName(newUserName)
         self.updateUserIntoDatabaseWithUID(uid, userData)
-        copletedChangeUserName(true,nil)
+        completion(true,nil)
     }
     
-    func changeUserPhoneIntoDBWithUID(_ uid: String, _ newUserPhone: String, completedChangeUserPhone: @escaping(_ change:Bool, _ error:Error?) -> ()){
+    func changeUserPhoneIntoDBWithUID(_ uid: String, _ newUserPhone: String, completion: @escaping(_ change:Bool, _ error:Error?) -> ()){
         let userPhone = changeUserPhone(newUserPhone)
         self.updateUserIntoDatabaseWithUID(uid, userPhone)
-        completedChangeUserPhone(true,nil)
+        completion(true,nil)
     }
     
-    func changeUserNotificationSoundIntoDatabaseWithUID(_ uid: String, _ newUserNotificationSound: Bool, completedChangeUserNotificationSound: @escaping(_ change:Bool, _ error: Error?) -> ()){
+    func changeUserNotificationSoundIntoDatabaseWithUID(_ uid: String, _ newUserNotificationSound: Bool, completion: @escaping(_ change:Bool, _ error: Error?) -> ()){
         let userNotificationSound = changeUsserNotificationSound(newUserNotificationSound)
         self.updateUserIntoDatabaseWithUID(uid, userNotificationSound)
-        completedChangeUserNotificationSound(true,nil)
+        completion(true,nil)
     }
     
-    func changeUserPushNotificationIntoDatabaseWithUID(_ uid: String, _ newUserPushNotification: Bool, completedChangeUserPushNotification: @escaping(_ change:Bool, _ error: Error?) -> ()){
+    func changeUserPushNotificationIntoDatabaseWithUID(_ uid: String, _ newUserPushNotification: Bool, completion: @escaping(_ change:Bool, _ error: Error?) -> ()){
         let userPushNotification = changeUserPushNotification(newUserPushNotification)
         self.updateUserIntoDatabaseWithUID(uid, userPushNotification)
-        completedChangeUserPushNotification(true,nil)
+        completion(true,nil)
     }
 }

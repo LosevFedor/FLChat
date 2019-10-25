@@ -31,18 +31,22 @@ class AddNewFriendsVC: UIViewController{
         searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
     
+    deinit {
+        print("AddNewFriendsVC: all referenses was remove")
+    }
+    
     @objc func textFieldDidChanged(){
-        
-        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnedUsers) in
-            self.usersArray = returnedUsers
-            self.collectionView?.reloadData()
+        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { [weak self] (returnedUsers) in
+            self?.usersArray = returnedUsers
+            self?.collectionView?.reloadData()
         }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { (returnUsers) in
-            self.usersArray = returnUsers
-            self.collectionView?.reloadData()
+        DataService.instance.getUsersFromDatabase(forSearchQuery: searchUserByEmail.text!) { [weak self] (returnUsers) in
+            self?.usersArray = returnUsers
+            self?.collectionView?.reloadData()
         }
     }
     
@@ -50,7 +54,6 @@ class AddNewFriendsVC: UIViewController{
         usersArray.removeAll()
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
@@ -64,6 +67,7 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
         cell.configureCell(user.userName, user.userImage, user.userStatus)
         return cell
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -77,7 +81,8 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
  
         let profileImageUrl = user.userImage
         let url = URL(string: profileImageUrl)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: { [weak self] (data, responce, error) in
             if error != nil {
                 print("Cant convert url for image: \(String(describing: error?.localizedDescription))")
             }
@@ -91,7 +96,7 @@ extension AddNewFriendsVC: UICollectionViewDataSource, UICollectionViewDelegate{
                 let currentUserStatus = user.userStatus
                 let currentUserUrlImage = user.userImage
                 selectNewUserFriendVC.initData(currentUserId, currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
-                self.present(selectNewUserFriendVC, animated: true, completion: nil)
+                self?.present(selectNewUserFriendVC, animated: true, completion: nil)
             }
         }).resume()
     }

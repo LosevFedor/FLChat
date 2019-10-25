@@ -31,8 +31,6 @@ class SelectNewUserFriendVC: UIViewController {
     private var currentUserHasTextForButton: String!
     private var currentUserUrlImage: String!
     
-    
-
     fileprivate func addBlureEffeckForBackgroundUserImg() {
         let blurEffect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -54,6 +52,10 @@ class SelectNewUserFriendVC: UIViewController {
         backgroundUserImg.image = currentBackgroundUserImg
         
         addBlureEffeckForBackgroundUserImg()
+    }
+    
+    deinit {
+        print("SelectNewUserFriendVC: all referenses was remove")
     }
     
     func initData(_ id: String, _ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool, _ urlImage: String){
@@ -82,25 +84,23 @@ class SelectNewUserFriendVC: UIViewController {
         let userTo = getParamsUserTo()
         let userFrom = getParamsUserFrom()
         
-        //SaveUID.instance.toUID = toId
-        
-        DataService.instance.friendRequestIntoDB(fromId, userFrom, toId, userTo, timeStamp, msg, requestConfirmed) { (createRequest, autoKey) in
+        DataService.instance.friendRequestIntoDB(fromId, userFrom, toId, userTo, timeStamp, msg, requestConfirmed) { [weak self] (createRequest, autoKey) in
             if createRequest{
                 
-                DataService.instance.userFriendRequestIntoDB(autoKey, toId, { (complete) in
+                DataService.instance.userFriendRequestIntoDB(autoKey, toId, { [weak self] (complete) in
                     if complete {
-                        DataService.instance.recipientsUserFriendRequestIntoDB(autoKey, toId, recipientAddedIntoDatabase: { (recipientAdded) in
+                        DataService.instance.recipientsUserFriendRequestIntoDB(autoKey, toId, completion: { (recipientAdded) in
                             if recipientAdded{
                                 print("Recipient added in to database")
                             }
                         })
                         
-                        let alertController = UIAlertController(title: "Your friend request was successfully sent to the \"\(self.currentUserName!)\"", message: nil, preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "Your friend request was successfully sent to the \"\(String(describing: self?.currentUserName!))\"", message: nil, preferredStyle: .alert)
                         let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
-                            self.dismiss(animated: true, completion: nil)
+                            self?.dismiss(animated: true, completion: nil)
                         })
                         alertController.addAction(okAlert)
-                        self.present(alertController, animated: true, completion: nil)
+                        self?.present(alertController, animated: true, completion: nil)
                     }
                 })
             }
@@ -122,6 +122,7 @@ class SelectNewUserFriendVC: UIViewController {
         let user:Dictionary<String,Any> = ["uid": currentUID!, "name": currentUserName!, "image": currentUserUrlImage!, "email": currentUserEmail!, "phone": currentUserPhone!, "online": currentUserStatus!]
         return user
     }
+    
     private func getParamsUserFrom() -> Dictionary<String,Any>{
         let uid = (Auth.auth().currentUser?.uid)!
         let name = User.instance.name

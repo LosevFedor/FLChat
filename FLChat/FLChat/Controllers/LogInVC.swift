@@ -36,6 +36,8 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     
     deinit {
         removeObserverKeyboard()
+        print("LoginVC: all referenses was remove")
+        
     }
     
     @IBAction func googleBtnPressed(_ sender: Any) {
@@ -46,36 +48,36 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
         
         let facebookLogin = FBSDKLoginManager()
         
-            facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            facebookLogin.logIn(withReadPermissions: ["email"], from: self) { [weak self] (result, error) in
                 if error != nil{
-                    self.standartErrors(WAR, error!.localizedDescription)
+                    self?.standartErrors(WAR, error!.localizedDescription)
                 }else if result?.isCancelled == true{
                     print("Fed: User rejected registration via facebook")
                 }
                 else{
                     print("Fed: Facebook needed your device token")
                     let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current()!.tokenString)
-                    self.facebookAuth(credential)
+                    self?.facebookAuth(credential)
                 }
             }
     }
     
     func facebookAuth(_ credential: AuthCredential){
-        Auth.auth().signIn(with: credential) { (result, error) in
+        Auth.auth().signIn(with: credential) { [weak self] (result, error) in
             if error != nil{
-                self.standartErrors(WAR, error!.localizedDescription)
+                self?.standartErrors(WAR, error!.localizedDescription)
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
                     let uid = (Auth.auth().currentUser?.uid)!
                     let email = (result!.user.email)!
                     
-                    DataService.instance.registrationUserIntoDB(uid, email, completedUserRegistration: { (registration, error) in
+                    DataService.instance.registrationUserIntoDB(uid, email, completion: { [weak self] (registration, error) in
                         if error != nil{
                             print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
                         }else{
-                            self.clearEmailAndPassFieldsAfterLogin()
-                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                            self?.clearEmailAndPassFieldsAfterLogin()
+                            self?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                         }
                     })
                 }
@@ -85,21 +87,21 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     
     @IBAction func loginBtnPressed(_ sender: Any) {
         if let email = emailField.text, let password = passwordField.text{
-            Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, error) in
                 if error != nil{
                     guard let err = error, err.localizedDescription == NOT_FIND_THIS_USER else {
-                        self.standartErrors(WAR, (error?.localizedDescription)! as String)
+                        self?.standartErrors(WAR, (error?.localizedDescription)! as String)
                         return
                     }
                     let descriptionText = "\(err.localizedDescription) \(DO_YOU_NEED_NEW_ACCOUNT)"
-                    self.customErrors(WAR, descriptionText)
+                    self?.customErrors(WAR, descriptionText)
                 }else{
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     if UserDefaults.standard.isLoggedIn(){
-                        DataService.instance.getUserCredentialsFromDatabase { (completeGetParams) in
+                        DataService.instance.getUserCredentialsFromDatabase { [weak self] (completeGetParams) in
                             if completeGetParams{
-                                self.clearEmailAndPassFieldsAfterLogin()
-                                self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                                self?.clearEmailAndPassFieldsAfterLogin()
+                                self?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                             }
                         }
                     }
@@ -109,21 +111,21 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     }
     
     func registrateUserAndLogIn(_ email: String, _ password: String){
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
             if error != nil{
-                self.standartErrors(WAR, error!.localizedDescription)
+                self?.standartErrors(WAR, error!.localizedDescription)
             }else{
                 UserDefaults.standard.setIsLoggedIn(value: true)
                 if UserDefaults.standard.isLoggedIn(){
                     let uid = (Auth.auth().currentUser?.uid)!
                     let email = (result!.user.email)!
                     
-                    DataService.instance.registrationUserIntoDB(uid, email, completedUserRegistration: { (registration, error) in
+                    DataService.instance.registrationUserIntoDB(uid, email, completion: { [weak self] (registration, error) in
                         if error != nil{
                             print("Can't registrate user in to firebase: \(String(describing: error?.localizedDescription))")
                         }else{
-                            self.clearEmailAndPassFieldsAfterLogin()
-                            self.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
+                            self?.clearEmailAndPassFieldsAfterLogin()
+                            self?.performSegue(withIdentifier: GO_TO_HOME, sender: nil)
                         }
                     })
                 }
@@ -146,17 +148,17 @@ class LoginVC: UIViewController, UITextFieldDelegate, ShowHideKeyboard, GIDSignI
     
     private func customErrors(_ title:String, _ message: String){
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { (action) in
+        alert.addAction(UIAlertAction.init(title: "Yes", style: .cancel, handler: { [weak self] (action) in
 
-            guard let password = self.passwordField.text, self.passwordField.text!.count >= 6 else {
-                self.standartErrors(WAR, PASSWORD_LESS)
+            guard let password = self?.passwordField.text, (self?.passwordField.text!.count)! >= 6 else {
+                self?.standartErrors(WAR, PASSWORD_LESS)
                 return
             }
-            guard let email = self.emailField.text, self.emailField.text!.count >= 6 else {
-                self.standartErrors(WAR, EMAIL_LESS)
+            guard let email = self?.emailField.text, (self?.emailField.text!.count)! >= 6 else {
+                self?.standartErrors(WAR, EMAIL_LESS)
                 return
             }
-           self.registrateUserAndLogIn(email, password)
+           self?.registrateUserAndLogIn(email, password)
             alert.dismiss(animated: true, completion: nil)
         }))
 

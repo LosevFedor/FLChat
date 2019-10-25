@@ -31,19 +31,23 @@ class MyRequestFriendsVC: UIViewController {
         searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
     
+    deinit {
+        print("MyRequestFriendsVC: all referenses was remove")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        DataService.instance.getUsersWhomFriendRequestBeenSend(forSearchQuery: searchUserByEmail.text!) { (reternUsers) in
-            self.usersArray = reternUsers
-            self.collectionView.reloadData()
+        DataService.instance.getUsersWhomFriendRequestBeenSend(forSearchQuery: searchUserByEmail.text!) { [weak self] (reternUsers) in
+            self?.usersArray = reternUsers
+            self?.collectionView.reloadData()
         }
     }
     
     @objc func textFieldDidChanged(){
-        DataService.instance.getUsersWhomFriendRequestBeenSend(forSearchQuery: searchUserByEmail.text!) { (reternedUsers) in
-            self.usersArray = reternedUsers
-            self.collectionView.reloadData()
+        DataService.instance.getUsersWhomFriendRequestBeenSend(forSearchQuery: searchUserByEmail.text!) { [weak self] (reternedUsers) in
+            self?.usersArray = reternedUsers
+            self?.collectionView.reloadData()
         }
     }
 
@@ -56,7 +60,6 @@ class MyRequestFriendsVC: UIViewController {
 
 extension MyRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
         return usersArray.count
     }
 
@@ -81,7 +84,8 @@ extension MyRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSour
         
         let profileImageUrl = user.userImage
         let url = URL(string: profileImageUrl)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: { [weak self] (data, responce, error) in
             if error != nil {
                 print("Cant convert url for image: \(String(describing: error?.localizedDescription))")
             }
@@ -94,7 +98,7 @@ extension MyRequestFriendsVC: UICollectionViewDelegate, UICollectionViewDataSour
                 let currentUserStatus = user.userStatus
                 let currentUserUrlImage = user.userImage
                 selectMyRequestFriendsVC.initData(currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
-                self.present(selectMyRequestFriendsVC, animated: true, completion: nil)
+                self?.present(selectMyRequestFriendsVC, animated: true, completion: nil)
             }
         }).resume()
     }

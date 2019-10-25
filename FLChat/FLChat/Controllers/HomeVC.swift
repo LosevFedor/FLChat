@@ -11,7 +11,7 @@ import Firebase
 
 class HomeVC: UIViewController {
 
-    let transition = SlideInTransiotion()
+    var transition:SlideInTransiotion?
     
     @IBOutlet weak var collectionView: DesigneCollectionView!
     @IBOutlet weak var searchUserByEmail: DesigneTextField!
@@ -21,6 +21,8 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        transition = SlideInTransiotion()
+        
         searchUserByEmail.setLeftPaddingPoints(PADDING_POINTS)
         searchUserByEmail.setRightPaddingPoints(PADDING_POINTS)
         
@@ -33,25 +35,28 @@ class HomeVC: UIViewController {
         searchUserByEmail.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
     }
     
+    deinit {
+        print("HomeView: all referenses was remove")
+    }
     
     @objc func textFieldDidChanged() {
-        DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { (friends) in
-            self.usersArray = friends
-            self.collectionView.reloadData()
+        DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { [weak self] (friends) in
+            self?.usersArray = friends
+            self?.collectionView.reloadData()
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchUserByEmail.delegate = self
-        DataService.instance.getUserCredentialsFromDatabase() { (completeGetParams) in
+        DataService.instance.getUserCredentialsFromDatabase() {(completeGetParams) in
             if completeGetParams{
                 print("Successfully get params for User from batabase")
             }
         }
-        DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { (friends) in
-            self.usersArray = friends
-            self.collectionView.reloadData()
+        DataService.instance.getAllFrinds(forSearchQuery: searchUserByEmail.text!) { [weak self] (friends) in
+            self?.usersArray = friends
+            self?.collectionView.reloadData()
         }
         
     }
@@ -99,10 +104,13 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let selectedUser = usersArray[indexPath.row]
         
         guard let selectUserMessage = storyboard?.instantiateViewController(withIdentifier: MESSAGE_VC) as? MessageVC else { return }
+        
         let user = Users(selectedUser.userId, selectedUser.userName, selectedUser.userImage, selectedUser.userEmail, selectedUser.userPhone, selectedUser.userStatus)
+        
         let profileImageUrl = user.userImage
         let url = URL(string: profileImageUrl)
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, responce, error) in
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: { [weak self] (data, responce, error) in
             if error != nil {
                 print("Cant convert url for image: \(String(describing: error?.localizedDescription))")
             }
@@ -116,7 +124,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
                 let currentUserStatus = user.userStatus
                 let currentUserUrlImage = user.userImage
                 selectUserMessage.initData(currentUserId, currenUserName, currentUserImage, curentUserEmail, curentUserPhone, currentUserStatus, currentUserUrlImage)
-                self.present(selectUserMessage, animated: true, completion: nil)
+                self?.present(selectUserMessage, animated: true, completion: nil)
             }
         }).resume()
     }

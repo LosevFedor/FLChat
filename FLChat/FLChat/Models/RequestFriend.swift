@@ -14,4 +14,8 @@ class RequestFriend: NSObject {
     var statusRequest: Bool?
     var timeStamp: Double?
     var toId: String?
+    
+    deinit {
+        print("RequestFriend: all referenses was remove")
+    }
 }

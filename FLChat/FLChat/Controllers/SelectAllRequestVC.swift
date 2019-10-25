@@ -50,6 +50,10 @@ class SelectAllRequestFriendsVC: UIViewController {
         addBlureEffeckForBackgroundUserImg()
     }
     
+    deinit {
+        print("SelectAllRequestVC: all referenses was remove")
+    }
+    
     func initData(_ id: String, _ name: String, _ image: UIImage, _ email: String, _ phone: String, _ status: Bool, _ urlImage: String){
         currentUID = id
         currentUserName = name
@@ -74,6 +78,7 @@ class SelectAllRequestFriendsVC: UIViewController {
         }
         return status
     }
+    
     @IBAction func addUsertoFriendsBtnPressed(_ sender: Any) {
         let toId = (Auth.auth().currentUser?.uid)!
         let fromId = currentUID!
@@ -82,20 +87,20 @@ class SelectAllRequestFriendsVC: UIViewController {
         let userFrom = getParamsUserFrom()
         let confirmReques = true
         
-        DataService.instance.friendIntoDB(fromId, userFrom, toId, userTo, timeStamp, confirmReques) { (addedToFriends, autoKey) in
+        DataService.instance.friendIntoDB(fromId, userFrom, toId, userTo, timeStamp, confirmReques) { [weak self] (addedToFriends, autoKey) in
             if addedToFriends{
-                DataService.instance.userFriendIntoDB(autoKey, refSend: { (created) in
+                DataService.instance.userFriendIntoDB(autoKey, completion: { [weak self] (created) in
                     if created {
-                        DataService.instance.recipientsUserFriendIntoDB(autoKey, fromId, refSend: { (created) in
+                        DataService.instance.recipientsUserFriendIntoDB(autoKey, fromId, completion: { [weak self] (created) in
                             if created {
-                                DataService.instance.removeFriendRequestsFromDatabase(toId, fromId, { (coplete) in
-                                    if coplete {
-                                        let alertController = UIAlertController(title: "You have successfully added the user: \"\(self.currentUserName!)\" to your friends list.", message: nil, preferredStyle: .alert)
+                                DataService.instance.removeFriendRequestsFromDatabase(toId, fromId, { [weak self](complete) in
+                                    if complete {
+                                        let alertController = UIAlertController(title: "You have successfully added the user: \"\(String(describing: self?.currentUserName!))\" to your friends list.", message: nil, preferredStyle: .alert)
                                         let okAlert = UIAlertAction(title: "Ok", style: .default, handler: { (okAction) in
-                                            self.dismiss(animated: true, completion: nil)
+                                            self?.dismiss(animated: true, completion: nil)
                                         })
                                         alertController.addAction(okAlert)
-                                        self.present(alertController, animated: true, completion: nil)
+                                        self?.present(alertController, animated: true, completion: nil)
                                     }
                                 })
                             }
@@ -113,6 +118,7 @@ class SelectAllRequestFriendsVC: UIViewController {
         let email = User.instance.email
         let phone = User.instance.phone
         let status = User.instance.online
+        
         let user:Dictionary<String,Any> = ["uid": uid, "name": name, "image": image, "email": email, "phone": phone, "online": status]
         return user
     }
